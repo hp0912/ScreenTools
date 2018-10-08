@@ -115,7 +115,7 @@ namespace WindowsFormsApp1
 
         private void 截取选择部分ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            // aaa
         }
     }
 }
