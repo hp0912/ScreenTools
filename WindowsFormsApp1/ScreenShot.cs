@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace ScreenTools
 {
     /// <summary>
     /// 截屏控制参数

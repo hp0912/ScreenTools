@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using CefSharp;
 using CefSharp.WinForms;
 
-namespace WindowsFormsApp1
+namespace ScreenTools
 {
 
     public partial class MainWindow : Form

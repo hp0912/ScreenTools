@@ -2,7 +2,7 @@
 using CefSharp.WinForms;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace ScreenTools
 {
     partial class MainWindow
     {
