@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    partial class Form1
+    partial class MainWindow
     {
         
         /// <summary>
@@ -33,7 +33,7 @@ namespace WindowsFormsApp1
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.语言设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
