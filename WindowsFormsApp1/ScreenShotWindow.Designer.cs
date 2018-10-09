@@ -1,6 +1,6 @@
 ﻿namespace ScreenTools
 {
-    partial class ScreenShotWindow2
+    partial class ScreenShotWindow
     {
         /// <summary>
         /// Required designer variable.

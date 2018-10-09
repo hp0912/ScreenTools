@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ScreenTools
 {
-    public partial class ScreenShotWindow2 : Form
+    public partial class ScreenShotWindow : Form
     {
-        public ScreenShotWindow2()
+        public ScreenShotWindow()
         {
             InitializeComponent();
         }
