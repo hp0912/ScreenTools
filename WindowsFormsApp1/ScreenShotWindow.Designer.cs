@@ -32,16 +32,23 @@
             // 
             // ScreenShotWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ScreenShotWindow";
-            this.Opacity = 0.1D;
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "ScreenShotWindow";
-            this.TransparencyKey = System.Drawing.Color.White;
+            this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.ScreenShotWindow_Load);
+            this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ScreenShotWindow_MouseDoubleClick);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ScreenShotWindow_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ScreenShotWindow_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ScreenShotWindow_MouseUp);
             this.ResumeLayout(false);
 
         }

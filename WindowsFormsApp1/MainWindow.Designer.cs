@@ -47,8 +47,8 @@ namespace ScreenTools
             this.截屏ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.截取当前窗口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.截取当前屏幕ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.截屏时隐藏当前窗口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.截取选择部分ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.截屏时隐藏当前窗口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,7 +94,7 @@ namespace ScreenTools
             // 中文ToolStripMenuItem
             // 
             this.中文ToolStripMenuItem.Name = "中文ToolStripMenuItem";
-            this.中文ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.中文ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.中文ToolStripMenuItem.Text = "中文";
             this.中文ToolStripMenuItem.Click += new System.EventHandler(this.中文ToolStripMenuItem_Click);
             // 
@@ -102,7 +102,7 @@ namespace ScreenTools
             // 
             this.EnglishToolStripMenuItem.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.EnglishToolStripMenuItem.Name = "EnglishToolStripMenuItem";
-            this.EnglishToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.EnglishToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.EnglishToolStripMenuItem.Text = "English";
             this.EnglishToolStripMenuItem.Click += new System.EventHandler(this.EnglishToolStripMenuItem_Click);
             // 
@@ -170,13 +170,6 @@ namespace ScreenTools
             this.截取当前屏幕ToolStripMenuItem.Text = "截取当前屏幕";
             this.截取当前屏幕ToolStripMenuItem.Click += new System.EventHandler(this.截取当前屏幕ToolStripMenuItem_Click);
             // 
-            // 截屏时隐藏当前窗口ToolStripMenuItem
-            // 
-            this.截屏时隐藏当前窗口ToolStripMenuItem.CheckOnClick = true;
-            this.截屏时隐藏当前窗口ToolStripMenuItem.Name = "截屏时隐藏当前窗口ToolStripMenuItem";
-            this.截屏时隐藏当前窗口ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.截屏时隐藏当前窗口ToolStripMenuItem.Text = "截屏时隐藏当前窗口";
-            // 
             // 截取选择部分ToolStripMenuItem
             // 
             this.截取选择部分ToolStripMenuItem.Name = "截取选择部分ToolStripMenuItem";
@@ -184,7 +177,15 @@ namespace ScreenTools
             this.截取选择部分ToolStripMenuItem.Text = "截取选择部分";
             this.截取选择部分ToolStripMenuItem.Click += new System.EventHandler(this.截取选择部分ToolStripMenuItem_Click);
             // 
-            // Form1
+            // 截屏时隐藏当前窗口ToolStripMenuItem
+            // 
+            this.截屏时隐藏当前窗口ToolStripMenuItem.CheckOnClick = true;
+            this.截屏时隐藏当前窗口ToolStripMenuItem.Name = "截屏时隐藏当前窗口ToolStripMenuItem";
+            this.截屏时隐藏当前窗口ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.截屏时隐藏当前窗口ToolStripMenuItem.Text = "截屏时隐藏当前窗口";
+            this.截屏时隐藏当前窗口ToolStripMenuItem.Click += new System.EventHandler(this.截屏时隐藏当前窗口ToolStripMenuItem_Click);
+            // 
+            // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -194,8 +195,9 @@ namespace ScreenTools
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "MainWindow";
             this.Text = "Bepsun监控系统";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

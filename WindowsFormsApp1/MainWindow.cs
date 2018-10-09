@@ -3,6 +3,9 @@ using System.Threading;
 using System.Windows.Forms;
 using CefSharp;
 using CefSharp.WinForms;
+using System.Runtime.InteropServices;
+using System.Drawing.Imaging;
+using System.Drawing;
 
 namespace ScreenTools
 {
@@ -112,10 +115,31 @@ namespace ScreenTools
             }
             
         }
-
         private void 截取选择部分ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //bbbb
+            if (Properties.Settings.Default.HideCurrentWindow)
+            {
+                this.Hide();
+                Thread.Sleep(1000);
+            }
+            Image img = new Bitmap(Screen.AllScreens[0].Bounds.Width, Screen.AllScreens[0].Bounds.Height);
+            Graphics g = Graphics.FromImage(img);
+            g.CopyFromScreen(new Point(0, 0), new Point(0, 0), Screen.AllScreens[0].Bounds.Size);
+            ScreenShotWindow ssw = new ScreenShotWindow();
+            ssw.BackgroundImage = img;
+            ssw.Show();
+        }
+
+        private void 截屏时隐藏当前窗口ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.截屏时隐藏当前窗口ToolStripMenuItem.Checked)
+            {
+                Properties.Settings.Default.HideCurrentWindow = true;
+            }
+            else
+            {
+                Properties.Settings.Default.HideCurrentWindow = false;
+            }
         }
     }
 }

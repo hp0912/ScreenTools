@@ -34,5 +34,17 @@ namespace ScreenTools.Properties {
                 this["ScreenShotPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool HideCurrentWindow {
+            get {
+                return ((bool)(this["HideCurrentWindow"]));
+            }
+            set {
+                this["HideCurrentWindow"] = value;
+            }
+        }
     }
 }
