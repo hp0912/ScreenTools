@@ -17,13 +17,15 @@ namespace ScreenTools
         public MainWindow()
         {
             InitializeComponent();
+            this.开始录音ToolStripMenuItem.Enabled = true;
+            this.停止录音ToolStripMenuItem.Enabled = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {           
 
         }
-                      
+ 
         public void InitBrowser(String path)
         {
             CefSettings settings = new CefSettings();
@@ -127,7 +129,16 @@ namespace ScreenTools
             g.CopyFromScreen(new Point(0, 0), new Point(0, 0), Screen.AllScreens[0].Bounds.Size);
             ScreenShotWindow ssw = new ScreenShotWindow();
             ssw.BackgroundImage = img;
+            ssw.FormClosed += ScreenShotWindow_FormClosed;
             ssw.Show();
+        }
+
+        private void ScreenShotWindow_FormClosed(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.HideCurrentWindow)
+            {
+                this.Show();
+            }
         }
 
         private void 截屏时隐藏当前窗口ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -141,6 +152,38 @@ namespace ScreenTools
                 Properties.Settings.Default.HideCurrentWindow = false;
             }
         }
+
+        private void 开始录音ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.开始录音ToolStripMenuItem.Enabled = false;
+            this.停止录音ToolStripMenuItem.Enabled = true;
+
+            mciSendString("set wave bitpersample 8", "", 0, 0);
+            mciSendString("set wave samplespersec 20000", "", 0, 0);
+            mciSendString("set wave channels 2", "", 0, 0);
+            mciSendString("set wave format tag pcm", "", 0, 0);
+            mciSendString("open new type WAVEAudio alias movie", "", 0, 0);
+            mciSendString("record movie", "", 0, 0);
+        }
+
+        private void 停止录音ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.开始录音ToolStripMenuItem.Enabled = true;
+            this.停止录音ToolStripMenuItem.Enabled = false;
+
+            ScreenShot.confirmDir(Properties.Settings.Default.SoundRecorderPath);
+            mciSendString("stop movie", "", 0, 0);
+            mciSendString("save movie " + Properties.Settings.Default.SoundRecorderPath + "BepsunSoundRecorder-" + DateTime.Now.ToFileTime().ToString() + ".wav", "", 0, 0);
+            mciSendString("close movie", "", 0, 0);
+        }
+
+        [DllImport("winmm.dll", EntryPoint = "mciSendString", CharSet = CharSet.Auto)]
+        public static extern int mciSendString(
+         string lpstrCommand,
+         string lpstrReturnString,
+         int uReturnLength,
+         int hwndCallback
+        );
     }
 }
 

@@ -49,11 +49,7 @@ namespace ScreenTools
                 string filePath = System.IO.Path.Combine(Properties.Settings.Default.ScreenShotPath, DateTime.Now.ToString("yyyyMMdd-HHmmss")).ToString() + ".jpg";
                 memory.Save(filePath, ImageFormat.Jpeg);
 
-                this.Close();
-                if (Properties.Settings.Default.HideCurrentWindow)
-                {
-                    this.Parent.Show();
-                }    
+                this.Close();   
             }
         }
 

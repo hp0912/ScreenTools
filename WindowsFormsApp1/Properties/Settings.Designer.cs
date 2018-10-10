@@ -25,7 +25,7 @@ namespace ScreenTools.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("d:/BepsunScreenShot/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:/BepsunScreenShot/")]
         public string ScreenShotPath {
             get {
                 return ((string)(this["ScreenShotPath"]));
@@ -44,6 +44,18 @@ namespace ScreenTools.Properties {
             }
             set {
                 this["HideCurrentWindow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:/BepsunSoundRecorder/")]
+        public string SoundRecorderPath {
+            get {
+                return ((string)(this["SoundRecorderPath"]));
+            }
+            set {
+                this["SoundRecorderPath"] = value;
             }
         }
     }

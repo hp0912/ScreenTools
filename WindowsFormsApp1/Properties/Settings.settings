@@ -3,10 +3,13 @@
   <Profiles />
   <Settings>
     <Setting Name="ScreenShotPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">d:/BepsunScreenShot/</Value>
+      <Value Profile="(Default)">D:/BepsunScreenShot/</Value>
     </Setting>
     <Setting Name="HideCurrentWindow" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="SoundRecorderPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:/BepsunSoundRecorder/</Value>
     </Setting>
   </Settings>
 </SettingsFile>

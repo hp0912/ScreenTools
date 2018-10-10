@@ -49,6 +49,9 @@ namespace ScreenTools
             this.截取当前屏幕ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.截取选择部分ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.截屏时隐藏当前窗口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.录音ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.开始录音ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.停止录音ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -150,7 +153,8 @@ namespace ScreenTools
             this.截取当前窗口ToolStripMenuItem,
             this.截取当前屏幕ToolStripMenuItem,
             this.截取选择部分ToolStripMenuItem,
-            this.截屏时隐藏当前窗口ToolStripMenuItem});
+            this.截屏时隐藏当前窗口ToolStripMenuItem,
+            this.录音ToolStripMenuItem});
             this.截屏ToolStripMenuItem.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.截屏ToolStripMenuItem.Name = "截屏ToolStripMenuItem";
             this.截屏ToolStripMenuItem.Size = new System.Drawing.Size(41, 22);
@@ -184,6 +188,29 @@ namespace ScreenTools
             this.截屏时隐藏当前窗口ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.截屏时隐藏当前窗口ToolStripMenuItem.Text = "截屏时隐藏当前窗口";
             this.截屏时隐藏当前窗口ToolStripMenuItem.Click += new System.EventHandler(this.截屏时隐藏当前窗口ToolStripMenuItem_Click);
+            // 
+            // 录音ToolStripMenuItem
+            // 
+            this.录音ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.开始录音ToolStripMenuItem,
+            this.停止录音ToolStripMenuItem});
+            this.录音ToolStripMenuItem.Name = "录音ToolStripMenuItem";
+            this.录音ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.录音ToolStripMenuItem.Text = "录音";
+            // 
+            // 开始录音ToolStripMenuItem
+            // 
+            this.开始录音ToolStripMenuItem.Name = "开始录音ToolStripMenuItem";
+            this.开始录音ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.开始录音ToolStripMenuItem.Text = "开始录音";
+            this.开始录音ToolStripMenuItem.Click += new System.EventHandler(this.开始录音ToolStripMenuItem_Click);
+            // 
+            // 停止录音ToolStripMenuItem
+            // 
+            this.停止录音ToolStripMenuItem.Name = "停止录音ToolStripMenuItem";
+            this.停止录音ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.停止录音ToolStripMenuItem.Text = "停止录音";
+            this.停止录音ToolStripMenuItem.Click += new System.EventHandler(this.停止录音ToolStripMenuItem_Click);
             // 
             // MainWindow
             // 
@@ -221,6 +248,9 @@ namespace ScreenTools
         private ToolStripMenuItem 截取当前屏幕ToolStripMenuItem;
         private ToolStripMenuItem 截屏时隐藏当前窗口ToolStripMenuItem;
         private ToolStripMenuItem 截取选择部分ToolStripMenuItem;
+        private ToolStripMenuItem 录音ToolStripMenuItem;
+        private ToolStripMenuItem 开始录音ToolStripMenuItem;
+        private ToolStripMenuItem 停止录音ToolStripMenuItem;
     }
 }
 
