@@ -46,7 +46,7 @@ namespace ScreenTools
                 Clipboard.SetImage(memory);
 
                 ScreenShot.confirmDir(Properties.Settings.Default.ScreenShotPath);
-                string filePath = System.IO.Path.Combine(Properties.Settings.Default.ScreenShotPath, DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".jpg";
+                string filePath = System.IO.Path.Combine(Properties.Settings.Default.ScreenShotPath, DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".jpg");
                 memory.Save(filePath, ImageFormat.Jpeg);
 
                 this.Close();   
