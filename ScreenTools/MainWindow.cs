@@ -98,7 +98,7 @@ namespace ScreenTools
         private void 截取当前窗口ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
-             ScreenShot.getScreen(this.Location.X, this.Location.Y, this.Size.Width, this.Size.Height, Properties.Settings.Default.ScreenShotPath + DateTime.Now.ToFileTime().ToString() + ".jpg");
+             ScreenShot.getScreen(this.Location.X, this.Location.Y, this.Size.Width, this.Size.Height, Properties.Settings.Default.ScreenShotPath + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".jpg");
             
         }
 
@@ -108,12 +108,12 @@ namespace ScreenTools
             {
                 this.Hide();
                 Thread.Sleep(1000);
-                ScreenShot.getScreen(0, 0, -1, -1, Properties.Settings.Default.ScreenShotPath + DateTime.Now.ToFileTime().ToString() + ".jpg");
+                ScreenShot.getScreen(0, 0, -1, -1, Properties.Settings.Default.ScreenShotPath + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".jpg");
                 this.Show();
             }
             else
             {
-                ScreenShot.getScreen(0, 0, -1, -1, Properties.Settings.Default.ScreenShotPath + DateTime.Now.ToFileTime().ToString() + ".jpg");
+                ScreenShot.getScreen(0, 0, -1, -1, Properties.Settings.Default.ScreenShotPath + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".jpg");
             }
             
         }
