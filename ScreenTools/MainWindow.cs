@@ -10,6 +10,7 @@ using DirectShow;
 using System.Windows.Threading;
 using System.Diagnostics;
 using System.Windows;
+using System.IO;
 
 namespace ScreenTools
 {
@@ -103,38 +104,7 @@ namespace ScreenTools
             //browser.Load("https://ie.icoa.cn/");
             //this.webBrowser1.Navigate("https://ie.icoa.cn/");
         }
-
-        private void 截取当前窗口ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-             ScreenShot.getScreen(this.Location.X, this.Location.Y, this.Size.Width, this.Size.Height, Properties.Settings.Default.ScreenShotPath + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".jpg");
-            
-        }
-
-        private void 截取当前屏幕ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (this.截屏时隐藏当前窗口ToolStripMenuItem.Checked)
-            {
-                this.Hide();
-                Thread.Sleep(1000);
-                ScreenShot.getScreen(0, 0, -1, -1, Properties.Settings.Default.ScreenShotPath + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".jpg");
-                this.Show();
-            }
-            else
-            {
-                ScreenShot.getScreen(0, 0, -1, -1, Properties.Settings.Default.ScreenShotPath + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".jpg");
-            }
-            
-        }
         
-        private void ScreenShotWindow_FormClosed(object sender, EventArgs e)
-        {
-            if (Properties.Settings.Default.HideCurrentWindow)
-            {
-                this.Show();
-            }
-        }
-
         private void 截屏时隐藏当前窗口ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (this.截屏时隐藏当前窗口ToolStripMenuItem.Checked)
@@ -202,7 +172,7 @@ namespace ScreenTools
                 recordingTimer.Stop();
                 recordingStopwatch.Stop();
 
-                ScreenShot.confirmDir(Properties.Settings.Default.SoundRecorderPath);
+                confirmDir(Properties.Settings.Default.SoundRecorderPath);
                 mciSendString("stop movie", "", 0, 0);
                 mciSendString("save movie " + Properties.Settings.Default.SoundRecorderPath + "BepsunAudioRecorder-" + DateTime.Now.ToFileTime().ToString() + ".wav", "", 0, 0);
                 mciSendString("close movie", "", 0, 0);
@@ -211,18 +181,16 @@ namespace ScreenTools
 
         private void screenShot_Click(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.HideCurrentWindow)
-            {
-                this.Hide();
-                Thread.Sleep(1000);
-            }
-            Image img = new Bitmap(Screen.AllScreens[0].Bounds.Width, Screen.AllScreens[0].Bounds.Height);
-            Graphics g = Graphics.FromImage(img);
-            g.CopyFromScreen(new System.Drawing.Point(0, 0), new System.Drawing.Point(0, 0), Screen.AllScreens[0].Bounds.Size);
-            ScreenShotWindow ssw = new ScreenShotWindow();
-            ssw.BackgroundImage = img;
-            ssw.FormClosed += ScreenShotWindow_FormClosed;
-            ssw.Show();
+
+        }
+
+        /// <summary>
+        /// 检测目录是否存在，若不存在则创建
+        /// </summary>
+        public void confirmDir(string path)
+        {
+            String rootDir = System.IO.Path.GetDirectoryName(path);             //获取path所在的目录
+            if (!Directory.Exists(rootDir)) Directory.CreateDirectory(rootDir); //若目录不存在则创建
         }
     }
 }
