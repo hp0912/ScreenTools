@@ -7,6 +7,9 @@ using System.Runtime.InteropServices;
 using System.Drawing.Imaging;
 using System.Drawing;
 using DirectShow;
+using System.Windows.Threading;
+using System.Diagnostics;
+using System.Windows;
 
 namespace ScreenTools
 {
@@ -15,29 +18,16 @@ namespace ScreenTools
     {
         public ChromiumWebBrowser browser;
         SharpAvi.Sample.MainWindow ScreenRecording = null;
-        DirectXCapture d_capture = new DirectXCapture();
-        DsDevice videoDevices = null;
-        DsDevice audioDevices = null;
+        private readonly DispatcherTimer recordingTimer;
+        private readonly Stopwatch recordingStopwatch = new Stopwatch();
+        private bool audioRecording = false;
 
         public MainWindow()
         {
             InitializeComponent();
-            this.开始录音ToolStripMenuItem.Enabled = true;
-            this.停止录音ToolStripMenuItem.Enabled = false;
-            pictureBoxCapture.Hide();
 
-            //视频设备
-            foreach (DsDevice d in d_capture.videoDevices)
-            {
-                videoDevices = d;
-                break;
-            }
-            //音频设备
-            foreach (DsDevice d in d_capture.audioDevices)
-            {
-                audioDevices = d;
-                break;
-            }
+            recordingTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+            recordingTimer.Tick += recordingTimer_Tick;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -136,22 +126,7 @@ namespace ScreenTools
             }
             
         }
-        private void 截取选择部分ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (Properties.Settings.Default.HideCurrentWindow)
-            {
-                this.Hide();
-                Thread.Sleep(1000);
-            }
-            Image img = new Bitmap(Screen.AllScreens[0].Bounds.Width, Screen.AllScreens[0].Bounds.Height);
-            Graphics g = Graphics.FromImage(img);
-            g.CopyFromScreen(new Point(0, 0), new Point(0, 0), Screen.AllScreens[0].Bounds.Size);
-            ScreenShotWindow ssw = new ScreenShotWindow();
-            ssw.BackgroundImage = img;
-            ssw.FormClosed += ScreenShotWindow_FormClosed;
-            ssw.Show();
-        }
-
+        
         private void ScreenShotWindow_FormClosed(object sender, EventArgs e)
         {
             if (Properties.Settings.Default.HideCurrentWindow)
@@ -170,30 +145,6 @@ namespace ScreenTools
             {
                 Properties.Settings.Default.HideCurrentWindow = false;
             }
-        }
-
-        private void 开始录音ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.开始录音ToolStripMenuItem.Enabled = false;
-            this.停止录音ToolStripMenuItem.Enabled = true;
-
-            mciSendString("set wave bitpersample 8", "", 0, 0);
-            mciSendString("set wave samplespersec 20000", "", 0, 0);
-            mciSendString("set wave channels 2", "", 0, 0);
-            mciSendString("set wave format tag pcm", "", 0, 0);
-            mciSendString("open new type WAVEAudio alias movie", "", 0, 0);
-            mciSendString("record movie", "", 0, 0);
-        }
-
-        private void 停止录音ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.开始录音ToolStripMenuItem.Enabled = true;
-            this.停止录音ToolStripMenuItem.Enabled = false;
-
-            ScreenShot.confirmDir(Properties.Settings.Default.SoundRecorderPath);
-            mciSendString("stop movie", "", 0, 0);
-            mciSendString("save movie " + Properties.Settings.Default.SoundRecorderPath + "BepsunAudioRecorder-" + DateTime.Now.ToFileTime().ToString() + ".wav", "", 0, 0);
-            mciSendString("close movie", "", 0, 0);
         }
 
         [DllImport("winmm.dll", EntryPoint = "mciSendString", CharSet = CharSet.Auto)]
@@ -215,38 +166,63 @@ namespace ScreenTools
             else {
                 ScreenRecording.Close();
                 ScreenRecording = null;
+            } 
+        }
+
+        private void recordingTimer_Tick(object sender, EventArgs e)
+        {
+            TimeSpan elapsed = recordingStopwatch.Elapsed;
+            this.audioRecord.Text = "停止录音[" + string.Format(
+                "{0:00}:{1:00}",
+                Math.Floor(elapsed.TotalMinutes),
+                elapsed.Seconds) + "]";
+        }
+
+        private void audioRecord_Click(object sender, EventArgs e)
+        {
+            if (audioRecording == false)
+            {
+                audioRecording = true;
+                recordingStopwatch.Reset();
+                recordingTimer.Start();
+
+                mciSendString("set wave bitpersample 8", "", 0, 0);
+                mciSendString("set wave samplespersec 20000", "", 0, 0);
+                mciSendString("set wave channels 2", "", 0, 0);
+                mciSendString("set wave format tag pcm", "", 0, 0);
+                mciSendString("open new type WAVEAudio alias movie", "", 0, 0);
+                mciSendString("record movie", "", 0, 0);
+                
+                recordingStopwatch.Start();
             }
-             
+            else
+            {
+                audioRecording = false;
+                this.audioRecord.Text = "录音";
+                recordingTimer.Stop();
+                recordingStopwatch.Stop();
+
+                ScreenShot.confirmDir(Properties.Settings.Default.SoundRecorderPath);
+                mciSendString("stop movie", "", 0, 0);
+                mciSendString("save movie " + Properties.Settings.Default.SoundRecorderPath + "BepsunAudioRecorder-" + DateTime.Now.ToFileTime().ToString() + ".wav", "", 0, 0);
+                mciSendString("close movie", "", 0, 0);
+            }
         }
 
-        private void 开始录像ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void screenShot_Click(object sender, EventArgs e)
         {
-            pictureBoxCapture.Show();
-            //视频
-            DsDevice video_dev = videoDevices;
-            d_capture.video_mon = video_dev.Mon;
-
-            //音频
-            DsDevice audio_dev = audioDevices;
-            d_capture.audio_mon = audio_dev.Mon;
-
-            d_capture.saveMediaPath = Properties.Settings.Default.SoundRecorderPath + "BepsunVideoRecorder-" + DateTime.Now.ToFileTime().ToString() + ".avi";
-
-            //设置预览窗口
-            this.pictureBoxCapture.Width = 655;
-            this.pictureBoxCapture.Height = 520;
-            this.pictureBoxCapture.Location = new Point((this.Width - this.pictureBoxCapture.Width) / 2, (this.Height - this.pictureBoxCapture.Height) / 2);
-            System.Console.Write(this.Width);
-            System.Console.Write(this.Height);
-            d_capture.previewWinOwner = this.pictureBoxCapture.Handle;
-
-            d_capture.StartupVideo(true, true);
-        }
-
-        private void 停止录像ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            d_capture.Stop();
-            pictureBoxCapture.Hide();
+            if (Properties.Settings.Default.HideCurrentWindow)
+            {
+                this.Hide();
+                Thread.Sleep(1000);
+            }
+            Image img = new Bitmap(Screen.AllScreens[0].Bounds.Width, Screen.AllScreens[0].Bounds.Height);
+            Graphics g = Graphics.FromImage(img);
+            g.CopyFromScreen(new System.Drawing.Point(0, 0), new System.Drawing.Point(0, 0), Screen.AllScreens[0].Bounds.Size);
+            ScreenShotWindow ssw = new ScreenShotWindow();
+            ssw.BackgroundImage = img;
+            ssw.FormClosed += ScreenShotWindow_FormClosed;
+            ssw.Show();
         }
     }
 }
