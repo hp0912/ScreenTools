@@ -233,6 +233,11 @@ namespace ScreenTools
             d_capture.saveMediaPath = Properties.Settings.Default.SoundRecorderPath + "BepsunVideoRecorder-" + DateTime.Now.ToFileTime().ToString() + ".avi";
 
             //设置预览窗口
+            this.pictureBoxCapture.Width = 655;
+            this.pictureBoxCapture.Height = 520;
+            this.pictureBoxCapture.Location = new Point((this.Width - this.pictureBoxCapture.Width) / 2, (this.Height - this.pictureBoxCapture.Height) / 2);
+            System.Console.Write(this.Width);
+            System.Console.Write(this.Height);
             d_capture.previewWinOwner = this.pictureBoxCapture.Handle;
 
             d_capture.StartupVideo(true, true);

@@ -256,9 +256,9 @@ namespace ScreenTools
             this.pictureBoxCapture.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxCapture.Location = new System.Drawing.Point(346, 134);
+            this.pictureBoxCapture.Location = new System.Drawing.Point(466, 143);
             this.pictureBoxCapture.Name = "pictureBoxCapture";
-            this.pictureBoxCapture.Size = new System.Drawing.Size(751, 440);
+            this.pictureBoxCapture.Size = new System.Drawing.Size(655, 520);
             this.pictureBoxCapture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxCapture.TabIndex = 14;
             this.pictureBoxCapture.TabStop = false;
