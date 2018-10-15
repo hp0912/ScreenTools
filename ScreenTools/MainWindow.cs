@@ -6,6 +6,7 @@ using CefSharp.WinForms;
 using System.Runtime.InteropServices;
 using System.Drawing.Imaging;
 using System.Drawing;
+using DirectShow;
 
 namespace ScreenTools
 {
@@ -14,12 +15,29 @@ namespace ScreenTools
     {
         public ChromiumWebBrowser browser;
         SharpAvi.Sample.MainWindow ScreenRecording = null;
+        DirectXCapture d_capture = new DirectXCapture();
+        DsDevice videoDevices = null;
+        DsDevice audioDevices = null;
 
         public MainWindow()
         {
             InitializeComponent();
             this.开始录音ToolStripMenuItem.Enabled = true;
             this.停止录音ToolStripMenuItem.Enabled = false;
+            pictureBoxCapture.Hide();
+
+            //视频设备
+            foreach (DsDevice d in d_capture.videoDevices)
+            {
+                videoDevices = d;
+                break;
+            }
+            //音频设备
+            foreach (DsDevice d in d_capture.audioDevices)
+            {
+                audioDevices = d;
+                break;
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -174,7 +192,7 @@ namespace ScreenTools
 
             ScreenShot.confirmDir(Properties.Settings.Default.SoundRecorderPath);
             mciSendString("stop movie", "", 0, 0);
-            mciSendString("save movie " + Properties.Settings.Default.SoundRecorderPath + "BepsunSoundRecorder-" + DateTime.Now.ToFileTime().ToString() + ".wav", "", 0, 0);
+            mciSendString("save movie " + Properties.Settings.Default.SoundRecorderPath + "BepsunAudioRecorder-" + DateTime.Now.ToFileTime().ToString() + ".wav", "", 0, 0);
             mciSendString("close movie", "", 0, 0);
         }
 
@@ -199,6 +217,31 @@ namespace ScreenTools
                 ScreenRecording = null;
             }
              
+        }
+
+        private void 开始录像ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pictureBoxCapture.Show();
+            //视频
+            DsDevice video_dev = videoDevices;
+            d_capture.video_mon = video_dev.Mon;
+
+            //音频
+            DsDevice audio_dev = audioDevices;
+            d_capture.audio_mon = audio_dev.Mon;
+
+            d_capture.saveMediaPath = Properties.Settings.Default.SoundRecorderPath + "BepsunVideoRecorder-" + DateTime.Now.ToFileTime().ToString() + ".avi";
+
+            //设置预览窗口
+            d_capture.previewWinOwner = this.pictureBoxCapture.Handle;
+
+            d_capture.StartupVideo(true, true);
+        }
+
+        private void 停止录像ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            d_capture.Stop();
+            pictureBoxCapture.Hide();
         }
     }
 }

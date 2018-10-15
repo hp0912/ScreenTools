@@ -53,7 +53,12 @@ namespace ScreenTools
             this.开始录音ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.停止录音ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.录屏ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.录像ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.开始录像ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.停止录像ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBoxCapture = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCapture)).BeginInit();
             this.SuspendLayout();
             // 
             // webBrowser1
@@ -77,7 +82,8 @@ namespace ScreenTools
             this.视频监控ToolStripMenuItem,
             this.检测内核ToolStripMenuItem,
             this.截屏ToolStripMenuItem,
-            this.录屏ToolStripMenuItem});
+            this.录屏ToolStripMenuItem,
+            this.录像ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1109, 26);
@@ -165,21 +171,21 @@ namespace ScreenTools
             // 截取当前窗口ToolStripMenuItem
             // 
             this.截取当前窗口ToolStripMenuItem.Name = "截取当前窗口ToolStripMenuItem";
-            this.截取当前窗口ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.截取当前窗口ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.截取当前窗口ToolStripMenuItem.Text = "截取当前窗口";
             this.截取当前窗口ToolStripMenuItem.Click += new System.EventHandler(this.截取当前窗口ToolStripMenuItem_Click);
             // 
             // 截取当前屏幕ToolStripMenuItem
             // 
             this.截取当前屏幕ToolStripMenuItem.Name = "截取当前屏幕ToolStripMenuItem";
-            this.截取当前屏幕ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.截取当前屏幕ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.截取当前屏幕ToolStripMenuItem.Text = "截取当前屏幕";
             this.截取当前屏幕ToolStripMenuItem.Click += new System.EventHandler(this.截取当前屏幕ToolStripMenuItem_Click);
             // 
             // 截取选择部分ToolStripMenuItem
             // 
             this.截取选择部分ToolStripMenuItem.Name = "截取选择部分ToolStripMenuItem";
-            this.截取选择部分ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.截取选择部分ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.截取选择部分ToolStripMenuItem.Text = "截取选择部分";
             this.截取选择部分ToolStripMenuItem.Click += new System.EventHandler(this.截取选择部分ToolStripMenuItem_Click);
             // 
@@ -187,7 +193,7 @@ namespace ScreenTools
             // 
             this.截屏时隐藏当前窗口ToolStripMenuItem.CheckOnClick = true;
             this.截屏时隐藏当前窗口ToolStripMenuItem.Name = "截屏时隐藏当前窗口ToolStripMenuItem";
-            this.截屏时隐藏当前窗口ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.截屏时隐藏当前窗口ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.截屏时隐藏当前窗口ToolStripMenuItem.Text = "截屏时隐藏当前窗口";
             this.截屏时隐藏当前窗口ToolStripMenuItem.Click += new System.EventHandler(this.截屏时隐藏当前窗口ToolStripMenuItem_Click);
             // 
@@ -197,7 +203,7 @@ namespace ScreenTools
             this.开始录音ToolStripMenuItem,
             this.停止录音ToolStripMenuItem});
             this.录音ToolStripMenuItem.Name = "录音ToolStripMenuItem";
-            this.录音ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.录音ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.录音ToolStripMenuItem.Text = "录音";
             // 
             // 开始录音ToolStripMenuItem
@@ -222,12 +228,48 @@ namespace ScreenTools
             this.录屏ToolStripMenuItem.Text = "录屏";
             this.录屏ToolStripMenuItem.Click += new System.EventHandler(this.录屏ToolStripMenuItem_Click);
             // 
+            // 录像ToolStripMenuItem
+            // 
+            this.录像ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.开始录像ToolStripMenuItem,
+            this.停止录像ToolStripMenuItem});
+            this.录像ToolStripMenuItem.Name = "录像ToolStripMenuItem";
+            this.录像ToolStripMenuItem.Size = new System.Drawing.Size(44, 22);
+            this.录像ToolStripMenuItem.Text = "录像";
+            // 
+            // 开始录像ToolStripMenuItem
+            // 
+            this.开始录像ToolStripMenuItem.Name = "开始录像ToolStripMenuItem";
+            this.开始录像ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.开始录像ToolStripMenuItem.Text = "开始录像";
+            this.开始录像ToolStripMenuItem.Click += new System.EventHandler(this.开始录像ToolStripMenuItem_Click);
+            // 
+            // 停止录像ToolStripMenuItem
+            // 
+            this.停止录像ToolStripMenuItem.Name = "停止录像ToolStripMenuItem";
+            this.停止录像ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.停止录像ToolStripMenuItem.Text = "停止录像";
+            this.停止录像ToolStripMenuItem.Click += new System.EventHandler(this.停止录像ToolStripMenuItem_Click);
+            // 
+            // pictureBoxCapture
+            // 
+            this.pictureBoxCapture.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxCapture.Location = new System.Drawing.Point(346, 134);
+            this.pictureBoxCapture.Name = "pictureBoxCapture";
+            this.pictureBoxCapture.Size = new System.Drawing.Size(751, 440);
+            this.pictureBoxCapture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBoxCapture.TabIndex = 14;
+            this.pictureBoxCapture.TabStop = false;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.ClientSize = new System.Drawing.Size(1109, 586);
+            this.Controls.Add(this.pictureBoxCapture);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -238,6 +280,7 @@ namespace ScreenTools
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCapture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -262,6 +305,10 @@ namespace ScreenTools
         private ToolStripMenuItem 开始录音ToolStripMenuItem;
         private ToolStripMenuItem 停止录音ToolStripMenuItem;
         private ToolStripMenuItem 录屏ToolStripMenuItem;
+        private ToolStripMenuItem 录像ToolStripMenuItem;
+        private ToolStripMenuItem 开始录像ToolStripMenuItem;
+        private ToolStripMenuItem 停止录像ToolStripMenuItem;
+        private PictureBox pictureBoxCapture;
     }
 }
 
