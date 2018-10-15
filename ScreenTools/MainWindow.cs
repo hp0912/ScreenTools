@@ -13,6 +13,7 @@ namespace ScreenTools
     public partial class MainWindow : Form
     {
         public ChromiumWebBrowser browser;
+        SharpAvi.Sample.MainWindow ScreenRecording = null;
 
         public MainWindow()
         {
@@ -184,6 +185,21 @@ namespace ScreenTools
          int uReturnLength,
          int hwndCallback
         );
+
+        private void 录屏ToolStripMenuItem_Click(object sender, EventArgs e)        
+        {           
+            if (ScreenRecording == null)
+            {
+                ScreenRecording = new SharpAvi.Sample.MainWindow();
+
+                ScreenRecording.Show();
+            }
+            else {
+                ScreenRecording.Close();
+                ScreenRecording = null;
+            }
+             
+        }
     }
 }
 

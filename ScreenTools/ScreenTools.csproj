@@ -96,7 +96,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="resource\Class1.cs" />
     <Compile Include="ScreenShot.cs" />
     <Compile Include="ScreenShotWindow.cs">
       <SubType>Form</SubType>
@@ -149,6 +148,16 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sample\Sample.csproj">
+      <Project>{419aba1f-198d-4e85-8bfb-58ee6fdae67f}</Project>
+      <Name>Sample</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SharpAvi\SharpAvi.csproj">
+      <Project>{07b83677-e9b8-4166-a383-cf3b3d393fbd}</Project>
+      <Name>SharpAvi</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

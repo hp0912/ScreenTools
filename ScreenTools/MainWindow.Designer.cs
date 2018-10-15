@@ -52,6 +52,7 @@ namespace ScreenTools
             this.录音ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.开始录音ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.停止录音ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.录屏ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,7 +76,8 @@ namespace ScreenTools
             this.产线监控ToolStripMenuItem,
             this.视频监控ToolStripMenuItem,
             this.检测内核ToolStripMenuItem,
-            this.截屏ToolStripMenuItem});
+            this.截屏ToolStripMenuItem,
+            this.录屏ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1109, 26);
@@ -201,16 +203,24 @@ namespace ScreenTools
             // 开始录音ToolStripMenuItem
             // 
             this.开始录音ToolStripMenuItem.Name = "开始录音ToolStripMenuItem";
-            this.开始录音ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.开始录音ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.开始录音ToolStripMenuItem.Text = "开始录音";
             this.开始录音ToolStripMenuItem.Click += new System.EventHandler(this.开始录音ToolStripMenuItem_Click);
             // 
             // 停止录音ToolStripMenuItem
             // 
             this.停止录音ToolStripMenuItem.Name = "停止录音ToolStripMenuItem";
-            this.停止录音ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.停止录音ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.停止录音ToolStripMenuItem.Text = "停止录音";
             this.停止录音ToolStripMenuItem.Click += new System.EventHandler(this.停止录音ToolStripMenuItem_Click);
+            // 
+            // 录屏ToolStripMenuItem
+            // 
+            this.录屏ToolStripMenuItem.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.录屏ToolStripMenuItem.Name = "录屏ToolStripMenuItem";
+            this.录屏ToolStripMenuItem.Size = new System.Drawing.Size(41, 22);
+            this.录屏ToolStripMenuItem.Text = "录屏";
+            this.录屏ToolStripMenuItem.Click += new System.EventHandler(this.录屏ToolStripMenuItem_Click);
             // 
             // MainWindow
             // 
@@ -251,6 +261,7 @@ namespace ScreenTools
         private ToolStripMenuItem 录音ToolStripMenuItem;
         private ToolStripMenuItem 开始录音ToolStripMenuItem;
         private ToolStripMenuItem 停止录音ToolStripMenuItem;
+        private ToolStripMenuItem 录屏ToolStripMenuItem;
     }
 }
 

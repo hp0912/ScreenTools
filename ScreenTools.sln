@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScreenTools", "ScreenTools\ScreenTools.csproj", "{0F9A4FEC-3FBC-4683-8731-BA063A002B42}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample", "Sample\Sample.csproj", "{419ABA1F-198D-4E85-8BFB-58EE6FDAE67F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpAvi", "SharpAvi\SharpAvi.csproj", "{07B83677-E9B8-4166-A383-CF3B3D393FBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +25,18 @@ Global
 		{0F9A4FEC-3FBC-4683-8731-BA063A002B42}.Release|x64.Build.0 = Release|x64
 		{0F9A4FEC-3FBC-4683-8731-BA063A002B42}.Release|x86.ActiveCfg = Release|x86
 		{0F9A4FEC-3FBC-4683-8731-BA063A002B42}.Release|x86.Build.0 = Release|x86
+		{419ABA1F-198D-4E85-8BFB-58EE6FDAE67F}.Debug|x64.ActiveCfg = Debug|x86
+		{419ABA1F-198D-4E85-8BFB-58EE6FDAE67F}.Debug|x86.ActiveCfg = Debug|x86
+		{419ABA1F-198D-4E85-8BFB-58EE6FDAE67F}.Debug|x86.Build.0 = Debug|x86
+		{419ABA1F-198D-4E85-8BFB-58EE6FDAE67F}.Release|x64.ActiveCfg = Release|x86
+		{419ABA1F-198D-4E85-8BFB-58EE6FDAE67F}.Release|x86.ActiveCfg = Release|x86
+		{419ABA1F-198D-4E85-8BFB-58EE6FDAE67F}.Release|x86.Build.0 = Release|x86
+		{07B83677-E9B8-4166-A383-CF3B3D393FBD}.Debug|x64.ActiveCfg = Debug|x86
+		{07B83677-E9B8-4166-A383-CF3B3D393FBD}.Debug|x86.ActiveCfg = Debug|x86
+		{07B83677-E9B8-4166-A383-CF3B3D393FBD}.Debug|x86.Build.0 = Debug|x86
+		{07B83677-E9B8-4166-A383-CF3B3D393FBD}.Release|x64.ActiveCfg = Release|x86
+		{07B83677-E9B8-4166-A383-CF3B3D393FBD}.Release|x86.ActiveCfg = Release|x86
+		{07B83677-E9B8-4166-A383-CF3B3D393FBD}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,24 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO;
 using System.Reflection;
+using System.Windows;
 using SharpAvi.Codecs;
 
-namespace ScreenTools
+namespace SharpAvi.Sample
 {
-    static class Program
+    /// <summary>
+    /// Interaction logic for App.xaml
+    /// </summary>
+    public partial class App : Application
     {
-        /// <summary>
-        /// 应用程序的主入口点。
-        /// </summary>
-        [STAThread]
-        static void Main()
+        protected override void OnStartup(StartupEventArgs e)
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            base.OnStartup(e);
 
             // Set LAME DLL path for MP3 encoder
             var asmDir = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
@@ -29,8 +24,6 @@ namespace ScreenTools
 #endif
             var dllName = string.Format("lameenc{0}.dll", is64BitProcess ? "64" : "32");
             Mp3AudioEncoderLame.SetLameDllLocation(Path.Combine(asmDir, dllName));
-
-            Application.Run(new MainWindow());
         }
     }
 }
