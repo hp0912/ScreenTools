@@ -6,6 +6,11 @@ using CefSharp.WinForms;
 using System.Runtime.InteropServices;
 using System.Drawing.Imaging;
 using System.Drawing;
+using System.Windows.Threading;
+using System.Diagnostics;
+using System.Windows;
+using System.IO;
+using CSharpWin_JD.CaptureImage;
 
 namespace ScreenTools
 {
@@ -14,12 +19,16 @@ namespace ScreenTools
     {
         public ChromiumWebBrowser browser;
         SharpAvi.Sample.MainWindow ScreenRecording = null;
+        private readonly DispatcherTimer recordingTimer;
+        private readonly Stopwatch recordingStopwatch = new Stopwatch();
+        private bool audioRecording = false;
 
         public MainWindow()
         {
             InitializeComponent();
-            this.开始录音ToolStripMenuItem.Enabled = true;
-            this.停止录音ToolStripMenuItem.Enabled = false;
+
+            recordingTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+            recordingTimer.Tick += recordingTimer_Tick;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -95,53 +104,7 @@ namespace ScreenTools
             //browser.Load("https://ie.icoa.cn/");
             //this.webBrowser1.Navigate("https://ie.icoa.cn/");
         }
-
-        private void 截取当前窗口ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-             ScreenShot.getScreen(this.Location.X, this.Location.Y, this.Size.Width, this.Size.Height, Properties.Settings.Default.ScreenShotPath + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".jpg");
-            
-        }
-
-        private void 截取当前屏幕ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (this.截屏时隐藏当前窗口ToolStripMenuItem.Checked)
-            {
-                this.Hide();
-                Thread.Sleep(1000);
-                ScreenShot.getScreen(0, 0, -1, -1, Properties.Settings.Default.ScreenShotPath + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".jpg");
-                this.Show();
-            }
-            else
-            {
-                ScreenShot.getScreen(0, 0, -1, -1, Properties.Settings.Default.ScreenShotPath + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".jpg");
-            }
-            
-        }
-        private void 截取选择部分ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (Properties.Settings.Default.HideCurrentWindow)
-            {
-                this.Hide();
-                Thread.Sleep(1000);
-            }
-            Image img = new Bitmap(Screen.AllScreens[0].Bounds.Width, Screen.AllScreens[0].Bounds.Height);
-            Graphics g = Graphics.FromImage(img);
-            g.CopyFromScreen(new Point(0, 0), new Point(0, 0), Screen.AllScreens[0].Bounds.Size);
-            ScreenShotWindow ssw = new ScreenShotWindow();
-            ssw.BackgroundImage = img;
-            ssw.FormClosed += ScreenShotWindow_FormClosed;
-            ssw.Show();
-        }
-
-        private void ScreenShotWindow_FormClosed(object sender, EventArgs e)
-        {
-            if (Properties.Settings.Default.HideCurrentWindow)
-            {
-                this.Show();
-            }
-        }
-
+        
         private void 截屏时隐藏当前窗口ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (this.截屏时隐藏当前窗口ToolStripMenuItem.Checked)
@@ -152,30 +115,6 @@ namespace ScreenTools
             {
                 Properties.Settings.Default.HideCurrentWindow = false;
             }
-        }
-
-        private void 开始录音ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.开始录音ToolStripMenuItem.Enabled = false;
-            this.停止录音ToolStripMenuItem.Enabled = true;
-
-            mciSendString("set wave bitpersample 8", "", 0, 0);
-            mciSendString("set wave samplespersec 20000", "", 0, 0);
-            mciSendString("set wave channels 2", "", 0, 0);
-            mciSendString("set wave format tag pcm", "", 0, 0);
-            mciSendString("open new type WAVEAudio alias movie", "", 0, 0);
-            mciSendString("record movie", "", 0, 0);
-        }
-
-        private void 停止录音ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.开始录音ToolStripMenuItem.Enabled = true;
-            this.停止录音ToolStripMenuItem.Enabled = false;
-
-            ScreenShot.confirmDir(Properties.Settings.Default.SoundRecorderPath);
-            mciSendString("stop movie", "", 0, 0);
-            mciSendString("save movie " + Properties.Settings.Default.SoundRecorderPath + "BepsunSoundRecorder-" + DateTime.Now.ToFileTime().ToString() + ".wav", "", 0, 0);
-            mciSendString("close movie", "", 0, 0);
         }
 
         [DllImport("winmm.dll", EntryPoint = "mciSendString", CharSet = CharSet.Auto)]
@@ -197,8 +136,83 @@ namespace ScreenTools
             else {
                 ScreenRecording.Close();
                 ScreenRecording = null;
+            } 
+        }
+
+        private void recordingTimer_Tick(object sender, EventArgs e)
+        {
+            TimeSpan elapsed = recordingStopwatch.Elapsed;
+            this.audioRecord.Text = "停止录音[" + string.Format(
+                "{0:00}:{1:00}",
+                Math.Floor(elapsed.TotalMinutes),
+                elapsed.Seconds) + "]";
+        }
+
+        private void audioRecord_Click(object sender, EventArgs e)
+        {
+            if (audioRecording == false)
+            {
+                audioRecording = true;
+                recordingStopwatch.Reset();
+                recordingTimer.Start();
+
+                mciSendString("set wave bitpersample 8", "", 0, 0);
+                mciSendString("set wave samplespersec 20000", "", 0, 0);
+                mciSendString("set wave channels 2", "", 0, 0);
+                mciSendString("set wave format tag pcm", "", 0, 0);
+                mciSendString("open new type WAVEAudio alias movie", "", 0, 0);
+                mciSendString("record movie", "", 0, 0);
+                
+                recordingStopwatch.Start();
             }
-             
+            else
+            {
+                audioRecording = false;
+                this.audioRecord.Text = "录音";
+                recordingTimer.Stop();
+                recordingStopwatch.Stop();
+
+                confirmDir(Properties.Settings.Default.SoundRecorderPath);
+                mciSendString("stop movie", "", 0, 0);
+                mciSendString("save movie " + Properties.Settings.Default.SoundRecorderPath + "BepsunAudioRecorder-" + DateTime.Now.ToFileTime().ToString() + ".wav", "", 0, 0);
+                mciSendString("close movie", "", 0, 0);
+            }
+        }
+
+        private void screenShot_Click(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.HideCurrentWindow)
+            {
+                Hide();
+                Thread.Sleep(30);
+            }
+
+            CaptureImageTool capture = new CaptureImageTool();
+
+            capture.SelectCursor = CursorManager.Arrow;
+            capture.DrawCursor = CursorManager.Cross;
+
+            if (capture.ShowDialog() == DialogResult.OK)
+            {
+                Image image = capture.Image;
+                confirmDir(Properties.Settings.Default.ScreenShotPath);
+                string filePath = Path.Combine(Properties.Settings.Default.ScreenShotPath, DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".jpg");
+                image.Save(filePath, ImageFormat.Jpeg);
+            }
+
+            if (!Visible)
+            {
+                Show();
+            }
+        }
+
+        /// <summary>
+        /// 检测目录是否存在，若不存在则创建
+        /// </summary>
+        public void confirmDir(string path)
+        {
+            String rootDir = System.IO.Path.GetDirectoryName(path);             //获取path所在的目录
+            if (!Directory.Exists(rootDir)) Directory.CreateDirectory(rootDir); //若目录不存在则创建
         }
     }
 }

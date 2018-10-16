@@ -45,15 +45,14 @@ namespace ScreenTools
             this.视频会议ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.检测内核ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.截屏ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.截取当前窗口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.截取当前屏幕ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.截取选择部分ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.截屏时隐藏当前窗口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.录音ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.开始录音ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.停止录音ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.录屏ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.audioRecord = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.screenShot = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // webBrowser1
@@ -152,36 +151,11 @@ namespace ScreenTools
             // 截屏ToolStripMenuItem
             // 
             this.截屏ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.截取当前窗口ToolStripMenuItem,
-            this.截取当前屏幕ToolStripMenuItem,
-            this.截取选择部分ToolStripMenuItem,
-            this.截屏时隐藏当前窗口ToolStripMenuItem,
-            this.录音ToolStripMenuItem});
+            this.截屏时隐藏当前窗口ToolStripMenuItem});
             this.截屏ToolStripMenuItem.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.截屏ToolStripMenuItem.Name = "截屏ToolStripMenuItem";
             this.截屏ToolStripMenuItem.Size = new System.Drawing.Size(41, 22);
             this.截屏ToolStripMenuItem.Text = "截屏";
-            // 
-            // 截取当前窗口ToolStripMenuItem
-            // 
-            this.截取当前窗口ToolStripMenuItem.Name = "截取当前窗口ToolStripMenuItem";
-            this.截取当前窗口ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.截取当前窗口ToolStripMenuItem.Text = "截取当前窗口";
-            this.截取当前窗口ToolStripMenuItem.Click += new System.EventHandler(this.截取当前窗口ToolStripMenuItem_Click);
-            // 
-            // 截取当前屏幕ToolStripMenuItem
-            // 
-            this.截取当前屏幕ToolStripMenuItem.Name = "截取当前屏幕ToolStripMenuItem";
-            this.截取当前屏幕ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.截取当前屏幕ToolStripMenuItem.Text = "截取当前屏幕";
-            this.截取当前屏幕ToolStripMenuItem.Click += new System.EventHandler(this.截取当前屏幕ToolStripMenuItem_Click);
-            // 
-            // 截取选择部分ToolStripMenuItem
-            // 
-            this.截取选择部分ToolStripMenuItem.Name = "截取选择部分ToolStripMenuItem";
-            this.截取选择部分ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.截取选择部分ToolStripMenuItem.Text = "截取选择部分";
-            this.截取选择部分ToolStripMenuItem.Click += new System.EventHandler(this.截取选择部分ToolStripMenuItem_Click);
             // 
             // 截屏时隐藏当前窗口ToolStripMenuItem
             // 
@@ -191,29 +165,6 @@ namespace ScreenTools
             this.截屏时隐藏当前窗口ToolStripMenuItem.Text = "截屏时隐藏当前窗口";
             this.截屏时隐藏当前窗口ToolStripMenuItem.Click += new System.EventHandler(this.截屏时隐藏当前窗口ToolStripMenuItem_Click);
             // 
-            // 录音ToolStripMenuItem
-            // 
-            this.录音ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.开始录音ToolStripMenuItem,
-            this.停止录音ToolStripMenuItem});
-            this.录音ToolStripMenuItem.Name = "录音ToolStripMenuItem";
-            this.录音ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.录音ToolStripMenuItem.Text = "录音";
-            // 
-            // 开始录音ToolStripMenuItem
-            // 
-            this.开始录音ToolStripMenuItem.Name = "开始录音ToolStripMenuItem";
-            this.开始录音ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
-            this.开始录音ToolStripMenuItem.Text = "开始录音";
-            this.开始录音ToolStripMenuItem.Click += new System.EventHandler(this.开始录音ToolStripMenuItem_Click);
-            // 
-            // 停止录音ToolStripMenuItem
-            // 
-            this.停止录音ToolStripMenuItem.Name = "停止录音ToolStripMenuItem";
-            this.停止录音ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
-            this.停止录音ToolStripMenuItem.Text = "停止录音";
-            this.停止录音ToolStripMenuItem.Click += new System.EventHandler(this.停止录音ToolStripMenuItem_Click);
-            // 
             // 录屏ToolStripMenuItem
             // 
             this.录屏ToolStripMenuItem.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -222,12 +173,55 @@ namespace ScreenTools
             this.录屏ToolStripMenuItem.Text = "录屏";
             this.录屏ToolStripMenuItem.Click += new System.EventHandler(this.录屏ToolStripMenuItem_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.audioRecord);
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.screenShot);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 552);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1109, 34);
+            this.panel1.TabIndex = 16;
+            // 
+            // audioRecord
+            // 
+            this.audioRecord.Location = new System.Drawing.Point(334, 2);
+            this.audioRecord.Name = "audioRecord";
+            this.audioRecord.Size = new System.Drawing.Size(160, 30);
+            this.audioRecord.TabIndex = 2;
+            this.audioRecord.Tag = "false";
+            this.audioRecord.Text = "录音";
+            this.audioRecord.UseVisualStyleBackColor = true;
+            this.audioRecord.Click += new System.EventHandler(this.audioRecord_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(168, 2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(160, 30);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "录屏";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // screenShot
+            // 
+            this.screenShot.Location = new System.Drawing.Point(2, 2);
+            this.screenShot.Name = "screenShot";
+            this.screenShot.Size = new System.Drawing.Size(160, 30);
+            this.screenShot.TabIndex = 0;
+            this.screenShot.Text = "截屏";
+            this.screenShot.UseVisualStyleBackColor = true;
+            this.screenShot.Click += new System.EventHandler(this.screenShot_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.ClientSize = new System.Drawing.Size(1109, 586);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -238,6 +232,7 @@ namespace ScreenTools
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -254,14 +249,12 @@ namespace ScreenTools
         private ToolStripMenuItem 视频会议ToolStripMenuItem;
         private ToolStripMenuItem 检测内核ToolStripMenuItem;
         private ToolStripMenuItem 截屏ToolStripMenuItem;
-        private ToolStripMenuItem 截取当前窗口ToolStripMenuItem;
-        private ToolStripMenuItem 截取当前屏幕ToolStripMenuItem;
         private ToolStripMenuItem 截屏时隐藏当前窗口ToolStripMenuItem;
-        private ToolStripMenuItem 截取选择部分ToolStripMenuItem;
-        private ToolStripMenuItem 录音ToolStripMenuItem;
-        private ToolStripMenuItem 开始录音ToolStripMenuItem;
-        private ToolStripMenuItem 停止录音ToolStripMenuItem;
         private ToolStripMenuItem 录屏ToolStripMenuItem;
+        private Panel panel1;
+        private Button audioRecord;
+        private Button button2;
+        private Button screenShot;
     }
 }
 
