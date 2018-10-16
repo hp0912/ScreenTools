@@ -42,7 +42,7 @@ namespace ScreenTools
             this.平台总览ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.产线一览ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.产线监控ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.视频监控ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.视频会议ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.检测内核ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.截屏ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.截取当前窗口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,7 +74,7 @@ namespace ScreenTools
             this.平台总览ToolStripMenuItem,
             this.产线一览ToolStripMenuItem,
             this.产线监控ToolStripMenuItem,
-            this.视频监控ToolStripMenuItem,
+            this.视频会议ToolStripMenuItem,
             this.检测内核ToolStripMenuItem,
             this.截屏ToolStripMenuItem,
             this.录屏ToolStripMenuItem});
@@ -134,12 +134,12 @@ namespace ScreenTools
             this.产线监控ToolStripMenuItem.Size = new System.Drawing.Size(65, 22);
             this.产线监控ToolStripMenuItem.Text = "产线监控";
             // 
-            // 视频监控ToolStripMenuItem
+            // 视频会议ToolStripMenuItem
             // 
-            this.视频监控ToolStripMenuItem.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.视频监控ToolStripMenuItem.Name = "视频监控ToolStripMenuItem";
-            this.视频监控ToolStripMenuItem.Size = new System.Drawing.Size(65, 22);
-            this.视频监控ToolStripMenuItem.Text = "视频监控";
+            this.视频会议ToolStripMenuItem.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.视频会议ToolStripMenuItem.Name = "视频会议ToolStripMenuItem";
+            this.视频会议ToolStripMenuItem.Size = new System.Drawing.Size(65, 22);
+            this.视频会议ToolStripMenuItem.Text = "视频会议";
             // 
             // 检测内核ToolStripMenuItem
             // 
@@ -165,21 +165,21 @@ namespace ScreenTools
             // 截取当前窗口ToolStripMenuItem
             // 
             this.截取当前窗口ToolStripMenuItem.Name = "截取当前窗口ToolStripMenuItem";
-            this.截取当前窗口ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.截取当前窗口ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.截取当前窗口ToolStripMenuItem.Text = "截取当前窗口";
             this.截取当前窗口ToolStripMenuItem.Click += new System.EventHandler(this.截取当前窗口ToolStripMenuItem_Click);
             // 
             // 截取当前屏幕ToolStripMenuItem
             // 
             this.截取当前屏幕ToolStripMenuItem.Name = "截取当前屏幕ToolStripMenuItem";
-            this.截取当前屏幕ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.截取当前屏幕ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.截取当前屏幕ToolStripMenuItem.Text = "截取当前屏幕";
             this.截取当前屏幕ToolStripMenuItem.Click += new System.EventHandler(this.截取当前屏幕ToolStripMenuItem_Click);
             // 
             // 截取选择部分ToolStripMenuItem
             // 
             this.截取选择部分ToolStripMenuItem.Name = "截取选择部分ToolStripMenuItem";
-            this.截取选择部分ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.截取选择部分ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.截取选择部分ToolStripMenuItem.Text = "截取选择部分";
             this.截取选择部分ToolStripMenuItem.Click += new System.EventHandler(this.截取选择部分ToolStripMenuItem_Click);
             // 
@@ -187,7 +187,7 @@ namespace ScreenTools
             // 
             this.截屏时隐藏当前窗口ToolStripMenuItem.CheckOnClick = true;
             this.截屏时隐藏当前窗口ToolStripMenuItem.Name = "截屏时隐藏当前窗口ToolStripMenuItem";
-            this.截屏时隐藏当前窗口ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.截屏时隐藏当前窗口ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.截屏时隐藏当前窗口ToolStripMenuItem.Text = "截屏时隐藏当前窗口";
             this.截屏时隐藏当前窗口ToolStripMenuItem.Click += new System.EventHandler(this.截屏时隐藏当前窗口ToolStripMenuItem_Click);
             // 
@@ -197,7 +197,7 @@ namespace ScreenTools
             this.开始录音ToolStripMenuItem,
             this.停止录音ToolStripMenuItem});
             this.录音ToolStripMenuItem.Name = "录音ToolStripMenuItem";
-            this.录音ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.录音ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.录音ToolStripMenuItem.Text = "录音";
             // 
             // 开始录音ToolStripMenuItem
@@ -251,7 +251,7 @@ namespace ScreenTools
         private ToolStripMenuItem 平台总览ToolStripMenuItem;
         private ToolStripMenuItem 产线一览ToolStripMenuItem;
         private ToolStripMenuItem 产线监控ToolStripMenuItem;
-        private ToolStripMenuItem 视频监控ToolStripMenuItem;
+        private ToolStripMenuItem 视频会议ToolStripMenuItem;
         private ToolStripMenuItem 检测内核ToolStripMenuItem;
         private ToolStripMenuItem 截屏ToolStripMenuItem;
         private ToolStripMenuItem 截取当前窗口ToolStripMenuItem;

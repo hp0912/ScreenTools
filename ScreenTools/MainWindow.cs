@@ -44,7 +44,7 @@ namespace ScreenTools
             this.平台总览ToolStripMenuItem.Text = "平台总览";
             this.产线一览ToolStripMenuItem.Text = "产线一览";
             this.产线监控ToolStripMenuItem.Text = "产线监控";
-            this.视频监控ToolStripMenuItem.Text = "视频监控";
+            this.视频会议ToolStripMenuItem.Text = "视频会议";
 
         }
 
@@ -54,7 +54,7 @@ namespace ScreenTools
             this.平台总览ToolStripMenuItem.Text = "Platform Overview";
             this.产线一览ToolStripMenuItem.Text = "Production Line List";
             this.产线监控ToolStripMenuItem.Text = "Production Line Monitoring";
-            this.视频监控ToolStripMenuItem.Text = "Video Surveillance";                      
+            this.视频会议ToolStripMenuItem.Text = "Video Conference";                      
         }
 
         private void 平台总览ToolStripMenuItem_Click(object sender, EventArgs e)
