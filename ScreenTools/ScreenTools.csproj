@@ -91,6 +91,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CursorManager.cs" />
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +144,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CaptureImageTool\CaptureImageTool.csproj">
+      <Project>{13e62362-5d00-418f-83ff-99b2699746d7}</Project>
+      <Name>CaptureImageTool</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sample\Sample.csproj">
       <Project>{419aba1f-198d-4e85-8bfb-58ee6fdae67f}</Project>
       <Name>Sample</Name>

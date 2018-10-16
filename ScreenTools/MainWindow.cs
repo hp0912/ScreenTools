@@ -6,11 +6,11 @@ using CefSharp.WinForms;
 using System.Runtime.InteropServices;
 using System.Drawing.Imaging;
 using System.Drawing;
-using DirectShow;
 using System.Windows.Threading;
 using System.Diagnostics;
 using System.Windows;
 using System.IO;
+using CSharpWin_JD.CaptureImage;
 
 namespace ScreenTools
 {
@@ -181,7 +181,29 @@ namespace ScreenTools
 
         private void screenShot_Click(object sender, EventArgs e)
         {
+            if (Properties.Settings.Default.HideCurrentWindow)
+            {
+                Hide();
+                Thread.Sleep(30);
+            }
 
+            CaptureImageTool capture = new CaptureImageTool();
+
+            capture.SelectCursor = CursorManager.Arrow;
+            capture.DrawCursor = CursorManager.Cross;
+
+            if (capture.ShowDialog() == DialogResult.OK)
+            {
+                Image image = capture.Image;
+                confirmDir(Properties.Settings.Default.ScreenShotPath);
+                string filePath = Path.Combine(Properties.Settings.Default.ScreenShotPath, DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".jpg");
+                image.Save(filePath, ImageFormat.Jpeg);
+            }
+
+            if (!Visible)
+            {
+                Show();
+            }
         }
 
         /// <summary>
