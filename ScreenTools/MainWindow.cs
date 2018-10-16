@@ -26,7 +26,6 @@ namespace ScreenTools
         public MainWindow()
         {
             InitializeComponent();
-
             recordingTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
             recordingTimer.Tick += recordingTimer_Tick;
         }

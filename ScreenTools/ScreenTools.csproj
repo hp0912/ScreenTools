@@ -126,6 +126,22 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="bin\x86\Debug\Cursors\Arrow.cur" />
+    <None Include="bin\x86\Debug\Cursors\ArrowNew.cur" />
+    <None Include="bin\x86\Debug\Cursors\Cross.cur" />
+    <None Include="bin\x86\Debug\Cursors\CrossNew.cur" />
+    <None Include="Cursors\Arrow.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Cursors\ArrowNew.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Cursors\Cross.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Cursors\CrossNew.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="resource\favicon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +170,7 @@
       <Name>SharpAvi</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
