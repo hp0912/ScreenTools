@@ -28,13 +28,27 @@ namespace ScreenTools
             InitializeComponent();
             recordingTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
             recordingTimer.Tick += recordingTimer_Tick;
+
+            if (Properties.Settings.Default.HideCurrentWindow)
+            {
+                this.截屏时隐藏当前窗口ToolStripMenuItem.Checked = true;
+            }
+            else
+            {
+                this.截屏时隐藏当前窗口ToolStripMenuItem.Checked = false;
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {           
 
         }
- 
+
+        private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Properties.Settings.Default.Save();
+        }
+
         public void InitBrowser(String path)
         {
             CefSettings settings = new CefSettings();
