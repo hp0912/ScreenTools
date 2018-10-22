@@ -554,9 +554,18 @@ namespace NAudio.CoreAudioApi
                             b = 0;
                         }
 
-                        destWaveBuffer.ShortBuffer[outputIndex++] = (short)((a + b) * 32767 / 2);
+                        float c = a + b;
+                        if (c >= 1.0f)
+                        {
+                            c = 1.0f;
+                        }
+                        else if (c <= -1.0f)
+                        {
+                            c = -1.0f;
+                        }
+                        destWaveBuffer.ShortBuffer[outputIndex++] = (short)(c * 32767);
                     }
-                    if (DataAvailable != null) DataAvailable(this, new WaveInEventArgs(destWaveBuffer.ByteBuffer, maxLen));
+                    if (DataAvailable != null) DataAvailable(this, new WaveInEventArgs(destWaveBuffer.ByteBuffer, maxLen / 2));
                     recordBufferOffset = 0;
                     recordBufferOffset2 = 0;
                 }
@@ -616,7 +625,16 @@ namespace NAudio.CoreAudioApi
                         b = 0;
                     }
 
-                    destWaveBuffer.ShortBuffer[outputIndex++] = (short)((a + b) * 32767 / 2);
+                    float c = a + b;
+                    if (c >= 1.0f)
+                    {
+                        c = 1.0f;
+                    }
+                    else if(c <= -1.0f)
+                    {
+                        c = -1.0f;
+                    }
+                    destWaveBuffer.ShortBuffer[outputIndex++] = (short)(c * 32767);
                 }
 
                 DataAvailable(this, new WaveInEventArgs(destWaveBuffer.ByteBuffer, maxLen / 2));
