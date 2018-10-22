@@ -172,15 +172,16 @@ namespace ScreenTools
             if (audioRecording == false)
             {
                 audioRecording = true;
+
                 AudioRecordCleanup();
                 captureDevice = new WasapiLoopbackCapture(true);
                 captureDevice.DataAvailable += OnAudioDataAvailable;
                 captureDevice.RecordingStopped += OnAudioRecordingStopped;
                 writer = new WaveFileWriter(Path.Combine(SoundRecorderPath, "BepsunAudioRecorder-" + DateTime.Now.ToFileTime().ToString() + ".wav"), new WaveFormat(captureDevice.WaveFormat.SampleRate, 16, captureDevice.WaveFormat.Channels));
+                captureDevice.StartRecording();
 
                 recordingStopwatch.Reset();
                 recordingTimer.Start();
-                captureDevice.StartRecording();
                 recordingStopwatch.Start();
             }
             else
