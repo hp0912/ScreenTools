@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Windows;
 using System.IO;
 using CSharpWin_JD.CaptureImage;
+using NAudio.Wave;
 
 namespace ScreenTools
 {
@@ -22,12 +23,17 @@ namespace ScreenTools
         private readonly DispatcherTimer recordingTimer;
         private readonly Stopwatch recordingStopwatch = new Stopwatch();
         private bool audioRecording = false;
+        private IWaveIn captureDevice;
+        private WaveFileWriter writer;
+        string SoundRecorderPath;
 
         public MainWindow()
         {
             InitializeComponent();
             recordingTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
             recordingTimer.Tick += recordingTimer_Tick;
+            SoundRecorderPath = Properties.Settings.Default.SoundRecorderPath;
+            Directory.CreateDirectory(SoundRecorderPath);
 
             if (Properties.Settings.Default.HideCurrentWindow)
             {
@@ -46,7 +52,7 @@ namespace ScreenTools
 
         private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Properties.Settings.Default.Save();
+            AudioRecordCleanup();
         }
 
         public void InitBrowser(String path)
@@ -166,29 +172,25 @@ namespace ScreenTools
             if (audioRecording == false)
             {
                 audioRecording = true;
+                AudioRecordCleanup();
+                captureDevice = new WasapiLoopbackCapture(true);
+                captureDevice.DataAvailable += OnAudioDataAvailable;
+                captureDevice.RecordingStopped += OnAudioRecordingStopped;
+                writer = new WaveFileWriter(Path.Combine(SoundRecorderPath, "BepsunAudioRecorder-" + DateTime.Now.ToFileTime().ToString() + ".wav"), new WaveFormat(captureDevice.WaveFormat.SampleRate, 16, captureDevice.WaveFormat.Channels));
+
                 recordingStopwatch.Reset();
                 recordingTimer.Start();
-
-                mciSendString("set wave bitpersample 8", "", 0, 0);
-                mciSendString("set wave samplespersec 20000", "", 0, 0);
-                mciSendString("set wave channels 2", "", 0, 0);
-                mciSendString("set wave format tag pcm", "", 0, 0);
-                mciSendString("open new type WAVEAudio alias movie", "", 0, 0);
-                mciSendString("record movie", "", 0, 0);
-                
+                captureDevice.StartRecording();
                 recordingStopwatch.Start();
             }
             else
             {
+                captureDevice?.StopRecording();
+
                 audioRecording = false;
                 this.audioRecord.Text = "录音";
                 recordingTimer.Stop();
                 recordingStopwatch.Stop();
-
-                confirmDir(Properties.Settings.Default.SoundRecorderPath);
-                mciSendString("stop movie", "", 0, 0);
-                mciSendString("save movie " + Properties.Settings.Default.SoundRecorderPath + "BepsunAudioRecorder-" + DateTime.Now.ToFileTime().ToString() + ".wav", "", 0, 0);
-                mciSendString("close movie", "", 0, 0);
             }
         }
 
@@ -208,7 +210,7 @@ namespace ScreenTools
             if (capture.ShowDialog() == DialogResult.OK)
             {
                 Image image = capture.Image;
-                confirmDir(Properties.Settings.Default.ScreenShotPath);
+                Directory.CreateDirectory(Properties.Settings.Default.ScreenShotPath);
                 string filePath = Path.Combine(Properties.Settings.Default.ScreenShotPath, DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".jpg");
                 image.Save(filePath, ImageFormat.Jpeg);
             }
@@ -219,13 +221,41 @@ namespace ScreenTools
             }
         }
 
-        /// <summary>
-        /// 检测目录是否存在，若不存在则创建
-        /// </summary>
-        public void confirmDir(string path)
+        void OnAudioDataAvailable(object sender, WaveInEventArgs e)
         {
-            String rootDir = System.IO.Path.GetDirectoryName(path);             //获取path所在的目录
-            if (!Directory.Exists(rootDir)) Directory.CreateDirectory(rootDir); //若目录不存在则创建
+            if (InvokeRequired)
+            {
+                BeginInvoke(new EventHandler<WaveInEventArgs>(OnAudioDataAvailable), sender, e);
+            }
+            else
+            {
+                writer.Write(e.Buffer, 0, e.BytesRecorded);
+            }
+        }
+
+        void OnAudioRecordingStopped(object sender, StoppedEventArgs e)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new EventHandler<StoppedEventArgs>(OnAudioRecordingStopped), sender, e);
+            }
+            else
+            {
+                writer?.Dispose();
+                writer = null;
+                if (e.Exception != null)
+                {
+                    System.Windows.Forms.MessageBox.Show(String.Format("A problem was encountered during recording {0}", e.Exception.Message));
+                }
+            }
+        }
+
+        private void AudioRecordCleanup()
+        {
+            captureDevice?.Dispose();
+            captureDevice = null;
+            writer?.Dispose();
+            writer = null;
         }
     }
 }
