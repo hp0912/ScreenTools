@@ -10,6 +10,7 @@ using System.Windows.Threading;
 using System.Diagnostics;
 using System.IO;
 using CSharpWin_JD.CaptureImage;
+using NAudio.Wave;
 
 namespace ScreenTools
 {
@@ -29,18 +30,30 @@ namespace ScreenTools
         private readonly DispatcherTimer AudioRecordingTimer;
         private readonly DispatcherTimer ScreenRecordTimer;
         private readonly Stopwatch recordingStopwatch = new Stopwatch();
+
         static SharpAvi.Sample.MainWindow sample = new SharpAvi.Sample.MainWindow();
         private bool AudioRecording = false;
         private bool ScreenRecording = false;
 
+        private bool audioRecording = false;
+        private IWaveIn captureDevice;
+        private WaveFileWriter writer;
+        string SoundRecorderPath;
+
+
         public MainWindow()
         {
             InitializeComponent();
+
             AudioRecordingTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
             AudioRecordingTimer.Tick += AudioRecordingTimer_Tick;
 
             ScreenRecordTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
             ScreenRecordTimer.Tick += ScreenRecordTimer_Tick;
+
+            SoundRecorderPath = Properties.Settings.Default.SoundRecorderPath;
+            Directory.CreateDirectory(SoundRecorderPath);
+
 
             if (Properties.Settings.Default.HideCurrentWindow)
             {
@@ -55,7 +68,7 @@ namespace ScreenTools
 
         private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Properties.Settings.Default.Save();
+            AudioRecordCleanup();
         }
 
         /// <summary>
@@ -110,32 +123,29 @@ namespace ScreenTools
 
         private void AudioRecord_Click(object sender, EventArgs e)
         {
-            if (AudioRecording == false)
-            {              
+            if (audioRecording == false)
+            {
+                audioRecording = true;
+
+                AudioRecordCleanup();
+                captureDevice = new WasapiLoopbackCapture(true);
+                captureDevice.DataAvailable += OnAudioDataAvailable;
+                captureDevice.RecordingStopped += OnAudioRecordingStopped;
+                writer = new WaveFileWriter(Path.Combine(SoundRecorderPath, "BepsunAudioRecorder-" + DateTime.Now.ToFileTime().ToString() + ".wav"), new WaveFormat(captureDevice.WaveFormat.SampleRate, 16, captureDevice.WaveFormat.Channels));
+                captureDevice.StartRecording();
+
                 recordingStopwatch.Reset();
                 AudioRecordingTimer.Start();
-                AudioRecording = true;
-
-                MciSendString("set wave bitpersample 8", "", 0, 0);
-                MciSendString("set wave samplespersec 20000", "", 0, 0);
-                MciSendString("set wave channels 2", "", 0, 0);
-                MciSendString("set wave format tag pcm", "", 0, 0);
-                MciSendString("open new type WAVEAudio alias movie", "", 0, 0);
-                MciSendString("record movie", "", 0, 0);
-                
                 recordingStopwatch.Start();
             }
             else
             {
+                captureDevice?.StopRecording();
+
+                audioRecording = false;
                 this.AudioRecord.Text = "录音";
                 AudioRecordingTimer.Stop();
                 recordingStopwatch.Stop();
-
-                confirmDir(Properties.Settings.Default.SoundRecorderPath);
-                MciSendString("stop movie", "", 0, 0);
-                MciSendString("save movie " + Properties.Settings.Default.SoundRecorderPath + "BepsunAudioRecorder-" + DateTime.Now.ToFileTime().ToString() + ".wav", "", 0, 0);
-                MciSendString("close movie", "", 0, 0);
-                AudioRecording = false;
             }
         }
 
@@ -155,7 +165,7 @@ namespace ScreenTools
             if (capture.ShowDialog() == DialogResult.OK)
             {
                 Image image = capture.Image;
-                confirmDir(Properties.Settings.Default.ScreenShotPath);
+                Directory.CreateDirectory(Properties.Settings.Default.ScreenShotPath);
                 string filePath = Path.Combine(Properties.Settings.Default.ScreenShotPath, DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".jpg");
                 image.Save(filePath, ImageFormat.Jpeg);
             }
@@ -185,16 +195,41 @@ namespace ScreenTools
             }
         }
 
-
-
-
-        /// <summary>
-        /// 检测目录是否存在，若不存在则创建
-        /// </summary>
-        public void confirmDir(string path)
+        void OnAudioDataAvailable(object sender, WaveInEventArgs e)
         {
-            String rootDir = System.IO.Path.GetDirectoryName(path);             //获取path所在的目录
-            if (!Directory.Exists(rootDir)) Directory.CreateDirectory(rootDir); //若目录不存在则创建
+            if (InvokeRequired)
+            {
+                BeginInvoke(new EventHandler<WaveInEventArgs>(OnAudioDataAvailable), sender, e);
+            }
+            else
+            {
+                writer.Write(e.Buffer, 0, e.BytesRecorded);
+            }
+        }
+
+        void OnAudioRecordingStopped(object sender, StoppedEventArgs e)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new EventHandler<StoppedEventArgs>(OnAudioRecordingStopped), sender, e);
+            }
+            else
+            {
+                writer?.Dispose();
+                writer = null;
+                if (e.Exception != null)
+                {
+                    System.Windows.Forms.MessageBox.Show(String.Format("A problem was encountered during recording {0}", e.Exception.Message));
+                }
+            }
+        }
+
+        private void AudioRecordCleanup()
+        {
+            captureDevice?.Dispose();
+            captureDevice = null;
+            writer?.Dispose();
+            writer = null;
         }
 
         /// <summary>

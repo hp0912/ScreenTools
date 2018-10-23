@@ -168,6 +168,10 @@
       <Project>{13E62362-5D00-418F-83FF-99B2699746D7}</Project>
       <Name>CaptureImageTool</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NAudio\NAudio.csproj">
+      <Project>{da4f02e3-0b5e-42cd-b8d9-5583fa51d66e}</Project>
+      <Name>NAudio</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sample\Sample.csproj">
       <Project>{419aba1f-198d-4e85-8bfb-58ee6fdae67f}</Project>
       <Name>Sample</Name>

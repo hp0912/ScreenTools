@@ -69,9 +69,6 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NAudio">
-      <HintPath>..\packages\NAudio.1.7.1\lib\net35\NAudio.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -126,6 +123,10 @@
     <None Include="Sample_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NAudio\NAudio.csproj">
+      <Project>{da4f02e3-0b5e-42cd-b8d9-5583fa51d66e}</Project>
+      <Name>NAudio</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SharpAvi\SharpAvi.csproj">
       <Project>{07B83677-E9B8-4166-A383-CF3B3D393FBD}</Project>
       <Name>SharpAvi</Name>
