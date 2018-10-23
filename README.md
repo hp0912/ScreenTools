@@ -1,1 +1,1 @@
-# ScreenTools 屏幕截图 屏幕录制 录音 录像
+# ScreenTools 屏幕截图 屏幕录制 录音
