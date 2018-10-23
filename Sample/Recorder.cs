@@ -13,6 +13,9 @@ using SharpAvi.Codecs;
 using SharpAvi.Output;
 using System.Windows.Interop;
 using System.Diagnostics;
+using NAudio.CoreAudioApi;
+using System.Linq;
+using NAudio.Wave.SampleProviders;
 
 namespace SharpAvi.Sample
 {
@@ -23,11 +26,14 @@ namespace SharpAvi.Sample
         private readonly AviWriter writer;
         private readonly IAviVideoStream videoStream;
         private readonly IAviAudioStream audioStream;
+        private readonly IWaveIn bgmSource;
+        private readonly IAviAudioStream bgmStream;
         private readonly WaveInEvent audioSource;
         private readonly Thread screenThread;
         private readonly ManualResetEvent stopThread = new ManualResetEvent(false);
         private readonly AutoResetEvent videoFrameWritten = new AutoResetEvent(false);
         private readonly AutoResetEvent audioBlockWritten = new AutoResetEvent(false);
+        private readonly AutoResetEvent bgmBlockWritten = new AutoResetEvent(false);
 
         public Recorder(string fileName, 
             FourCC codec, int quality, 
@@ -60,10 +66,13 @@ namespace SharpAvi.Sample
                 var waveFormat = ToWaveFormat(audioWaveFormat);
 
                 audioStream = CreateAudioStream(waveFormat, encodeAudio, audioBitRate);
+                bgmStream = CreateAudioStream(waveFormat, encodeAudio, audioBitRate);
+                var device = new MMDeviceEnumerator().EnumerateAudioEndPoints(DataFlow.Render, DeviceState.Active).ToList().FirstOrDefault();
+                //Get system sound
+                bgmSource = new WasapiLoopbackCapture(device);
                 // Set only name. Other properties were when creating stream, 
                 // either explicitly by arguments or implicitly by the encoder used
                 audioStream.Name = "Voice";
-
                 audioSource = new WaveInEvent
                 {
                     DeviceNumber = audioSourceIndex,
@@ -72,6 +81,10 @@ namespace SharpAvi.Sample
                     BufferMilliseconds = (int)Math.Ceiling(1000 / writer.FramesPerSecond),
                     NumberOfBuffers = 3,
                 };
+
+                bgmSource.DataAvailable += bgmSource_DataAvailable;
+ //               var mixer = new MixingSampleProvider(new [] {(ISampleProvider)newWaveIn,(ISampleProvider)audioSource});
+ //                mixer.Dat
                 audioSource.DataAvailable += audioSource_DataAvailable;
             }
 
@@ -81,14 +94,24 @@ namespace SharpAvi.Sample
                 IsBackground = true
             };
 
-            if (audioSource != null)
+            if (audioSource != null&& bgmSource!=null)
             {
                 videoFrameWritten.Set();
-                audioBlockWritten.Reset();
+                audioBlockWritten.Reset();      
                 audioSource.StartRecording();
+                bgmSource.StartRecording();
             }
+
+
             screenThread.Start();
         }
+
+        //private IAviAudioStream MixingStream(WaveFormat waveFormat, bool encode, int bitRate, IAviAudioStream audioStream1, IAviAudioStream audioStream2) {
+        //    IAviAudioStream mixedStream =  writer.AddMp3AudioStream(waveFormat.Channels, waveFormat.SampleRate, bitRate);
+            
+
+        //    return new IAviAudioStream();
+        //}
 
         private IAviVideoStream CreateVideoStream(FourCC codec, int quality)
         {
@@ -157,6 +180,12 @@ namespace SharpAvi.Sample
             {
                 audioSource.StopRecording();
                 audioSource.DataAvailable -= audioSource_DataAvailable;
+            }
+
+            if (bgmSource != null)
+            {
+                bgmSource.StopRecording();
+                bgmSource.DataAvailable += bgmSource_DataAvailable;
             }
 
             // Close writer: the remaining data is written to a file and file is closed
@@ -251,6 +280,16 @@ namespace SharpAvi.Sample
             {
                 audioStream.WriteBlock(e.Buffer, 0, e.BytesRecorded);
                 audioBlockWritten.Set();
+            }
+        }
+
+        private void bgmSource_DataAvailable(object sender, WaveInEventArgs e)
+        {
+            var signalled = WaitHandle.WaitAny(new WaitHandle[] { videoFrameWritten, stopThread });
+            if (signalled == 0)
+            {
+                bgmStream.WriteBlock(e.Buffer, 0, e.BytesRecorded);
+                bgmBlockWritten.Set();
             }
         }
     }

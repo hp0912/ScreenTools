@@ -164,7 +164,6 @@ namespace SharpAvi.Sample
         {
             var dlg = new SettingsWindow()
             {
-                Owner = this,
                 Folder = outputFolder,
                 SelectedAudioSourceIndex = audioSourceIndex,
                 AudioWaveFormat = audioWaveFormat,
@@ -189,7 +188,7 @@ namespace SharpAvi.Sample
         #endregion
 
 
-        private void StartRecording_Click(object sender, RoutedEventArgs e)
+        public void StartRecording_Click(object sender, EventArgs e)
         {
             try
             {
@@ -202,7 +201,7 @@ namespace SharpAvi.Sample
             }
         }
 
-        private void StopRecording_Click(object sender, RoutedEventArgs e)
+        public void StopRecording_Click(object sender, EventArgs e)
         {
             try
             {
@@ -219,7 +218,7 @@ namespace SharpAvi.Sample
             Process.Start("explorer.exe", string.Format("/select, \"{0}\"", lastFileName));
         }
 
-        private void Settings_Click(object sender, RoutedEventArgs e)
+        public void Settings_Click(object sender, EventArgs e)
         {
             ShowSettingsDialog();
         }

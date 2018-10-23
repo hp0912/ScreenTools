@@ -8,7 +8,6 @@ using System.Drawing.Imaging;
 using System.Drawing;
 using System.Windows.Threading;
 using System.Diagnostics;
-using System.Windows;
 using System.IO;
 using CSharpWin_JD.CaptureImage;
 
@@ -17,31 +16,41 @@ namespace ScreenTools
 
     public partial class MainWindow : Form
     {
-        public ChromiumWebBrowser browser;
-        SharpAvi.Sample.MainWindow ScreenRecording = null;
-        private readonly DispatcherTimer recordingTimer;
+
+        [DllImport("winmm.dll", EntryPoint = "mciSendString", CharSet = CharSet.Auto)]
+        public static extern int MciSendString(
+         string lpstrCommand,
+         string lpstrReturnString,
+         int uReturnLength,
+         int hwndCallback
+        );
+        public ChromiumWebBrowser Browser;
+       
+        private readonly DispatcherTimer AudioRecordingTimer;
+        private readonly DispatcherTimer ScreenRecordTimer;
         private readonly Stopwatch recordingStopwatch = new Stopwatch();
-        private bool audioRecording = false;
+        static SharpAvi.Sample.MainWindow sample = new SharpAvi.Sample.MainWindow();
+        private bool AudioRecording = false;
+        private bool ScreenRecording = false;
 
         public MainWindow()
         {
             InitializeComponent();
-            recordingTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
-            recordingTimer.Tick += recordingTimer_Tick;
+            AudioRecordingTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+            AudioRecordingTimer.Tick += AudioRecordingTimer_Tick;
+
+            ScreenRecordTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+            ScreenRecordTimer.Tick += ScreenRecordTimer_Tick;
 
             if (Properties.Settings.Default.HideCurrentWindow)
             {
-                this.截屏时隐藏当前窗口ToolStripMenuItem.Checked = true;
+                this.SCS_HideCurrentWindow.Checked = true;
             }
             else
             {
-                this.截屏时隐藏当前窗口ToolStripMenuItem.Checked = false;
+                this.SCS_HideCurrentWindow.Checked = false;
             }
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {           
-
+            
         }
 
         private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
@@ -49,78 +58,46 @@ namespace ScreenTools
             Properties.Settings.Default.Save();
         }
 
+        /// <summary>
+        /// 初始化Cef
+        /// </summary>
+        /// <param name="path"></param>
         public void InitBrowser(String path)
         {
             CefSettings settings = new CefSettings();
             settings.Locale = "zh-CN";
             settings.AcceptLanguageList = "zh-CN";
             Cef.Initialize(settings);
-            browser = new ChromiumWebBrowser(path);
-            browser.Dock = DockStyle.Fill;
-            this.webBrowser1.Controls.Add(browser);
+            Browser = new ChromiumWebBrowser(path);
+            Browser.Dock = DockStyle.Fill;
+            this.webBrowser1.Controls.Add(Browser);
         }
 
-        private void 中文ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MainWindow_Shown(object sender, EventArgs e)
         {
-            this.语言设置ToolStripMenuItem.Text = "语言设置";
-            this.平台总览ToolStripMenuItem.Text = "平台总览";
-            this.产线一览ToolStripMenuItem.Text = "产线一览";
-            this.产线监控ToolStripMenuItem.Text = "产线监控";
-            this.视频会议ToolStripMenuItem.Text = "视频会议";
+             InitBrowser("https://www.uccp520.com/bibcor-byitem/uil/cor/byitem/coiall.vm?stm=1110000_1@0");
+             FlushWindowState();
+        }
+
+        private void PlatformOverview_Click(object sender, EventArgs e)
+        {
+             Browser.Load("https://www.uccp520.com/bibcor-byitem/uil/cor/byitem/coiall.vm?stm=1110000_1@0");
 
         }
 
-        private void EnglishToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ProductionLineList_Click(object sender, EventArgs e)
         {
-            this.语言设置ToolStripMenuItem.Text = "Language Settings";
-            this.平台总览ToolStripMenuItem.Text = "Platform Overview";
-            this.产线一览ToolStripMenuItem.Text = "Production Line List";
-            this.产线监控ToolStripMenuItem.Text = "Production Line Monitoring";
-            this.视频会议ToolStripMenuItem.Text = "Video Conference";                      
+             Browser.Load("https://www.uccp520.com/bibbam-res/uil/bam/res/line/balinall.vm?stm=4110000_1@0");
         }
 
-        private void 平台总览ToolStripMenuItem_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 截屏时是否隐藏当前窗口
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SCS_HideCurrentWindow_Click(object sender, EventArgs e)
         {
-            if (browser == null)
-            { 
-                InitBrowser("https://www.uccp520.com/bibcor-byitem/uil/cor/byitem/coiall.vm?stm=1110000_1@0");
-            }
-            else
-            {
-                browser.Load("https://www.uccp520.com/bibcor-byitem/uil/cor/byitem/coiall.vm?stm=1110000_1@0");
-            }
-            //browser.Load("http://www.baidu.com");
-        }
-
-        private void 产线一览ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (browser == null)
-            {
-                InitBrowser("https://www.uccp520.com/bibbam-res/uil/bam/res/line/balinall.vm?stm=4110000_1@0");
-            }
-            else
-            {
-                browser.Load("https://www.uccp520.com/bibbam-res/uil/bam/res/line/balinall.vm?stm=4110000_1@0");
-            }
-        }
-
-        private void 检测内核ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (browser == null)
-            {
-                InitBrowser("chrome://extensions/");
-            }
-            else
-            {
-                browser.Load("https://ie.icoa.cn/");
-            }
-            //browser.Load("https://ie.icoa.cn/");
-            //this.webBrowser1.Navigate("https://ie.icoa.cn/");
-        }
-        
-        private void 截屏时隐藏当前窗口ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (this.截屏时隐藏当前窗口ToolStripMenuItem.Checked)
+            if (this.SCS_HideCurrentWindow.Checked)
             {
                 Properties.Settings.Default.HideCurrentWindow = true;
             }
@@ -130,69 +107,39 @@ namespace ScreenTools
             }
         }
 
-        [DllImport("winmm.dll", EntryPoint = "mciSendString", CharSet = CharSet.Auto)]
-        public static extern int mciSendString(
-         string lpstrCommand,
-         string lpstrReturnString,
-         int uReturnLength,
-         int hwndCallback
-        );
 
-        private void 录屏ToolStripMenuItem_Click(object sender, EventArgs e)        
-        {           
-            if (ScreenRecording == null)
-            {
-                ScreenRecording = new SharpAvi.Sample.MainWindow();
-
-                ScreenRecording.Show();
-            }
-            else {
-                ScreenRecording.Close();
-                ScreenRecording = null;
-            } 
-        }
-
-        private void recordingTimer_Tick(object sender, EventArgs e)
+        private void AudioRecord_Click(object sender, EventArgs e)
         {
-            TimeSpan elapsed = recordingStopwatch.Elapsed;
-            this.audioRecord.Text = "停止录音[" + string.Format(
-                "{0:00}:{1:00}",
-                Math.Floor(elapsed.TotalMinutes),
-                elapsed.Seconds) + "]";
-        }
-
-        private void audioRecord_Click(object sender, EventArgs e)
-        {
-            if (audioRecording == false)
-            {
-                audioRecording = true;
+            if (AudioRecording == false)
+            {              
                 recordingStopwatch.Reset();
-                recordingTimer.Start();
+                AudioRecordingTimer.Start();
+                AudioRecording = true;
 
-                mciSendString("set wave bitpersample 8", "", 0, 0);
-                mciSendString("set wave samplespersec 20000", "", 0, 0);
-                mciSendString("set wave channels 2", "", 0, 0);
-                mciSendString("set wave format tag pcm", "", 0, 0);
-                mciSendString("open new type WAVEAudio alias movie", "", 0, 0);
-                mciSendString("record movie", "", 0, 0);
+                MciSendString("set wave bitpersample 8", "", 0, 0);
+                MciSendString("set wave samplespersec 20000", "", 0, 0);
+                MciSendString("set wave channels 2", "", 0, 0);
+                MciSendString("set wave format tag pcm", "", 0, 0);
+                MciSendString("open new type WAVEAudio alias movie", "", 0, 0);
+                MciSendString("record movie", "", 0, 0);
                 
                 recordingStopwatch.Start();
             }
             else
             {
-                audioRecording = false;
-                this.audioRecord.Text = "录音";
-                recordingTimer.Stop();
+                this.AudioRecord.Text = "录音";
+                AudioRecordingTimer.Stop();
                 recordingStopwatch.Stop();
 
                 confirmDir(Properties.Settings.Default.SoundRecorderPath);
-                mciSendString("stop movie", "", 0, 0);
-                mciSendString("save movie " + Properties.Settings.Default.SoundRecorderPath + "BepsunAudioRecorder-" + DateTime.Now.ToFileTime().ToString() + ".wav", "", 0, 0);
-                mciSendString("close movie", "", 0, 0);
+                MciSendString("stop movie", "", 0, 0);
+                MciSendString("save movie " + Properties.Settings.Default.SoundRecorderPath + "BepsunAudioRecorder-" + DateTime.Now.ToFileTime().ToString() + ".wav", "", 0, 0);
+                MciSendString("close movie", "", 0, 0);
+                AudioRecording = false;
             }
         }
 
-        private void screenShot_Click(object sender, EventArgs e)
+        private void ScreenShot_Click(object sender, EventArgs e)
         {
             if (Properties.Settings.Default.HideCurrentWindow)
             {
@@ -219,6 +166,28 @@ namespace ScreenTools
             }
         }
 
+        private void ScreenRecord_Click(object sender, EventArgs e)
+        {          
+            if (ScreenRecording == false)
+            {
+                recordingStopwatch.Reset();
+                ScreenRecordTimer.Start();
+                ScreenRecording = true;
+                sample.StartRecording_Click(sender, e);
+                recordingStopwatch.Start();
+            }
+            else{
+                sample.StopRecording_Click(sender, e);
+                ScreenRecordTimer.Stop();
+                recordingStopwatch.Stop();
+                ScreenRecording = false;
+                this.ScreenRecord.Text = "录屏";
+            }
+        }
+
+
+
+
         /// <summary>
         /// 检测目录是否存在，若不存在则创建
         /// </summary>
@@ -226,6 +195,97 @@ namespace ScreenTools
         {
             String rootDir = System.IO.Path.GetDirectoryName(path);             //获取path所在的目录
             if (!Directory.Exists(rootDir)) Directory.CreateDirectory(rootDir); //若目录不存在则创建
+        }
+
+        /// <summary>
+        /// 录音时长的计时器
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AudioRecordingTimer_Tick(object sender, EventArgs e)
+        {
+            TimeSpan elapsed = recordingStopwatch.Elapsed;
+            this.AudioRecord.Text = "停止录音[" + string.Format(
+                "{0:00}:{1:00}",
+                Math.Floor(elapsed.TotalMinutes),
+                elapsed.Seconds) + "]";
+        }
+       
+        /// <summary>
+        /// 录屏时长的计时器
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ScreenRecordTimer_Tick(object sender, EventArgs e)
+        {
+            TimeSpan elapsed = recordingStopwatch.Elapsed;
+            this.ScreenRecord.Text = "停止录屏[" + string.Format(
+                "{0:00}:{1:00}",
+                Math.Floor(elapsed.TotalMinutes),
+                elapsed.Seconds) + "]";
+        }
+
+        private void ScreenRecordSet_Click(object sender, EventArgs e)
+        {
+            sample.Settings_Click(sender, e);
+        }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+            //设置默认语言
+            String Language = Properties.Settings.Default.DefaultLanguage;
+            MultiLanguage.LoadLanguage(this, typeof(MainWindow));
+        }
+
+        private void ZH_CN_Click(object sender, EventArgs e)
+        {
+            MultiLanguage.SetDefaultLanguage("zh-CN");
+            //对所有打开的窗口重新加载语言
+            foreach (Form form in Application.OpenForms)
+            {
+                LoadAll(form);
+            }
+        }
+
+        private void en_US_Click(object sender, EventArgs e)
+        {
+
+            MultiLanguage.SetDefaultLanguage("en-US");
+            //对所有打开的窗口重新加载语言
+            foreach (Form form in Application.OpenForms)
+            {
+                LoadAll(form);
+            }
+        }
+
+        /// <summary>
+        /// 为所有窗体加载语言配置，当前只有一个窗体
+        /// </summary>
+        /// <param name="form"></param>
+        private void LoadAll(Form form)
+        {
+            if (form.Name == "MainWindow")
+            {
+                MultiLanguage.LoadLanguage(form, typeof(MainWindow));
+            }
+            FlushWindowState();
+
+        }
+
+        /// <summary>
+        /// 将当前窗口最大化变化一次
+        /// </summary>
+        private void FlushWindowState() {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+                this.WindowState = FormWindowState.Normal;
+            }
         }
     }
 }

@@ -36,201 +36,176 @@ namespace ScreenTools
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.语言设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.中文ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.EnglishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.平台总览ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.产线一览ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.产线监控ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.视频会议ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.检测内核ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.截屏ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.截屏时隐藏当前窗口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.录屏ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SettingS = new System.Windows.Forms.ToolStripMenuItem();
+            this.LanguageSet = new System.Windows.Forms.ToolStripMenuItem();
+            this.ZH_CN = new System.Windows.Forms.ToolStripMenuItem();
+            this.en_US = new System.Windows.Forms.ToolStripMenuItem();
+            this.ScreenCaptureSet = new System.Windows.Forms.ToolStripMenuItem();
+            this.SCS_HideCurrentWindow = new System.Windows.Forms.ToolStripMenuItem();
+            this.JPGPathSet = new System.Windows.Forms.ToolStripMenuItem();
+            this.AudioRecordSet = new System.Windows.Forms.ToolStripMenuItem();
+            this.ScreenRecordSet = new System.Windows.Forms.ToolStripMenuItem();
+            this.PlatformOverview = new System.Windows.Forms.ToolStripMenuItem();
+            this.ProductionLineList = new System.Windows.Forms.ToolStripMenuItem();
+            this.ProductionLineMonitoring = new System.Windows.Forms.ToolStripMenuItem();
+            this.VideoConference = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.audioRecord = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.screenShot = new System.Windows.Forms.Button();
+            this.AudioRecord = new System.Windows.Forms.Button();
+            this.ScreenRecord = new System.Windows.Forms.Button();
+            this.ScreenShot = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // webBrowser1
             // 
-            this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.webBrowser1.Location = new System.Drawing.Point(0, 27);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            resources.ApplyResources(this.webBrowser1, "webBrowser1");
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1109, 560);
-            this.webBrowser1.TabIndex = 6;
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.语言设置ToolStripMenuItem,
-            this.平台总览ToolStripMenuItem,
-            this.产线一览ToolStripMenuItem,
-            this.产线监控ToolStripMenuItem,
-            this.视频会议ToolStripMenuItem,
-            this.检测内核ToolStripMenuItem,
-            this.截屏ToolStripMenuItem,
-            this.录屏ToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.SettingS,
+            this.PlatformOverview,
+            this.ProductionLineList,
+            this.ProductionLineMonitoring,
+            this.VideoConference});
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1109, 26);
-            this.menuStrip1.TabIndex = 13;
-            this.menuStrip1.Text = "menuStrip1";
             // 
-            // 语言设置ToolStripMenuItem
+            // SettingS
             // 
-            this.语言设置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.中文ToolStripMenuItem,
-            this.EnglishToolStripMenuItem});
-            this.语言设置ToolStripMenuItem.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.语言设置ToolStripMenuItem.MergeIndex = 0;
-            this.语言设置ToolStripMenuItem.Name = "语言设置ToolStripMenuItem";
-            this.语言设置ToolStripMenuItem.Padding = new System.Windows.Forms.Padding(3);
-            this.语言设置ToolStripMenuItem.Size = new System.Drawing.Size(63, 22);
-            this.语言设置ToolStripMenuItem.Text = "语言设置";
+            this.SettingS.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.LanguageSet,
+            this.ScreenCaptureSet,
+            this.AudioRecordSet,
+            this.ScreenRecordSet});
+            resources.ApplyResources(this.SettingS, "SettingS");
+            this.SettingS.MergeIndex = 0;
+            this.SettingS.Name = "SettingS";
+            this.SettingS.Padding = new System.Windows.Forms.Padding(3);
             // 
-            // 中文ToolStripMenuItem
+            // LanguageSet
             // 
-            this.中文ToolStripMenuItem.Name = "中文ToolStripMenuItem";
-            this.中文ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
-            this.中文ToolStripMenuItem.Text = "中文";
-            this.中文ToolStripMenuItem.Click += new System.EventHandler(this.中文ToolStripMenuItem_Click);
+            this.LanguageSet.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ZH_CN,
+            this.en_US});
+            this.LanguageSet.Name = "LanguageSet";
+            resources.ApplyResources(this.LanguageSet, "LanguageSet");
             // 
-            // EnglishToolStripMenuItem
+            // ZH_CN
             // 
-            this.EnglishToolStripMenuItem.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.EnglishToolStripMenuItem.Name = "EnglishToolStripMenuItem";
-            this.EnglishToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
-            this.EnglishToolStripMenuItem.Text = "English";
-            this.EnglishToolStripMenuItem.Click += new System.EventHandler(this.EnglishToolStripMenuItem_Click);
+            this.ZH_CN.Name = "ZH_CN";
+            resources.ApplyResources(this.ZH_CN, "ZH_CN");
+            this.ZH_CN.Click += new System.EventHandler(this.ZH_CN_Click);
             // 
-            // 平台总览ToolStripMenuItem
+            // en_US
             // 
-            this.平台总览ToolStripMenuItem.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.平台总览ToolStripMenuItem.Name = "平台总览ToolStripMenuItem";
-            this.平台总览ToolStripMenuItem.Size = new System.Drawing.Size(65, 22);
-            this.平台总览ToolStripMenuItem.Text = "平台总览";
-            this.平台总览ToolStripMenuItem.Click += new System.EventHandler(this.平台总览ToolStripMenuItem_Click);
+            this.en_US.Name = "en_US";
+            resources.ApplyResources(this.en_US, "en_US");
+            this.en_US.Click += new System.EventHandler(this.en_US_Click);
             // 
-            // 产线一览ToolStripMenuItem
+            // ScreenCaptureSet
             // 
-            this.产线一览ToolStripMenuItem.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.产线一览ToolStripMenuItem.Name = "产线一览ToolStripMenuItem";
-            this.产线一览ToolStripMenuItem.Size = new System.Drawing.Size(65, 22);
-            this.产线一览ToolStripMenuItem.Text = "产线一览";
-            this.产线一览ToolStripMenuItem.Click += new System.EventHandler(this.产线一览ToolStripMenuItem_Click);
+            this.ScreenCaptureSet.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SCS_HideCurrentWindow,
+            this.JPGPathSet});
+            resources.ApplyResources(this.ScreenCaptureSet, "ScreenCaptureSet");
+            this.ScreenCaptureSet.Name = "ScreenCaptureSet";
             // 
-            // 产线监控ToolStripMenuItem
+            // SCS_HideCurrentWindow
             // 
-            this.产线监控ToolStripMenuItem.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.产线监控ToolStripMenuItem.Name = "产线监控ToolStripMenuItem";
-            this.产线监控ToolStripMenuItem.Size = new System.Drawing.Size(65, 22);
-            this.产线监控ToolStripMenuItem.Text = "产线监控";
+            this.SCS_HideCurrentWindow.CheckOnClick = true;
+            this.SCS_HideCurrentWindow.Name = "SCS_HideCurrentWindow";
+            resources.ApplyResources(this.SCS_HideCurrentWindow, "SCS_HideCurrentWindow");
+            this.SCS_HideCurrentWindow.Click += new System.EventHandler(this.SCS_HideCurrentWindow_Click);
             // 
-            // 视频会议ToolStripMenuItem
+            // JPGPathSet
             // 
-            this.视频会议ToolStripMenuItem.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.视频会议ToolStripMenuItem.Name = "视频会议ToolStripMenuItem";
-            this.视频会议ToolStripMenuItem.Size = new System.Drawing.Size(65, 22);
-            this.视频会议ToolStripMenuItem.Text = "视频会议";
+            this.JPGPathSet.Name = "JPGPathSet";
+            resources.ApplyResources(this.JPGPathSet, "JPGPathSet");
             // 
-            // 检测内核ToolStripMenuItem
+            // AudioRecordSet
             // 
-            this.检测内核ToolStripMenuItem.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.检测内核ToolStripMenuItem.Name = "检测内核ToolStripMenuItem";
-            this.检测内核ToolStripMenuItem.Size = new System.Drawing.Size(65, 22);
-            this.检测内核ToolStripMenuItem.Text = "检测内核";
-            this.检测内核ToolStripMenuItem.Click += new System.EventHandler(this.检测内核ToolStripMenuItem_Click);
+            this.AudioRecordSet.Name = "AudioRecordSet";
+            resources.ApplyResources(this.AudioRecordSet, "AudioRecordSet");
             // 
-            // 截屏ToolStripMenuItem
+            // ScreenRecordSet
             // 
-            this.截屏ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.截屏时隐藏当前窗口ToolStripMenuItem});
-            this.截屏ToolStripMenuItem.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.截屏ToolStripMenuItem.Name = "截屏ToolStripMenuItem";
-            this.截屏ToolStripMenuItem.Size = new System.Drawing.Size(41, 22);
-            this.截屏ToolStripMenuItem.Text = "截屏";
+            this.ScreenRecordSet.Name = "ScreenRecordSet";
+            resources.ApplyResources(this.ScreenRecordSet, "ScreenRecordSet");
+            this.ScreenRecordSet.Click += new System.EventHandler(this.ScreenRecordSet_Click);
             // 
-            // 截屏时隐藏当前窗口ToolStripMenuItem
+            // PlatformOverview
             // 
-            this.截屏时隐藏当前窗口ToolStripMenuItem.CheckOnClick = true;
-            this.截屏时隐藏当前窗口ToolStripMenuItem.Name = "截屏时隐藏当前窗口ToolStripMenuItem";
-            this.截屏时隐藏当前窗口ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.截屏时隐藏当前窗口ToolStripMenuItem.Text = "截屏时隐藏当前窗口";
-            this.截屏时隐藏当前窗口ToolStripMenuItem.Click += new System.EventHandler(this.截屏时隐藏当前窗口ToolStripMenuItem_Click);
+            resources.ApplyResources(this.PlatformOverview, "PlatformOverview");
+            this.PlatformOverview.Name = "PlatformOverview";
+            this.PlatformOverview.Click += new System.EventHandler(this.PlatformOverview_Click);
             // 
-            // 录屏ToolStripMenuItem
+            // ProductionLineList
             // 
-            this.录屏ToolStripMenuItem.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.录屏ToolStripMenuItem.Name = "录屏ToolStripMenuItem";
-            this.录屏ToolStripMenuItem.Size = new System.Drawing.Size(41, 22);
-            this.录屏ToolStripMenuItem.Text = "录屏";
-            this.录屏ToolStripMenuItem.Click += new System.EventHandler(this.录屏ToolStripMenuItem_Click);
+            resources.ApplyResources(this.ProductionLineList, "ProductionLineList");
+            this.ProductionLineList.Name = "ProductionLineList";
+            this.ProductionLineList.Click += new System.EventHandler(this.ProductionLineList_Click);
+            // 
+            // ProductionLineMonitoring
+            // 
+            resources.ApplyResources(this.ProductionLineMonitoring, "ProductionLineMonitoring");
+            this.ProductionLineMonitoring.Name = "ProductionLineMonitoring";
+            // 
+            // VideoConference
+            // 
+            resources.ApplyResources(this.VideoConference, "VideoConference");
+            this.VideoConference.Name = "VideoConference";
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.audioRecord);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.screenShot);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 552);
+            this.panel1.Controls.Add(this.AudioRecord);
+            this.panel1.Controls.Add(this.ScreenRecord);
+            this.panel1.Controls.Add(this.ScreenShot);
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1109, 34);
-            this.panel1.TabIndex = 16;
             // 
-            // audioRecord
+            // AudioRecord
             // 
-            this.audioRecord.Location = new System.Drawing.Point(334, 2);
-            this.audioRecord.Name = "audioRecord";
-            this.audioRecord.Size = new System.Drawing.Size(160, 30);
-            this.audioRecord.TabIndex = 2;
-            this.audioRecord.Tag = "false";
-            this.audioRecord.Text = "录音";
-            this.audioRecord.UseVisualStyleBackColor = true;
-            this.audioRecord.Click += new System.EventHandler(this.audioRecord_Click);
+            this.AudioRecord.FlatAppearance.BorderSize = 0;
+            resources.ApplyResources(this.AudioRecord, "AudioRecord");
+            this.AudioRecord.Name = "AudioRecord";
+            this.AudioRecord.Tag = "false";
+            this.AudioRecord.UseVisualStyleBackColor = true;
+            this.AudioRecord.Click += new System.EventHandler(this.AudioRecord_Click);
             // 
-            // button2
+            // ScreenRecord
             // 
-            this.button2.Location = new System.Drawing.Point(168, 2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(160, 30);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "录屏";
-            this.button2.UseVisualStyleBackColor = true;
+            this.ScreenRecord.FlatAppearance.BorderSize = 0;
+            resources.ApplyResources(this.ScreenRecord, "ScreenRecord");
+            this.ScreenRecord.Name = "ScreenRecord";
+            this.ScreenRecord.UseVisualStyleBackColor = true;
+            this.ScreenRecord.Click += new System.EventHandler(this.ScreenRecord_Click);
             // 
-            // screenShot
+            // ScreenShot
             // 
-            this.screenShot.Location = new System.Drawing.Point(2, 2);
-            this.screenShot.Name = "screenShot";
-            this.screenShot.Size = new System.Drawing.Size(160, 30);
-            this.screenShot.TabIndex = 0;
-            this.screenShot.Text = "截屏";
-            this.screenShot.UseVisualStyleBackColor = true;
-            this.screenShot.Click += new System.EventHandler(this.screenShot_Click);
+            this.ScreenShot.FlatAppearance.BorderSize = 0;
+            resources.ApplyResources(this.ScreenShot, "ScreenShot");
+            this.ScreenShot.Name = "ScreenShot";
+            this.ScreenShot.UseVisualStyleBackColor = true;
+            this.ScreenShot.Click += new System.EventHandler(this.ScreenShot_Click);
             // 
             // MainWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.ClientSize = new System.Drawing.Size(1109, 586);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.menuStrip1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
-            this.Text = "Bepsun监控系统";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainWindow_FormClosed);
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.MainWindow_Load);
+            this.Shown += new System.EventHandler(this.MainWindow_Shown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -241,21 +216,23 @@ namespace ScreenTools
         #endregion
         private System.Windows.Forms.WebBrowser webBrowser1;
         private MenuStrip menuStrip1;
-        private ToolStripMenuItem 语言设置ToolStripMenuItem;
-        private ToolStripMenuItem 中文ToolStripMenuItem;
-        private ToolStripMenuItem EnglishToolStripMenuItem;
-        private ToolStripMenuItem 平台总览ToolStripMenuItem;
-        private ToolStripMenuItem 产线一览ToolStripMenuItem;
-        private ToolStripMenuItem 产线监控ToolStripMenuItem;
-        private ToolStripMenuItem 视频会议ToolStripMenuItem;
-        private ToolStripMenuItem 检测内核ToolStripMenuItem;
-        private ToolStripMenuItem 截屏ToolStripMenuItem;
-        private ToolStripMenuItem 截屏时隐藏当前窗口ToolStripMenuItem;
-        private ToolStripMenuItem 录屏ToolStripMenuItem;
+        private ToolStripMenuItem SettingS;
+        private ToolStripMenuItem LanguageSet;
+        private ToolStripMenuItem ScreenCaptureSet;
+        private ToolStripMenuItem PlatformOverview;
+        private ToolStripMenuItem ProductionLineList;
+        private ToolStripMenuItem ProductionLineMonitoring;
+        private ToolStripMenuItem VideoConference;
         private Panel panel1;
-        private Button audioRecord;
-        private Button button2;
-        private Button screenShot;
+        private Button AudioRecord;
+        private Button ScreenRecord;
+        private Button ScreenShot;
+        private ToolStripMenuItem ZH_CN;
+        private ToolStripMenuItem en_US;
+        private ToolStripMenuItem JPGPathSet;
+        private ToolStripMenuItem SCS_HideCurrentWindow;
+        private ToolStripMenuItem AudioRecordSet;
+        private ToolStripMenuItem ScreenRecordSet;
     }
 }
 

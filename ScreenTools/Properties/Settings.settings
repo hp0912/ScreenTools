@@ -11,5 +11,8 @@
     <Setting Name="SoundRecorderPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:/BepsunSoundRecorder/</Value>
     </Setting>
+    <Setting Name="DefaultLanguage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">zh-CN</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
