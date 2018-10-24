@@ -62,6 +62,14 @@ namespace ScreenTools
             _AudioSettings = new AudioSettings();
             _audioSource = new BassAudioSource(_AudioSettings);
 
+            if (_audioSource.AvailableRecordingSources.Count > 0) {
+                _audioSource.AvailableRecordingSources[0].Active = true;
+            }
+            if (_audioSource.AvailableLoopbackSources.Count > 0)
+            {
+                _audioSource.AvailableLoopbackSources[0].Active = true;
+            }
+
             if (Properties.Settings.Default.HideCurrentWindow)
             {
                 this.SCS_HideCurrentWindow.Checked = true;
