@@ -11,6 +11,12 @@ using System.Diagnostics;
 using System.IO;
 using CSharpWin_JD.CaptureImage;
 using NAudio.Wave;
+using Captura.Audio;
+using Captura.Models;
+using Captura;
+using Screna;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ScreenTools
 {
@@ -30,9 +36,7 @@ namespace ScreenTools
         private readonly DispatcherTimer AudioRecordingTimer;
         private readonly DispatcherTimer ScreenRecordTimer;
         private readonly Stopwatch recordingStopwatch = new Stopwatch();
-
-        static SharpAvi.Sample.MainWindow sample = new SharpAvi.Sample.MainWindow();
-        private bool AudioRecording = false;
+        
         private bool ScreenRecording = false;
 
         private bool audioRecording = false;
@@ -40,7 +44,9 @@ namespace ScreenTools
         private WaveFileWriter writer;
         string SoundRecorderPath;
 
-
+        readonly AudioSource _audioSource;
+        IRecorder _recorder;
+        AudioSettings _AudioSettings;
         public MainWindow()
         {
             InitializeComponent();
@@ -53,7 +59,8 @@ namespace ScreenTools
 
             SoundRecorderPath = Properties.Settings.Default.SoundRecorderPath;
             Directory.CreateDirectory(SoundRecorderPath);
-
+            _AudioSettings = new AudioSettings();
+            _audioSource = new BassAudioSource(_AudioSettings);
 
             if (Properties.Settings.Default.HideCurrentWindow)
             {
@@ -119,20 +126,36 @@ namespace ScreenTools
                 Properties.Settings.Default.HideCurrentWindow = false;
             }
         }
-
-
-        private void AudioRecord_Click(object sender, EventArgs e)
+        
+        private async void AudioRecord_Click(object sender, EventArgs e)
         {
             if (audioRecording == false)
             {
                 audioRecording = true;
 
+                /*
                 AudioRecordCleanup();
                 captureDevice = new WasapiLoopbackCapture(true);
                 captureDevice.DataAvailable += OnAudioDataAvailable;
                 captureDevice.RecordingStopped += OnAudioRecordingStopped;
                 writer = new WaveFileWriter(Path.Combine(SoundRecorderPath, "BepsunAudioRecorder-" + DateTime.Now.ToFileTime().ToString() + ".wav"), new WaveFormat(captureDevice.WaveFormat.SampleRate, 16, captureDevice.WaveFormat.Channels));
                 captureDevice.StartRecording();
+                */
+
+                IAudioProvider audioProvider = null;
+                try
+                {
+                    audioProvider = _audioSource.GetMixedAudioProvider();
+                }
+                catch (Exception ex)
+                {
+                    ServiceProvider.MessageProvider.ShowException(ex, ex.Message);
+                }
+
+                _recorder = new Recorder(
+                                WaveItem.Instance.GetAudioFileWriter(Path.Combine(SoundRecorderPath, "BepsunAudioRecorder-" + DateTime.Now.ToFileTime().ToString() + ".wav"), audioProvider?.WaveFormat,
+                                    50), audioProvider);
+                _recorder.Start();
 
                 recordingStopwatch.Reset();
                 AudioRecordingTimer.Start();
@@ -140,12 +163,33 @@ namespace ScreenTools
             }
             else
             {
-                captureDevice?.StopRecording();
+                //captureDevice?.StopRecording();
+                await StopAudioRecording();
 
                 audioRecording = false;
                 this.AudioRecord.Text = "录音";
                 AudioRecordingTimer.Stop();
                 recordingStopwatch.Stop();
+            }
+        }
+
+        public async Task StopAudioRecording()
+        {
+            // Reference Recorder as it will be set to null
+            var rec = _recorder;
+            var task = Task.Run(() => rec.Dispose());
+
+            _recorder = null;
+
+            try
+            {
+                await task;
+            }
+            catch (Exception e)
+            {
+                ServiceProvider.MessageProvider.ShowException(e, "Error occurred when stopping recording.\nThis might sometimes occur if you stop recording just as soon as you start it.");
+
+                return;
             }
         }
 
@@ -178,21 +222,7 @@ namespace ScreenTools
 
         private void ScreenRecord_Click(object sender, EventArgs e)
         {          
-            if (ScreenRecording == false)
-            {
-                recordingStopwatch.Reset();
-                ScreenRecordTimer.Start();
-                ScreenRecording = true;
-                sample.StartRecording_Click(sender, e);
-                recordingStopwatch.Start();
-            }
-            else{
-                sample.StopRecording_Click(sender, e);
-                ScreenRecordTimer.Stop();
-                recordingStopwatch.Stop();
-                ScreenRecording = false;
-                this.ScreenRecord.Text = "录屏";
-            }
+            
         }
 
         void OnAudioDataAvailable(object sender, WaveInEventArgs e)
@@ -262,7 +292,7 @@ namespace ScreenTools
 
         private void ScreenRecordSet_Click(object sender, EventArgs e)
         {
-            sample.Settings_Click(sender, e);
+            
         }
 
         private void MainWindow_Load(object sender, EventArgs e)

@@ -127,10 +127,6 @@
       <Project>{da4f02e3-0b5e-42cd-b8d9-5583fa51d66e}</Project>
       <Name>NAudio</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SharpAvi\SharpAvi.csproj">
-      <Project>{07B83677-E9B8-4166-A383-CF3B3D393FBD}</Project>
-      <Name>SharpAvi</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lame.dll" />

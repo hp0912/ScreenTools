@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Reflection;
-using SharpAvi.Codecs;
+//using SharpAvi.Codecs;
 
 namespace ScreenTools
 {
@@ -27,8 +27,8 @@ namespace ScreenTools
 #else
             var is64BitProcess = IntPtr.Size * 8 == 64;
 #endif
-            var dllName = string.Format("lameenc{0}.dll", is64BitProcess ? "64" : "32");
-            Mp3AudioEncoderLame.SetLameDllLocation(Path.Combine(asmDir, dllName));
+            //var dllName = string.Format("lameenc{0}.dll", is64BitProcess ? "64" : "32");
+            //Mp3AudioEncoderLame.SetLameDllLocation(Path.Combine(asmDir, dllName));
 
             Application.Run(new MainWindow());
         }
