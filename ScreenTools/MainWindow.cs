@@ -37,8 +37,6 @@ namespace ScreenTools
         private readonly DispatcherTimer ScreenRecordTimer;
         private readonly Stopwatch recordingStopwatch = new Stopwatch();
         
-        private bool ScreenRecording = false;
-
         private bool audioRecording = false;
         private IWaveIn captureDevice;
         private WaveFileWriter writer;
@@ -46,6 +44,8 @@ namespace ScreenTools
         readonly AudioSource _audioSource;
         IRecorder _recorder;
         AudioSettings _AudioSettings;
+        int AudioDeviceCount = 0;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -58,14 +58,6 @@ namespace ScreenTools
             
             _AudioSettings = new AudioSettings();
             _audioSource = new BassAudioSource(_AudioSettings);
-
-            if (_audioSource.AvailableRecordingSources.Count > 0) {
-                _audioSource.AvailableRecordingSources[0].Active = true;
-            }
-            if (_audioSource.AvailableLoopbackSources.Count > 0)
-            {
-                _audioSource.AvailableLoopbackSources[0].Active = true;
-            }
         }
 
         private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
@@ -110,17 +102,25 @@ namespace ScreenTools
             if (audioRecording == false)
             {
                 audioRecording = true;
-
-                /*
-                AudioRecordCleanup();
-                captureDevice = new WasapiLoopbackCapture(true);
-                captureDevice.DataAvailable += OnAudioDataAvailable;
-                captureDevice.RecordingStopped += OnAudioRecordingStopped;
-                writer = new WaveFileWriter(Path.Combine(SoundRecorderPath, "BepsunAudioRecorder-" + DateTime.Now.ToFileTime().ToString() + ".wav"), new WaveFormat(captureDevice.WaveFormat.SampleRate, 16, captureDevice.WaveFormat.Channels));
-                captureDevice.StartRecording();
-                */
-
                 IAudioProvider audioProvider = null;
+
+                if (AudioDeviceCount == 0)
+                {
+                    if (_audioSource.AvailableRecordingSources.Count > 0)
+                    {
+                        _audioSource.AvailableRecordingSources[0].Active = true;
+                    }
+                    else if(_audioSource.AvailableLoopbackSources.Count > 0)
+                    {
+                        _audioSource.AvailableLoopbackSources[0].Active = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("未找到音频设备.");
+                        return;
+                    }
+                }
+                
                 try
                 {
                     audioProvider = _audioSource.GetMixedAudioProvider();
@@ -141,7 +141,6 @@ namespace ScreenTools
             }
             else
             {
-                //captureDevice?.StopRecording();
                 await StopAudioRecording();
 
                 audioRecording = false;
@@ -342,6 +341,20 @@ namespace ScreenTools
             {
                 Properties.Settings.Default.HideCurrentWindow = dlg.HideCurrentWindow;
                 Properties.Settings.Default.ScreenShotPath = dlg.ScreenShotPath;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        private void AudioRecordSet_Click(object sender, EventArgs e)
+        {
+            var SoundRecorderPath = Properties.Settings.Default.SoundRecorderPath;
+
+            var dlg = new AudioRecordSettings(_audioSource, SoundRecorderPath);
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                Properties.Settings.Default.SoundRecorderPath = dlg.SoundRecorderPath;
+                this.AudioDeviceCount = dlg.AudioDeviceCount;
                 Properties.Settings.Default.Save();
             }
         }

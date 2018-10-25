@@ -30,7 +30,7 @@
         {
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.SoundRecorderFilePath = new System.Windows.Forms.TextBox();
+            this.ScreenShotFilePath = new System.Windows.Forms.TextBox();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.browser = new System.Windows.Forms.Button();
             this.ensure = new System.Windows.Forms.Button();
@@ -57,13 +57,13 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "截图保存路径";
             // 
-            // SoundRecorderFilePath
+            // ScreenShotFilePath
             // 
-            this.SoundRecorderFilePath.Location = new System.Drawing.Point(96, 44);
-            this.SoundRecorderFilePath.Name = "SoundRecorderFilePath";
-            this.SoundRecorderFilePath.ReadOnly = true;
-            this.SoundRecorderFilePath.Size = new System.Drawing.Size(285, 21);
-            this.SoundRecorderFilePath.TabIndex = 2;
+            this.ScreenShotFilePath.Location = new System.Drawing.Point(96, 44);
+            this.ScreenShotFilePath.Name = "ScreenShotFilePath";
+            this.ScreenShotFilePath.ReadOnly = true;
+            this.ScreenShotFilePath.Size = new System.Drawing.Size(285, 21);
+            this.ScreenShotFilePath.TabIndex = 2;
             // 
             // browser
             // 
@@ -99,17 +99,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(473, 105);
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.ensure);
             this.Controls.Add(this.browser);
-            this.Controls.Add(this.SoundRecorderFilePath);
+            this.Controls.Add(this.ScreenShotFilePath);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.checkBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ScreenShotSettings";
+            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "截图设置";
@@ -122,7 +123,7 @@
 
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox SoundRecorderFilePath;
+        private System.Windows.Forms.TextBox ScreenShotFilePath;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.Button browser;
         private System.Windows.Forms.Button ensure;

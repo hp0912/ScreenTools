@@ -113,6 +113,7 @@ namespace ScreenTools
             // 
             this.AudioRecordSet.Name = "AudioRecordSet";
             resources.ApplyResources(this.AudioRecordSet, "AudioRecordSet");
+            this.AudioRecordSet.Click += new System.EventHandler(this.AudioRecordSet_Click);
             // 
             // ScreenRecordSet
             // 

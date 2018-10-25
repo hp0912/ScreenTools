@@ -25,7 +25,7 @@ namespace ScreenTools
                 this.checkBox1.Checked = false;
             }
 
-            SoundRecorderFilePath.Text = screenShotPath;
+            ScreenShotFilePath.Text = screenShotPath;
             this.folderBrowserDialog.SelectedPath = screenShotPath;
 
             this.HideCurrentWindow = hideCurrentWindow;
@@ -52,7 +52,7 @@ namespace ScreenTools
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 this.ScreenShotPath = this.folderBrowserDialog.SelectedPath;
-                this.SoundRecorderFilePath.Text = this.ScreenShotPath;
+                this.ScreenShotFilePath.Text = this.ScreenShotPath;
             }
         }
 
