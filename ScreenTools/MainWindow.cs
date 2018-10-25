@@ -15,7 +15,6 @@ using Captura.Audio;
 using Captura.Models;
 using Captura;
 using Screna;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ScreenTools
@@ -36,15 +35,18 @@ namespace ScreenTools
         private readonly DispatcherTimer AudioRecordingTimer;
         private readonly DispatcherTimer ScreenRecordTimer;
         private readonly Stopwatch recordingStopwatch = new Stopwatch();
+
         
         private bool audioRecording = false;
+        private bool screenRecording = false;
         private IWaveIn captureDevice;
         private WaveFileWriter writer;
-
         readonly AudioSource _audioSource;
         IRecorder _recorder;
         AudioSettings _AudioSettings;
+        MyRecordingViewModel _MyRecordingViewModel;
         int AudioDeviceCount = 0;
+
 
         public MainWindow()
         {
@@ -58,6 +60,23 @@ namespace ScreenTools
             
             _AudioSettings = new AudioSettings();
             _audioSource = new BassAudioSource(_AudioSettings);
+            if (AudioDeviceCount == 0)
+            {
+                if (_audioSource.AvailableRecordingSources.Count > 0)
+                {
+                    _audioSource.AvailableRecordingSources[0].Active = true;
+                }
+                else if (_audioSource.AvailableLoopbackSources.Count > 0)
+                {
+                    _audioSource.AvailableLoopbackSources[0].Active = true;
+                }
+                else
+                {
+                    MessageBox.Show("未找到音频设备.");
+                    return;
+                }
+            }
+            _MyRecordingViewModel = new MyRecordingViewModel(_audioSource);
         }
 
         private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
@@ -104,23 +123,6 @@ namespace ScreenTools
                 audioRecording = true;
                 IAudioProvider audioProvider = null;
 
-                if (AudioDeviceCount == 0)
-                {
-                    if (_audioSource.AvailableRecordingSources.Count > 0)
-                    {
-                        _audioSource.AvailableRecordingSources[0].Active = true;
-                    }
-                    else if(_audioSource.AvailableLoopbackSources.Count > 0)
-                    {
-                        _audioSource.AvailableLoopbackSources[0].Active = true;
-                    }
-                    else
-                    {
-                        MessageBox.Show("未找到音频设备.");
-                        return;
-                    }
-                }
-                
                 try
                 {
                     audioProvider = _audioSource.GetMixedAudioProvider();
@@ -129,44 +131,22 @@ namespace ScreenTools
                 {
                     ServiceProvider.MessageProvider.ShowException(ex, ex.Message);
                 }
-
                 _recorder = new Recorder(
                                 WaveItem.Instance.GetAudioFileWriter(Path.Combine(Properties.Settings.Default.SoundRecorderPath, "BepsunAudioRecorder-" + DateTime.Now.ToFileTime().ToString() + ".wav"), audioProvider?.WaveFormat,
                                     50), audioProvider);
                 _recorder.Start();
-
                 recordingStopwatch.Reset();
                 AudioRecordingTimer.Start();
                 recordingStopwatch.Start();
             }
             else
             {
-                await StopAudioRecording();
+                await _MyRecordingViewModel.StopAudioRecording();
 
                 audioRecording = false;
                 this.AudioRecord.Text = "录音";
                 AudioRecordingTimer.Stop();
                 recordingStopwatch.Stop();
-            }
-        }
-
-        public async Task StopAudioRecording()
-        {
-            // Reference Recorder as it will be set to null
-            var rec = _recorder;
-            var task = Task.Run(() => rec.Dispose());
-
-            _recorder = null;
-
-            try
-            {
-                await task;
-            }
-            catch (Exception e)
-            {
-                ServiceProvider.MessageProvider.ShowException(e, "Error occurred when stopping recording.\nThis might sometimes occur if you stop recording just as soon as you start it.");
-
-                return;
             }
         }
 
@@ -197,9 +177,24 @@ namespace ScreenTools
             }
         }
 
-        private void ScreenRecord_Click(object sender, EventArgs e)
-        {          
-            
+        private async void ScreenRecord_Click(object sender, EventArgs e)
+        {
+            if (screenRecording == false)
+            {
+                _MyRecordingViewModel.StartRecoding();
+                screenRecording = true;
+                recordingStopwatch.Reset();
+                ScreenRecordTimer.Start();
+                recordingStopwatch.Start();
+            }
+            else
+            {
+                await _MyRecordingViewModel.StopAudioRecording();
+                screenRecording = false;
+                this.ScreenRecord.Text = "录屏";
+                ScreenRecordTimer.Stop();
+                recordingStopwatch.Stop();
+            }
         }
 
         void OnAudioDataAvailable(object sender, WaveInEventArgs e)

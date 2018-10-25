@@ -59,8 +59,6 @@
     <Compile Include="Controls\VideoSourceKindList.xaml.cs">
       <DependentUpon>VideoSourceKindList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\AudioPlayer.cs" />
-    <Compile Include="Models\HotkeyListener.cs" />
     <Compile Include="Pages\CensorOverlaysPage.xaml.cs">
       <DependentUpon>CensorOverlaysPage.xaml</DependentUpon>
     </Compile>
@@ -109,9 +107,6 @@
     </Compile>
     <Compile Include="Pages\ScreenShotsPage.xaml.cs">
       <DependentUpon>ScreenShotsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\SoundsWindow.xaml.cs">
-      <DependentUpon>SoundsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ValueConverters\IsLessThanConverter.cs" />
     <Compile Include="ValueConverters\StaticResourceConverter.cs" />
@@ -192,6 +187,7 @@
     <Compile Include="Controls\HotkeySelector.cs" />
     <Compile Include="Controls\ModernToggleButton.cs" />
     <Compile Include="Controls\ModernButton.cs" />
+    <Compile Include="Models\RegionItem.cs" />
     <Compile Include="Controls\PositionSettingsControl.xaml.cs">
       <DependentUpon>PositionSettingsControl.xaml</DependentUpon>
     </Compile>
@@ -302,14 +298,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ScreenShotsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Presentation\Themes\VirtualizingItemsControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Windows\SoundsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -14,7 +14,7 @@ namespace Captura.Models
             yield return new SharpAviItem(AviCodec.MotionJpeg, "Motion JPEG encoder using WPF's JPG encoder");
             yield return new SharpAviItem(AviCodec.Uncompressed, "Uncompressed Avi");
             yield return new SharpAviItem(AviCodec.Lagarith, "Lagarith codec needs to be installed manually and configured to use RGB mode with Null Frames disabled.");
-
+            yield return new SharpAviItem(AviCodec.XVID, "XVID codec needs to be installed");
             foreach (var codec in Mpeg4VideoEncoderVcm.GetAvailableCodecs())
                 yield return new SharpAviItem(new AviCodec(codec.Codec, codec.Name), "");
         }

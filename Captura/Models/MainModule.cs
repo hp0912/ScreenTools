@@ -14,7 +14,6 @@ namespace Captura
             Binder.Bind<ISystemTray, SystemTray>();
             Binder.Bind<IPreviewWindow, PreviewWindowService>();
             Binder.Bind<IVideoSourcePicker, VideoSourcePicker>();
-            Binder.Bind<IAudioPlayer, AudioPlayer>();
 
             Binder.BindSingleton<EditorWriter>();
             Binder.Bind<IImageWriterItem>(ServiceProvider.Get<EditorWriter>);

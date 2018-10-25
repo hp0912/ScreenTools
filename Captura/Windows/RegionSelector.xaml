@@ -8,7 +8,7 @@
         xmlns:viewModels="clr-namespace:Captura.ViewModels;assembly=Captura.Core"
         xmlns:models="clr-namespace:Captura.Models;assembly=Captura.Core"
         mc:Ignorable="d"
-        Title="{Binding RegionSelector, Source={StaticResource Loc}, Mode=OneWay}"
+        Title="132"
         Background="Transparent"
         WindowStyle="None"
         AllowsTransparency="True"
@@ -100,7 +100,7 @@
             </Border.Style>
 
             <InkCanvas Background="Transparent"
-                       Visibility="{Binding AboutViewModel.Settings.UI.RegionSelectorDrawingTools, Source={StaticResource ServiceLocator}, Converter={StaticResource BoolToVisibilityConverter}}"
+                       Visibility="Hidden"
                        Name="InkCanvas"/>
         </Border>
 
@@ -111,7 +111,7 @@
 
         <Grid Grid.Row="0"
               Grid.Column="0"
-              IsEnabled="{Binding DataContext.RecordingViewModel.RecorderState, ElementName=RecordBtn, Converter={StaticResource NotRecordingConverter}}">
+              IsEnabled="True">
             <Thumb VerticalAlignment="Bottom"
                    Height="2"
                    Cursor="SizeNS"
@@ -179,15 +179,9 @@
                     <Style TargetType="Border">
                         <Setter Property="HorizontalAlignment" Value="Right"/>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding Width, ElementName=This, Converter={StaticResource IsLessThanConverter}, ConverterParameter=500}" Value="True">
-                                <Setter Property="HorizontalAlignment" Value="Left"/>
-                                <Setter Property="Margin" Value="0,40,0,0"/>
-                            </DataTrigger>
+
                             <MultiDataTrigger>
-                                <MultiDataTrigger.Conditions>
-                                    <Condition Binding="{Binding IsMouseOver, ElementName=SizeBorder}" Value="False"/>
-                                    <Condition Binding="{Binding DataContext.RecordingViewModel.RecorderState, ElementName=RecordBtn, Converter={StaticResource NotRecordingConverter}}" Value="False"/>
-                                </MultiDataTrigger.Conditions>
+
                                 <MultiDataTrigger.EnterActions>
                                     <BeginStoryboard>
                                         <Storyboard>
@@ -220,7 +214,7 @@
                            Background="{DynamicResource WindowBackground}"
                            d:DataContext="{d:DesignInstance viewModels:MainViewModel}">
                     <DockPanel.Resources>
-                        <Style TargetType="local:ModernButton" BasedOn="{StaticResource {x:Type local:ModernButton}}">
+                        <Style TargetType="local:ModernButton" >
                             <Setter Property="LayoutTransform">
                                 <Setter.Value>
                                     <ScaleTransform ScaleX="0.85" ScaleY="0.85"/>
@@ -229,7 +223,7 @@
                         </Style>
                     </DockPanel.Resources>
 
-                    <local:ModernButton IconData="{StaticResource IconSnapToWindow}"
+                    <local:ModernButton 
                                         x:Name="Snapper"
                                         Click="Snapper_OnClick"
                                         WindowChrome.IsHitTestVisibleInChrome="True"
@@ -239,36 +233,36 @@
                                         Click="CloseButton_Click"
                                         Background="{DynamicResource WindowBackground}"
                                         Foreground="#77ef5350"
-                                        IconData="{StaticResource IconClose}"
+                                        
                                         DockPanel.Dock="Right"
                                         WindowChrome.IsHitTestVisibleInChrome="True"
-                                        ToolTip="{Binding Close, Source={StaticResource Loc}, Mode=OneWay}"/>
+                                        />
 
                     <local:ModernButton Command="{Binding ScreenShotViewModel.ScreenShotCommand}"
-                                        IconData="{StaticResource IconCamera}"
+                                        
                                         DockPanel.Dock="Right"
                                         Opacity="0.9"
                                         WindowChrome.IsHitTestVisibleInChrome="True"
-                                        ToolTip="{Binding ScreenShot, Source={StaticResource Loc}, Mode=OneWay}"/>
+                                        />
 
                     <local:ModernButton Command="{Binding RecordingViewModel.RecordCommand}"
                                         Foreground="#b71c1c"
                                         x:Name="RecordBtn"
-                                        IconData="{Binding RecordingViewModel.RecorderState, Converter={StaticResource StateToRecordButtonGeometryConverter}}"
+                                        
                                         WindowChrome.IsHitTestVisibleInChrome="True"
-                                        ToolTip="{Binding RecordStop, Source={StaticResource Loc}, Mode=OneWay}"/>
+                                        />
 
                     <local:ModernButton Command="{Binding RecordingViewModel.PauseCommand}"
-                                        IconData="{StaticResource IconPause}"
+                                        
                                         Opacity="0.9"
                                         WindowChrome.IsHitTestVisibleInChrome="True"
-                                        ToolTip="{Binding PauseResume, Source={StaticResource Loc}, Mode=OneWay}"
+                                        
                                         RenderTransformOrigin="0.5,0.5">
                         <local:ModernButton.RenderTransform>
                             <RotateTransform/>
                         </local:ModernButton.RenderTransform>
                         <local:ModernButton.Style>
-                            <Style TargetType="local:ModernButton" BasedOn="{StaticResource {x:Type local:ModernButton}}">
+                            <Style TargetType="local:ModernButton">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding RecordingViewModel.RecorderState}" Value="Paused">
                                         <DataTrigger.EnterActions>
@@ -298,20 +292,20 @@
                     <StackPanel Orientation="Horizontal"
                                 Margin="10,-1"
                                 PreviewMouseLeftButtonDown="UIElement_OnPreviewMouseLeftButtonDown"
-                                Visibility="{Binding RecordingViewModel.Countdown, Converter={StaticResource IsLessThanConverter}, ConverterParameter=1}"
+                                Visibility="Hidden"
                                 Name="DurationLabel">
                         <Label Content="{Binding RecordingViewModel.TimeSpan}"/>
 
-                        <Label Content="{Binding Settings.Duration, Converter={StaticResource SecondsToTimeSpanConverter}}"
+                        <Label 
                                ContentStringFormat="{} / {0}"
-                               Visibility="{Binding Settings.Duration, Converter={StaticResource NotNullConverter}}"/>
+                               Visibility="Hidden"/>
                     </StackPanel>
 
-                    <Label Visibility="{Binding Visibility, ElementName=DurationLabel, Converter={StaticResource NegatingConverter}}"
+                    <Label Visibility="Hidden"
                            Content="{Binding RecordingViewModel.Countdown}"
                            Margin="10,-1"
                            PreviewMouseLeftButtonDown="UIElement_OnPreviewMouseLeftButtonDown"
-                           Style="{StaticResource CountdownLabel}"/>
+                           />
                 </DockPanel>
             </Border>
         </Grid>
@@ -323,7 +317,7 @@
                 BorderBrush="{DynamicResource Accent}"
                 BorderThickness="1"
                 VerticalAlignment="Top"
-                Visibility="{Binding AboutViewModel.Settings.UI.RegionSelectorDrawingTools, Source={StaticResource ServiceLocator}, Converter={StaticResource BoolToVisibilityConverter}}">
+                Visibility="Hidden">
             <DockPanel Background="{DynamicResource WindowBackground}"
                        LastChildFill="False">
                 <ListBox Name="ModesBox"
