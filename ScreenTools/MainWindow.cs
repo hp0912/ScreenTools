@@ -357,6 +357,12 @@ namespace ScreenTools
                 this.AudioDeviceCount = dlg.AudioDeviceCount;
                 Properties.Settings.Default.Save();
             }
+            if (dlg.ShowDialog() == DialogResult.Cancel)
+            {
+                this.AudioDeviceCount = dlg.AudioDeviceCount;
+            }
+
+            dlg.FormClosed += (object s, FormClosedEventArgs ev) => { this.AudioDeviceCount = dlg.AudioDeviceCount; };
         }
     }
 }
