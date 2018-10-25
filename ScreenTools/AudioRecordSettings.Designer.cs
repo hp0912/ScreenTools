@@ -38,7 +38,7 @@
             this.browser = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
             this.ensure = new System.Windows.Forms.Button();
-            this.Refresh = new System.Windows.Forms.Button();
+            this.RefreshDev = new System.Windows.Forms.Button();
             this.SoundcardGroup.SuspendLayout();
             this.MicrophoneGroup.SuspendLayout();
             this.SuspendLayout();
@@ -126,15 +126,15 @@
             this.ensure.UseVisualStyleBackColor = true;
             this.ensure.Click += new System.EventHandler(this.ensure_Click);
             // 
-            // Refresh
+            // RefreshDev
             // 
-            this.Refresh.Location = new System.Drawing.Point(703, 6);
-            this.Refresh.Name = "Refresh";
-            this.Refresh.Size = new System.Drawing.Size(75, 23);
-            this.Refresh.TabIndex = 7;
-            this.Refresh.Text = "刷新设备";
-            this.Refresh.UseVisualStyleBackColor = true;
-            this.Refresh.Click += new System.EventHandler(this.Refresh_Click);
+            this.RefreshDev.Location = new System.Drawing.Point(703, 6);
+            this.RefreshDev.Name = "RefreshDev";
+            this.RefreshDev.Size = new System.Drawing.Size(75, 23);
+            this.RefreshDev.TabIndex = 7;
+            this.RefreshDev.Text = "刷新设备";
+            this.RefreshDev.UseVisualStyleBackColor = true;
+            this.RefreshDev.Click += new System.EventHandler(this.Refresh_Click);
             // 
             // AudioRecordSettings
             // 
@@ -142,7 +142,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(784, 229);
-            this.Controls.Add(this.Refresh);
+            this.Controls.Add(this.RefreshDev);
             this.Controls.Add(this.ensure);
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.browser);
@@ -177,6 +177,6 @@
         private System.Windows.Forms.Button ensure;
         private System.Windows.Forms.FlowLayoutPanel SoundcardPanel;
         private System.Windows.Forms.FlowLayoutPanel MicrophonePanel;
-        private System.Windows.Forms.Button Refresh;
+        private System.Windows.Forms.Button RefreshDev;
     }
 }
