@@ -14,15 +14,13 @@ namespace Captura.Models
         /// </summary>
         readonly Func<TaskbarIcon> _trayIcon;
         readonly Settings _settings;
-        readonly IAudioPlayer _audioPlayer;
 
         readonly NotificationStack _notificationStack = new NotificationStack();
 
-        public SystemTray(Func<TaskbarIcon> TaskbarIcon, Settings Settings, IAudioPlayer AudioPlayer)
+        public SystemTray(Func<TaskbarIcon> TaskbarIcon, Settings Settings)
         {
             _trayIcon = TaskbarIcon;
             _settings = Settings;
-            _audioPlayer = AudioPlayer;
 
             _notificationStack.Opacity = 0;
         }
@@ -42,8 +40,6 @@ namespace Captura.Models
 
                 _first = false;
             }
-
-            _audioPlayer.Play(SoundKind.Notification);
 
             _notificationStack.Show();
         }

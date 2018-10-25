@@ -4,13 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Captura"
+        xmlns:captura="clr-namespace:Captura;assembly=Captura.Core"
         xmlns:hotkeys="clr-namespace:Captura;assembly=Captura.Hotkeys"
         mc:Ignorable="d"
         Title="Hotkeys"
         Height="600"
         Width="550"
         Background="{DynamicResource WindowBackground}"
-        DataContext="{Binding HotKeyManager, Source={StaticResource ServiceLocator}}">
+        DataContext="{Binding MainViewModel, Source={StaticResource ServiceLocator}}">
     <Grid>
         <DockPanel Margin="5">
             <Grid DockPanel.Dock="Top">
@@ -19,7 +20,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Button Command="{Binding AddCommand}"
+                <Button Command="{Binding HotKeyManager.AddCommand}"
                         Margin="5">
                     <DockPanel>
                         <Path Data="{StaticResource IconPlus}"
@@ -35,7 +36,7 @@
                 </Button>
                 
                 <Button Grid.Column="1"
-                        Command="{Binding ResetCommand}"
+                        Command="{Binding HotKeyManager.ResetCommand}"
                         Margin="5">
                     <DockPanel>
                         <Path Data="{StaticResource IconRestore}"
@@ -53,7 +54,7 @@
             
             <ScrollViewer Margin="0,5">
                 <ItemsControl Margin="5"
-                              ItemsSource="{Binding Hotkeys}">
+                              ItemsSource="{Binding HotKeyManager.Hotkeys}">
                     <ItemsControl.Resources>
                         <Style TargetType="local:HotkeySelector" BasedOn="{StaticResource {x:Type Button}}"/>
                     </ItemsControl.Resources>
@@ -68,7 +69,7 @@
                                 <local:ModernButton DockPanel.Dock="Right"
                                                     CommandParameter="{Binding}"
                                                     IconData="{StaticResource IconClose}"
-                                                    Command="{Binding HotKeyManager.RemoveCommand, Source={StaticResource ServiceLocator}}">
+                                                    Command="{Binding DataContext.HotKeyManager.RemoveCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}">
                                     <local:ModernButton.LayoutTransform>
                                         <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
                                     </local:ModernButton.LayoutTransform>

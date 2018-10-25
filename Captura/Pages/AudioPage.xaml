@@ -14,8 +14,7 @@
 
             <ScrollViewer IsEnabled="{Binding Settings.Audio.Enabled}"
                           MaxHeight="130">
-                <StackPanel IsEnabled="{Binding RecordingViewModel.CanChangeAudioSources}"
-                            Name="AudioSourcesPanel">
+                <StackPanel IsEnabled="{Binding RecordingViewModel.CanChangeAudioSources}">
                     <ItemsControl ItemsSource="{Binding AudioSource.AvailableRecordingSources}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>

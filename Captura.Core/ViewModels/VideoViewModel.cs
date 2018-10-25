@@ -92,9 +92,6 @@ If it does not work, try running Captura on the Integrated Graphics card.";
 
             SetDefaultSource();
 
-            if (!AvailableImageWriters.Any(M => M.Active))
-                AvailableImageWriters[0].Active = true;
-
             SelectedVideoWriterKind = FFmpegWriterProvider;
         }
 

@@ -10,13 +10,6 @@ namespace Captura.Models
     // ReSharper disable once ClassNeverInstantiated.Global
     public class MessageProvider : IMessageProvider
     {
-        readonly IAudioPlayer _audioPlayer;
-
-        public MessageProvider(IAudioPlayer AudioPlayer)
-        {
-            _audioPlayer = AudioPlayer;
-        }
-
         public void ShowError(string Message, string Header = null)
         {
             Application.Current.Dispatcher.Invoke(() =>
@@ -55,8 +48,6 @@ namespace Captura.Models
                     Height = 10
                 };
 
-                _audioPlayer.Play(SoundKind.Error);
-
                 dialog.ShowDialog();
             });
         }
@@ -83,8 +74,6 @@ namespace Captura.Models
 
                 dialog.Buttons = new[] { dialog.YesButton, dialog.NoButton, dialog.CancelButton };
 
-                _audioPlayer.Play(SoundKind.Error);
-
                 dialog.ShowDialog();
             });
         }
@@ -94,8 +83,6 @@ namespace Captura.Models
             Application.Current.Dispatcher.Invoke(() =>
             {
                 var win = new ExceptionWindow(Exception, Message);
-
-                _audioPlayer.Play(SoundKind.Error);
 
                 if (Blocking)
                 {
@@ -133,6 +120,11 @@ namespace Captura.Models
 
                 return result;
             });
+        }
+
+        public object ShowYesNo(string v, object errorOccurred)
+        {
+            throw new NotImplementedException();
         }
     }
 }
