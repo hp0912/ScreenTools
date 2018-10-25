@@ -41,8 +41,6 @@ namespace ScreenTools
             this.ZH_CN = new System.Windows.Forms.ToolStripMenuItem();
             this.en_US = new System.Windows.Forms.ToolStripMenuItem();
             this.ScreenCaptureSet = new System.Windows.Forms.ToolStripMenuItem();
-            this.SCS_HideCurrentWindow = new System.Windows.Forms.ToolStripMenuItem();
-            this.JPGPathSet = new System.Windows.Forms.ToolStripMenuItem();
             this.AudioRecordSet = new System.Windows.Forms.ToolStripMenuItem();
             this.ScreenRecordSet = new System.Windows.Forms.ToolStripMenuItem();
             this.PlatformOverview = new System.Windows.Forms.ToolStripMenuItem();
@@ -107,23 +105,9 @@ namespace ScreenTools
             // 
             // ScreenCaptureSet
             // 
-            this.ScreenCaptureSet.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SCS_HideCurrentWindow,
-            this.JPGPathSet});
             resources.ApplyResources(this.ScreenCaptureSet, "ScreenCaptureSet");
             this.ScreenCaptureSet.Name = "ScreenCaptureSet";
-            // 
-            // SCS_HideCurrentWindow
-            // 
-            this.SCS_HideCurrentWindow.CheckOnClick = true;
-            this.SCS_HideCurrentWindow.Name = "SCS_HideCurrentWindow";
-            resources.ApplyResources(this.SCS_HideCurrentWindow, "SCS_HideCurrentWindow");
-            this.SCS_HideCurrentWindow.Click += new System.EventHandler(this.SCS_HideCurrentWindow_Click);
-            // 
-            // JPGPathSet
-            // 
-            this.JPGPathSet.Name = "JPGPathSet";
-            resources.ApplyResources(this.JPGPathSet, "JPGPathSet");
+            this.ScreenCaptureSet.Click += new System.EventHandler(this.ScreenCaptureSet_Click);
             // 
             // AudioRecordSet
             // 
@@ -229,8 +213,6 @@ namespace ScreenTools
         private Button ScreenShot;
         private ToolStripMenuItem ZH_CN;
         private ToolStripMenuItem en_US;
-        private ToolStripMenuItem JPGPathSet;
-        private ToolStripMenuItem SCS_HideCurrentWindow;
         private ToolStripMenuItem AudioRecordSet;
         private ToolStripMenuItem ScreenRecordSet;
     }

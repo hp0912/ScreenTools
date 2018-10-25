@@ -42,7 +42,6 @@ namespace ScreenTools
         private bool audioRecording = false;
         private IWaveIn captureDevice;
         private WaveFileWriter writer;
-        string SoundRecorderPath;
 
         readonly AudioSource _audioSource;
         IRecorder _recorder;
@@ -56,9 +55,7 @@ namespace ScreenTools
 
             ScreenRecordTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
             ScreenRecordTimer.Tick += ScreenRecordTimer_Tick;
-
-            SoundRecorderPath = Properties.Settings.Default.SoundRecorderPath;
-            Directory.CreateDirectory(SoundRecorderPath);
+            
             _AudioSettings = new AudioSettings();
             _audioSource = new BassAudioSource(_AudioSettings);
 
@@ -69,16 +66,6 @@ namespace ScreenTools
             {
                 _audioSource.AvailableLoopbackSources[0].Active = true;
             }
-
-            if (Properties.Settings.Default.HideCurrentWindow)
-            {
-                this.SCS_HideCurrentWindow.Checked = true;
-            }
-            else
-            {
-                this.SCS_HideCurrentWindow.Checked = false;
-            }
-            
         }
 
         private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
@@ -117,23 +104,6 @@ namespace ScreenTools
         {
              Browser.Load("https://www.uccp520.com/bibbam-res/uil/bam/res/line/balinall.vm?stm=4110000_1@0");
         }
-
-        /// <summary>
-        /// 截屏时是否隐藏当前窗口
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SCS_HideCurrentWindow_Click(object sender, EventArgs e)
-        {
-            if (this.SCS_HideCurrentWindow.Checked)
-            {
-                Properties.Settings.Default.HideCurrentWindow = true;
-            }
-            else
-            {
-                Properties.Settings.Default.HideCurrentWindow = false;
-            }
-        }
         
         private async void AudioRecord_Click(object sender, EventArgs e)
         {
@@ -161,7 +131,7 @@ namespace ScreenTools
                 }
 
                 _recorder = new Recorder(
-                                WaveItem.Instance.GetAudioFileWriter(Path.Combine(SoundRecorderPath, "BepsunAudioRecorder-" + DateTime.Now.ToFileTime().ToString() + ".wav"), audioProvider?.WaveFormat,
+                                WaveItem.Instance.GetAudioFileWriter(Path.Combine(Properties.Settings.Default.SoundRecorderPath, "BepsunAudioRecorder-" + DateTime.Now.ToFileTime().ToString() + ".wav"), audioProvider?.WaveFormat,
                                     50), audioProvider);
                 _recorder.Start();
 
@@ -206,7 +176,7 @@ namespace ScreenTools
             if (Properties.Settings.Default.HideCurrentWindow)
             {
                 Hide();
-                Thread.Sleep(30);
+                Thread.Sleep(70);
             }
 
             CaptureImageTool capture = new CaptureImageTool();
@@ -358,6 +328,21 @@ namespace ScreenTools
             {
                 this.WindowState = FormWindowState.Maximized;
                 this.WindowState = FormWindowState.Normal;
+            }
+        }
+
+        private void ScreenCaptureSet_Click(object sender, EventArgs e)
+        {
+            var HideCurrentWindow = Properties.Settings.Default.HideCurrentWindow;
+            var ScreenShotPath = Properties.Settings.Default.ScreenShotPath;
+
+            var dlg = new ScreenShotSettings(HideCurrentWindow, ScreenShotPath);
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                Properties.Settings.Default.HideCurrentWindow = dlg.HideCurrentWindow;
+                Properties.Settings.Default.ScreenShotPath = dlg.ScreenShotPath;
+                Properties.Settings.Default.Save();
             }
         }
     }
