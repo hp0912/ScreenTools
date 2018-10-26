@@ -3,4 +3,4 @@
 * [Captura](https://github.com/MathewSachin/Captura) 
 * [NAudio](https://github.com/naudio/NAudio)
 * [SharpAvi](https://github.com/baSSiLL/SharpAvi)
-* [CaptureImageTool--未知作者](http://www.adminwang.com/)
+* [CaptureImageTool](https://blog.csdn.net/bdstjk/article/details/7702500)
