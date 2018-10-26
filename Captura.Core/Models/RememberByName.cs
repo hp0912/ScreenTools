@@ -14,7 +14,6 @@ namespace Captura.Models
         readonly IRegionProvider _regionProvider;
         readonly IWebCamProvider _webCamProvider;
         readonly ScreenShotViewModel _screenShotViewModel;
-
         readonly ScreenSourceProvider _screenSourceProvider;
         readonly WindowSourceProvider _windowSourceProvider;
         readonly RegionSourceProvider _regionSourceProvider;
