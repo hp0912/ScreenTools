@@ -36,7 +36,6 @@ namespace ScreenTools
         private readonly DispatcherTimer ScreenRecordTimer;
         private readonly Stopwatch recordingStopwatch = new Stopwatch();
 
-
         private bool audioRecording = false;
         private bool screenRecording = false;
         readonly AudioSource _audioSource;
@@ -95,7 +94,7 @@ namespace ScreenTools
         private void MainWindow_Shown(object sender, EventArgs e)
         {
             InitBrowser("https://www.uccp520.com/bibcor-byitem/uil/cor/byitem/coiall.vm?stm=1110000_1@0");
-            MultiLanguage.FlushWindowState( this);
+            //MultiLanguage.FlushWindowState( this);
         }
 
         private void PlatformOverview_Click(object sender, EventArgs e)
@@ -324,6 +323,11 @@ namespace ScreenTools
             if (audioRecording == true) {
                 StopAudioRecord_Click(sender, e);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

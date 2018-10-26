@@ -136,19 +136,19 @@
     <value>Production Line List</value>
   </data>
   <data name="ProductionLineMonitoring.Text" xml:space="preserve">
-    <value>Production Line Monitoring</value>
+    <value>Line Monitoring</value>
   </data>
   <data name="ScreenCaptureSet.Text" xml:space="preserve">
-    <value>Screenshot setting</value>
+    <value>Screenshot Setting</value>
   </data>
   <data name="ScreenRecord.Text" xml:space="preserve">
-    <value>Recording screen</value>
+    <value>Screen Recording</value>
   </data>
   <data name="StopScreenRecord.Text" xml:space="preserve">
     <value>Stop</value>
   </data>
   <data name="ScreenShot.Text" xml:space="preserve">
-    <value>Screenshot</value>
+    <value>Screen Capture</value>
   </data>
   <data name="SCS_HideCurrentWindow.Text" xml:space="preserve">
     <value>Hide current window when creen capture</value>
@@ -160,6 +160,9 @@
     <value>智慧云屏</value>
   </data>
   <data name="VideoConference.Text" xml:space="preserve">
-    <value>Video Conference</value>
+    <value>Video Conferencing</value>
+  </data>
+  <data name="AssetRunning.Text" xml:space="preserve">
+    <value>Asset Running &amp; Operations</value>
   </data>
 </root>

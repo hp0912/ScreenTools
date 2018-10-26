@@ -91,7 +91,7 @@ namespace ScreenTools
             {
                 LoadLanguage(form, typeof(AudioRecordSettings));
             }
-            FlushWindowState(form);
+            //FlushWindowState(form);
         }
 
         public static void LoadCurrentFromLanguage(String LanguageClass) {

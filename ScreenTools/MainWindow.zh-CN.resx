@@ -162,4 +162,7 @@
   <data name="VideoConference.Text" xml:space="preserve">
     <value>视频会议</value>
   </data>
+  <data name="AssetRunning.Text" xml:space="preserve">
+    <value>资产运行与运营</value>
+  </data>
 </root>
