@@ -95,7 +95,7 @@ namespace ScreenTools
         private void MainWindow_Shown(object sender, EventArgs e)
         {
             InitBrowser("https://www.uccp520.com/bibcor-byitem/uil/cor/byitem/coiall.vm?stm=1110000_1@0");
-            FlushWindowState();
+            MultiLanguage.FlushWindowState( this);
         }
 
         private void PlatformOverview_Click(object sender, EventArgs e)
@@ -146,7 +146,6 @@ namespace ScreenTools
             {
                 await _MyRecordingViewModel.StopAudioRecording(_recorder);
                 audioRecording = false;
-                this.AudioRecord.Text = "录音";
                 AudioRecordingTimer.Stop();
                 recordingStopwatch.Stop();
 
@@ -158,7 +157,6 @@ namespace ScreenTools
                 AudioRecordTimeTick.Text = "00:00";
             }
         }
-
 
         private void ScreenShot_Click(object sender, EventArgs e)
         {
@@ -255,61 +253,23 @@ namespace ScreenTools
         {
             //设置默认语言
             String Language = Properties.Settings.Default.DefaultLanguage;
-            MultiLanguage.LoadLanguage(this, typeof(MainWindow));
+            if(Language== "zh-CN"){
+                ZH_CN_Click(sender, e);
+            }
+            else {
+                en_US_Click(sender, e);
+            }
         }
 
         private void ZH_CN_Click(object sender, EventArgs e)
         {
-            MultiLanguage.SetDefaultLanguage("zh-CN");
-            //对所有打开的窗口重新加载语言
-            foreach (Form form in Application.OpenForms)
-            {
-                LoadAll(form);
-            }
+            MultiLanguage.LoadCurrentFromLanguage("zh-CN");
         }
 
         private void en_US_Click(object sender, EventArgs e)
         {
-
-            MultiLanguage.SetDefaultLanguage("en-US");
-            //对所有打开的窗口重新加载语言
-            foreach (Form form in Application.OpenForms)
-            {
-                LoadAll(form);
-            }
+            MultiLanguage.LoadCurrentFromLanguage("en-US");
         }
-
-        /// <summary>
-        /// 为所有窗体加载语言配置，当前只有一个窗体
-        /// </summary>
-        /// <param name="form"></param>
-        private void LoadAll(Form form)
-        {
-            if (form.Name == "MainWindow")
-            {
-                MultiLanguage.LoadLanguage(form, typeof(MainWindow));
-            }
-            FlushWindowState();
-
-        }
-
-        /// <summary>
-        /// 将当前窗口最大化变化一次
-        /// </summary>
-        private void FlushWindowState()
-        {
-            if (this.WindowState == FormWindowState.Maximized)
-            {
-                this.WindowState = FormWindowState.Normal;
-                this.WindowState = FormWindowState.Maximized;
-            }
-            else
-            {
-                this.WindowState = FormWindowState.Maximized;
-                this.WindowState = FormWindowState.Normal;
-            }
-        }
-
         /// <summary>
         /// 截屏设置
         /// 1、隐藏当前窗口

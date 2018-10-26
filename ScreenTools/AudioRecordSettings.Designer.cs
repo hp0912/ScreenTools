@@ -32,7 +32,7 @@
             this.SoundcardPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.MicrophoneGroup = new System.Windows.Forms.GroupBox();
             this.MicrophonePanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.SavePath = new System.Windows.Forms.Label();
             this.AudioRecorderFilePath = new System.Windows.Forms.TextBox();
             this.AudioFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.browser = new System.Windows.Forms.Button();
@@ -79,14 +79,14 @@
             this.MicrophonePanel.Size = new System.Drawing.Size(368, 100);
             this.MicrophonePanel.TabIndex = 1;
             // 
-            // label1
+            // SavePath
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 175);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 12);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "音频保存路径";
+            this.SavePath.AutoSize = true;
+            this.SavePath.Location = new System.Drawing.Point(12, 175);
+            this.SavePath.Name = "SavePath";
+            this.SavePath.Size = new System.Drawing.Size(77, 12);
+            this.SavePath.TabIndex = 2;
+            this.SavePath.Text = "音频保存路径";
             // 
             // AudioRecorderFilePath
             // 
@@ -147,7 +147,7 @@
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.browser);
             this.Controls.Add(this.AudioRecorderFilePath);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.SavePath);
             this.Controls.Add(this.MicrophoneGroup);
             this.Controls.Add(this.SoundcardGroup);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -158,6 +158,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "录音设置";
+            this.Load += new System.EventHandler(this.AudioRecordSettings_Load);
             this.SoundcardGroup.ResumeLayout(false);
             this.MicrophoneGroup.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -169,7 +170,7 @@
 
         private System.Windows.Forms.GroupBox SoundcardGroup;
         private System.Windows.Forms.GroupBox MicrophoneGroup;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label SavePath;
         private System.Windows.Forms.TextBox AudioRecorderFilePath;
         private System.Windows.Forms.FolderBrowserDialog AudioFolderBrowserDialog;
         private System.Windows.Forms.Button browser;

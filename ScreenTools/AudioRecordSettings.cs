@@ -112,5 +112,22 @@ namespace ScreenTools
                 }
             }
         }
+
+        private void AudioRecordSettings_Load(object sender, EventArgs e)
+        {
+            //设置默认语言
+            String Language = Properties.Settings.Default.DefaultLanguage;
+            switch (Language) {
+                case "zh-CN":
+                    MultiLanguage.LoadCurrentFromLanguage("zh-CN");
+                    break;
+                case "en-US":
+                    MultiLanguage.LoadCurrentFromLanguage("en-US");
+                    break;
+                default:
+                    MultiLanguage.LoadCurrentFromLanguage("zh-CN");
+                    break;
+            }          
+        }
     }
 }

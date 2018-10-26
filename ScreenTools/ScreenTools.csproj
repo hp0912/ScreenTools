@@ -111,7 +111,13 @@
     <Compile Include="ScreenShotSettings.Designer.cs">
       <DependentUpon>ScreenShotSettings.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AudioRecordSettings.en-US.resx">
+      <DependentUpon>AudioRecordSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AudioRecordSettings.resx">
+      <DependentUpon>AudioRecordSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AudioRecordSettings.zh-CN.resx">
       <DependentUpon>AudioRecordSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.en-US.resx">
@@ -133,7 +139,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ScreenShotSettings.en-US.resx">
+      <DependentUpon>ScreenShotSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ScreenShotSettings.resx">
+      <DependentUpon>ScreenShotSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScreenShotSettings.zh-CN.resx">
       <DependentUpon>ScreenShotSettings.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

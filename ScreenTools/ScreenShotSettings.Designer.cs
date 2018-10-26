@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.HideTheMainForm = new System.Windows.Forms.CheckBox();
+            this.SavePath = new System.Windows.Forms.Label();
             this.ScreenShotFilePath = new System.Windows.Forms.TextBox();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.browser = new System.Windows.Forms.Button();
@@ -37,25 +37,25 @@
             this.cancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // checkBox1
+            // HideTheMainForm
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 12);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(120, 16);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "截图时隐藏主窗体";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.HideTheMainForm.AutoSize = true;
+            this.HideTheMainForm.Location = new System.Drawing.Point(12, 12);
+            this.HideTheMainForm.Name = "HideTheMainForm";
+            this.HideTheMainForm.Size = new System.Drawing.Size(120, 16);
+            this.HideTheMainForm.TabIndex = 0;
+            this.HideTheMainForm.Text = "截图时隐藏主窗体";
+            this.HideTheMainForm.UseVisualStyleBackColor = true;
+            this.HideTheMainForm.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // label1
+            // SavePath
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 47);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 12);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "截图保存路径";
+            this.SavePath.AutoSize = true;
+            this.SavePath.Location = new System.Drawing.Point(13, 47);
+            this.SavePath.Name = "SavePath";
+            this.SavePath.Size = new System.Drawing.Size(77, 12);
+            this.SavePath.TabIndex = 1;
+            this.SavePath.Text = "截图保存路径";
             // 
             // ScreenShotFilePath
             // 
@@ -104,8 +104,8 @@
             this.Controls.Add(this.ensure);
             this.Controls.Add(this.browser);
             this.Controls.Add(this.ScreenShotFilePath);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.SavePath);
+            this.Controls.Add(this.HideTheMainForm);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -114,6 +114,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "截图设置";
+            this.Load += new System.EventHandler(this.ScreenShotSettings_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -121,8 +122,8 @@
 
         #endregion
 
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox HideTheMainForm;
+        private System.Windows.Forms.Label SavePath;
         private System.Windows.Forms.TextBox ScreenShotFilePath;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.Button browser;

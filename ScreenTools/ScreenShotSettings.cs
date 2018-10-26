@@ -18,11 +18,11 @@ namespace ScreenTools
 
             if (hideCurrentWindow)
             {
-                this.checkBox1.Checked = true;
+                this.HideTheMainForm.Checked = true;
             }
             else
             {
-                this.checkBox1.Checked = false;
+                this.HideTheMainForm.Checked = false;
             }
 
             ScreenShotFilePath.Text = screenShotPath;
@@ -37,7 +37,7 @@ namespace ScreenTools
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (this.checkBox1.Checked)
+            if (this.HideTheMainForm.Checked)
             {
                 HideCurrentWindow = true;
             }
@@ -64,6 +64,26 @@ namespace ScreenTools
         private void cancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
+        }
+
+        private void ScreenShotSettings_Load(object sender, EventArgs e)
+        {
+            //设置默认语言
+            String Language = Properties.Settings.Default.DefaultLanguage;
+            switch (Language)
+            {
+                case "zh-CN":
+                    MultiLanguage.LoadCurrentFromLanguage("zh-CN");
+                    break;
+                case "en-US":
+                    MultiLanguage.LoadCurrentFromLanguage("en-US");
+                    //目前使用的遍历控件方式暂时不能刷新到Label标签，并且只有一个label有汉语，所以Label强刷
+                    HideTheMainForm.Text =  "Hide The MainForm";
+                    break;
+                default:
+                    MultiLanguage.LoadCurrentFromLanguage("zh-CN");
+                    break;
+            }
         }
     }
 }

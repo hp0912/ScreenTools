@@ -6,7 +6,7 @@ namespace ScreenTools
     class MultiLanguage
     {
         //当前默认语言
-        public static string DefaultLanguage = "zh-CN";
+        public static string DefaultLanguage = Properties.Settings.Default.DefaultLanguage;
 
         /// <summary>
         /// 修改默认语言
@@ -24,7 +24,7 @@ namespace ScreenTools
         /// </summary>
         /// <param name="form">加载语言的窗口</param>
         /// <param name="formType">窗口的类型</param>
-        public static void LoadLanguage(Form form,Type formType) {
+        public static void LoadLanguage(Form form, Type formType) {
             if (form != null) {
                 System.ComponentModel.ComponentResourceManager resourceManager = new System.ComponentModel.ComponentResourceManager(formType);
                 resourceManager.ApplyResources(form, "$this");
@@ -47,8 +47,7 @@ namespace ScreenTools
                         //遍历菜单
                         Loading(c, resourceManager);
                     }
-                }    
-
+                }
             }
 
             foreach (Control c in control.Controls) {
@@ -73,6 +72,54 @@ namespace ScreenTools
                 }
             }
         }
+
+        /// <summary>
+        /// 为所有窗体加载语言配置
+        /// </summary>
+        /// <param name="form"></param>
+        public static void LoadAll(Form form)
+        {
+            if (form.Name == "MainWindow")
+            {
+                LoadLanguage(form, typeof(MainWindow));
+            }
+            else if (form.Name == "AudioRecordSettings")
+            {
+                LoadLanguage(form, typeof(AudioRecordSettings));
+            }
+            else if (form.Name == "ScreenShotSettings")
+            {
+                LoadLanguage(form, typeof(AudioRecordSettings));
+            }
+            FlushWindowState(form);
+        }
+
+        public static void LoadCurrentFromLanguage(String LanguageClass) {
+            SetDefaultLanguage(LanguageClass);
+            //对所有打开的窗口重新加载语言
+            foreach (Form form in Application.OpenForms)
+            {
+                LoadAll(form);
+            }
+        }
+
+        /// <summary>
+        /// 将当前窗口最大化变化一次
+        /// </summary>
+        public static void FlushWindowState(Form form)
+        {
+            if (form.WindowState == FormWindowState.Maximized)
+            {
+                form.WindowState = FormWindowState.Normal;
+                form.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                form.WindowState = FormWindowState.Maximized;
+                form.WindowState = FormWindowState.Normal;
+            }
+        }
+
 
     }
 }
