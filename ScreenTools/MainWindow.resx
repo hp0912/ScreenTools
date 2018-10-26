@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="webBrowser1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="webBrowser1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -153,6 +150,45 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1109, 26</value>
+  </data>
+  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="menuStrip1.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="SettingS.Font" type="System.Drawing.Font, System.Drawing">
+    <value>宋体, 9pt</value>
+  </data>
+  <data name="SettingS.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 22</value>
+  </data>
+  <data name="SettingS.Text" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="LanguageSet.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="LanguageSet.Text" xml:space="preserve">
+    <value>语言设置</value>
+  </data>
   <data name="ZH_CN.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 22</value>
   </data>
@@ -164,12 +200,6 @@
   </data>
   <data name="en_US.Text" xml:space="preserve">
     <value>English</value>
-  </data>
-  <data name="LanguageSet.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="LanguageSet.Text" xml:space="preserve">
-    <value>语言设置</value>
   </data>
   <data name="ScreenCaptureSet.Font" type="System.Drawing.Font, System.Drawing">
     <value>宋体, 9pt</value>
@@ -184,22 +214,7 @@
     <value>180, 22</value>
   </data>
   <data name="AudioRecordSet.Text" xml:space="preserve">
-    <value>录音设置</value>
-  </data>
-  <data name="ScreenRecordSet.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="ScreenRecordSet.Text" xml:space="preserve">
-    <value>录屏设置</value>
-  </data>
-  <data name="SettingS.Font" type="System.Drawing.Font, System.Drawing">
-    <value>宋体, 9pt</value>
-  </data>
-  <data name="SettingS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 22</value>
-  </data>
-  <data name="SettingS.Text" xml:space="preserve">
-    <value>设置</value>
+    <value>录制设置</value>
   </data>
   <data name="PlatformOverview.Font" type="System.Drawing.Font, System.Drawing">
     <value>宋体, 9pt</value>
@@ -237,28 +252,109 @@
   <data name="VideoConference.Text" xml:space="preserve">
     <value>视频会议</value>
   </data>
-  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
+  <data name="AudioRecordTimeTick.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 12pt</value>
   </data>
-  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1109, 26</value>
+  <data name="AudioRecordTimeTick.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+  <data name="AudioRecordTimeTick.Location" type="System.Drawing.Point, System.Drawing">
+    <value>414, 2</value>
   </data>
-  <data name="menuStrip1.Text" xml:space="preserve">
-    <value>menuStrip1</value>
+  <data name="AudioRecordTimeTick.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 28</value>
   </data>
-  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
-    <value>menuStrip1</value>
+  <data name="AudioRecordTimeTick.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
-  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="AudioRecordTimeTick.Text" xml:space="preserve">
+    <value>00:00</value>
   </data>
-  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="AudioRecordTimeTick.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
   </data>
-  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
+  <data name="AudioRecordTimeTick.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;AudioRecordTimeTick.Name" xml:space="preserve">
+    <value>AudioRecordTimeTick</value>
+  </data>
+  <data name="&gt;&gt;AudioRecordTimeTick.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AudioRecordTimeTick.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;AudioRecordTimeTick.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="StopAudioRecord.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="StopAudioRecord.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="StopAudioRecord.Location" type="System.Drawing.Point, System.Drawing">
+    <value>334, 2</value>
+  </data>
+  <data name="StopAudioRecord.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 30</value>
+  </data>
+  <data name="StopAudioRecord.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="StopAudioRecord.Text" xml:space="preserve">
+    <value>停止录音</value>
+  </data>
+  <data name="StopAudioRecord.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;StopAudioRecord.Name" xml:space="preserve">
+    <value>StopAudioRecord</value>
+  </data>
+  <data name="&gt;&gt;StopAudioRecord.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;StopAudioRecord.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;StopAudioRecord.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="ScreenRecordTimeTick.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 12pt</value>
+  </data>
+  <data name="ScreenRecordTimeTick.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ScreenRecordTimeTick.Location" type="System.Drawing.Point, System.Drawing">
+    <value>248, 2</value>
+  </data>
+  <data name="ScreenRecordTimeTick.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 28</value>
+  </data>
+  <data name="ScreenRecordTimeTick.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="ScreenRecordTimeTick.Text" xml:space="preserve">
+    <value>00:00</value>
+  </data>
+  <data name="ScreenRecordTimeTick.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="ScreenRecordTimeTick.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;ScreenRecordTimeTick.Name" xml:space="preserve">
+    <value>ScreenRecordTimeTick</value>
+  </data>
+  <data name="&gt;&gt;ScreenRecordTimeTick.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ScreenRecordTimeTick.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;ScreenRecordTimeTick.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="AudioRecord.Location" type="System.Drawing.Point, System.Drawing">
@@ -283,7 +379,40 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;AudioRecord.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
+  </data>
+  <data name="StopScreenRecord.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="StopScreenRecord.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="StopScreenRecord.Location" type="System.Drawing.Point, System.Drawing">
+    <value>168, 2</value>
+  </data>
+  <data name="StopScreenRecord.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 30</value>
+  </data>
+  <data name="StopScreenRecord.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="StopScreenRecord.Text" xml:space="preserve">
+    <value>停止录屏</value>
+  </data>
+  <data name="StopScreenRecord.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;StopScreenRecord.Name" xml:space="preserve">
+    <value>StopScreenRecord</value>
+  </data>
+  <data name="&gt;&gt;StopScreenRecord.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;StopScreenRecord.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;StopScreenRecord.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="ScreenRecord.Location" type="System.Drawing.Point, System.Drawing">
     <value>168, 2</value>
@@ -307,7 +436,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;ScreenRecord.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>5</value>
   </data>
   <data name="ScreenShot.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 2</value>
@@ -331,7 +460,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;ScreenShot.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>6</value>
   </data>
   <data name="panel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Bottom</value>
@@ -485,12 +614,6 @@
     <value>AudioRecordSet</value>
   </data>
   <data name="&gt;&gt;AudioRecordSet.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ScreenRecordSet.Name" xml:space="preserve">
-    <value>ScreenRecordSet</value>
-  </data>
-  <data name="&gt;&gt;ScreenRecordSet.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;PlatformOverview.Name" xml:space="preserve">

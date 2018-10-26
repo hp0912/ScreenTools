@@ -31,16 +31,14 @@ namespace ScreenTools
          int hwndCallback
         );
         public ChromiumWebBrowser Browser;
-       
+
         private readonly DispatcherTimer AudioRecordingTimer;
         private readonly DispatcherTimer ScreenRecordTimer;
         private readonly Stopwatch recordingStopwatch = new Stopwatch();
 
-        
+
         private bool audioRecording = false;
         private bool screenRecording = false;
-        private IWaveIn captureDevice;
-        private WaveFileWriter writer;
         readonly AudioSource _audioSource;
         IRecorder _recorder;
         AudioSettings _AudioSettings;
@@ -57,7 +55,7 @@ namespace ScreenTools
 
             ScreenRecordTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
             ScreenRecordTimer.Tick += ScreenRecordTimer_Tick;
-            
+
             _AudioSettings = new AudioSettings();
             _audioSource = new BassAudioSource(_AudioSettings);
             if (AudioDeviceCount == 0)
@@ -79,11 +77,6 @@ namespace ScreenTools
             _MyRecordingViewModel = new MyRecordingViewModel(_audioSource);
         }
 
-        private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            AudioRecordCleanup();
-        }
-
         /// <summary>
         /// 初始化Cef
         /// </summary>
@@ -101,22 +94,22 @@ namespace ScreenTools
 
         private void MainWindow_Shown(object sender, EventArgs e)
         {
-             InitBrowser("https://www.uccp520.com/bibcor-byitem/uil/cor/byitem/coiall.vm?stm=1110000_1@0");
-             FlushWindowState();
+            InitBrowser("https://www.uccp520.com/bibcor-byitem/uil/cor/byitem/coiall.vm?stm=1110000_1@0");
+            FlushWindowState();
         }
 
         private void PlatformOverview_Click(object sender, EventArgs e)
         {
-             Browser.Load("https://www.uccp520.com/bibcor-byitem/uil/cor/byitem/coiall.vm?stm=1110000_1@0");
+            Browser.Load("https://www.uccp520.com/bibcor-byitem/uil/cor/byitem/coiall.vm?stm=1110000_1@0");
 
         }
 
         private void ProductionLineList_Click(object sender, EventArgs e)
         {
-             Browser.Load("https://www.uccp520.com/bibbam-res/uil/bam/res/line/balinall.vm?stm=4110000_1@0");
+            Browser.Load("https://www.uccp520.com/bibbam-res/uil/bam/res/line/balinall.vm?stm=4110000_1@0");
         }
-        
-        private async void AudioRecord_Click(object sender, EventArgs e)
+
+        private void AudioRecord_Click(object sender, EventArgs e)
         {
             if (audioRecording == false)
             {
@@ -132,23 +125,40 @@ namespace ScreenTools
                     ServiceProvider.MessageProvider.ShowException(ex, ex.Message);
                 }
                 _recorder = new Recorder(
-                                WaveItem.Instance.GetAudioFileWriter(Path.Combine(Properties.Settings.Default.SoundRecorderPath, "BepsunAudioRecorder-" + DateTime.Now.ToFileTime().ToString() + ".wav"), audioProvider?.WaveFormat,
+                                WaveItem.Instance.GetAudioFileWriter(Path.Combine(Properties.Settings.Default.SoundRecorderPath, "BAR-" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".wav"), audioProvider?.WaveFormat,
                                     50), audioProvider);
                 _recorder.Start();
                 recordingStopwatch.Reset();
                 AudioRecordingTimer.Start();
                 recordingStopwatch.Start();
-            }
-            else
-            {
-                await _MyRecordingViewModel.StopAudioRecording();
 
+                AudioRecord.Enabled = false;
+                AudioRecord.Visible = false;
+                StopAudioRecord.Enabled = true;
+                StopAudioRecord.Visible = true;
+                AudioRecordTimeTick.Visible = true;
+            }
+        }
+
+        private async void StopAudioRecord_Click(object sender, EventArgs e)
+        {
+            if (audioRecording == true)
+            {
+                await _MyRecordingViewModel.StopAudioRecording(_recorder);
                 audioRecording = false;
                 this.AudioRecord.Text = "录音";
                 AudioRecordingTimer.Stop();
                 recordingStopwatch.Stop();
+
+                AudioRecord.Enabled = true;
+                AudioRecord.Visible = true;
+                StopAudioRecord.Enabled = false;
+                StopAudioRecord.Visible = false;
+                AudioRecordTimeTick.Visible = false;
+                AudioRecordTimeTick.Text = "00:00";
             }
         }
+
 
         private void ScreenShot_Click(object sender, EventArgs e)
         {
@@ -167,7 +177,7 @@ namespace ScreenTools
             {
                 Image image = capture.Image;
                 Directory.CreateDirectory(Properties.Settings.Default.ScreenShotPath);
-                string filePath = Path.Combine(Properties.Settings.Default.ScreenShotPath, DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".jpg");
+                string filePath = Path.Combine(Properties.Settings.Default.ScreenShotPath, "BSS-" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".jpg");
                 image.Save(filePath, ImageFormat.Jpeg);
             }
 
@@ -177,61 +187,54 @@ namespace ScreenTools
             }
         }
 
-        private async void ScreenRecord_Click(object sender, EventArgs e)
+        private void ScreenRecord_Click(object sender, EventArgs e)
         {
             if (screenRecording == false)
             {
-                _MyRecordingViewModel.StartRecoding();
+                _MyRecordingViewModel.StartRecoding(Properties.Settings.Default.SoundRecorderPath);
                 screenRecording = true;
                 recordingStopwatch.Reset();
                 ScreenRecordTimer.Start();
                 recordingStopwatch.Start();
+                ScreenRecord.Enabled = false;
+                ScreenRecord.Visible = false;
+                StopScreenRecord.Enabled = true;
+                StopScreenRecord.Visible = true;
+                ScreenRecordTimeTick.Visible = true;
             }
-            else
+
+        }
+
+        private async void StopScreenRecord_Click(object sender, EventArgs e)
+        {
+            if (screenRecording == true)
             {
                 await _MyRecordingViewModel.StopAudioRecording();
                 screenRecording = false;
-                this.ScreenRecord.Text = "录屏";
                 ScreenRecordTimer.Stop();
                 recordingStopwatch.Stop();
+                ScreenRecord.Enabled = true;
+                ScreenRecord.Visible = true;
+                StopScreenRecord.Enabled = false;
+                StopScreenRecord.Visible = false;
+                ScreenRecordTimeTick.Visible = false;
+                ScreenRecordTimeTick.Text = "00:00";
             }
+
         }
 
-        void OnAudioDataAvailable(object sender, WaveInEventArgs e)
+        /// <summary>
+        /// 录屏时长的计时器
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ScreenRecordTimer_Tick(object sender, EventArgs e)
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new EventHandler<WaveInEventArgs>(OnAudioDataAvailable), sender, e);
-            }
-            else
-            {
-                writer.Write(e.Buffer, 0, e.BytesRecorded);
-            }
-        }
-
-        void OnAudioRecordingStopped(object sender, StoppedEventArgs e)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new EventHandler<StoppedEventArgs>(OnAudioRecordingStopped), sender, e);
-            }
-            else
-            {
-                writer?.Dispose();
-                writer = null;
-                if (e.Exception != null)
-                {
-                    System.Windows.Forms.MessageBox.Show(String.Format("A problem was encountered during recording {0}", e.Exception.Message));
-                }
-            }
-        }
-
-        private void AudioRecordCleanup()
-        {
-            captureDevice?.Dispose();
-            captureDevice = null;
-            writer?.Dispose();
-            writer = null;
+            TimeSpan elapsed = recordingStopwatch.Elapsed;
+            this.ScreenRecordTimeTick.Text = string.Format(
+                "{0:00}:{1:00}",
+                Math.Floor(elapsed.TotalMinutes),
+                elapsed.Seconds);
         }
 
         /// <summary>
@@ -242,29 +245,10 @@ namespace ScreenTools
         private void AudioRecordingTimer_Tick(object sender, EventArgs e)
         {
             TimeSpan elapsed = recordingStopwatch.Elapsed;
-            this.AudioRecord.Text = "停止录音[" + string.Format(
+            this.AudioRecordTimeTick.Text = string.Format(
                 "{0:00}:{1:00}",
                 Math.Floor(elapsed.TotalMinutes),
-                elapsed.Seconds) + "]";
-        }
-       
-        /// <summary>
-        /// 录屏时长的计时器
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ScreenRecordTimer_Tick(object sender, EventArgs e)
-        {
-            TimeSpan elapsed = recordingStopwatch.Elapsed;
-            this.ScreenRecord.Text = "停止录屏[" + string.Format(
-                "{0:00}:{1:00}",
-                Math.Floor(elapsed.TotalMinutes),
-                elapsed.Seconds) + "]";
-        }
-
-        private void ScreenRecordSet_Click(object sender, EventArgs e)
-        {
-            
+                elapsed.Seconds);
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
@@ -312,7 +296,8 @@ namespace ScreenTools
         /// <summary>
         /// 将当前窗口最大化变化一次
         /// </summary>
-        private void FlushWindowState() {
+        private void FlushWindowState()
+        {
             if (this.WindowState == FormWindowState.Maximized)
             {
                 this.WindowState = FormWindowState.Normal;
@@ -325,6 +310,13 @@ namespace ScreenTools
             }
         }
 
+        /// <summary>
+        /// 截屏设置
+        /// 1、隐藏当前窗口
+        /// 2、截图保存路径
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ScreenCaptureSet_Click(object sender, EventArgs e)
         {
             var HideCurrentWindow = Properties.Settings.Default.HideCurrentWindow;
@@ -340,6 +332,13 @@ namespace ScreenTools
             }
         }
 
+        /// <summary>
+        /// 设置录音录屏
+        /// 1、选取可用设备
+        /// 2、文件保存路径
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AudioRecordSet_Click(object sender, EventArgs e)
         {
             var SoundRecorderPath = Properties.Settings.Default.SoundRecorderPath;
@@ -353,6 +352,17 @@ namespace ScreenTools
             {
                 Properties.Settings.Default.SoundRecorderPath = dlg.SoundRecorderPath;
                 Properties.Settings.Default.Save();
+            }
+        }
+
+        private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (screenRecording == true)
+            {
+                StopScreenRecord_Click(sender, e);
+            }
+            if (audioRecording == true) {
+                StopAudioRecord_Click(sender, e);
             }
         }
     }
