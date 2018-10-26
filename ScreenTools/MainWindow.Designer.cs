@@ -42,7 +42,6 @@ namespace ScreenTools
             this.en_US = new System.Windows.Forms.ToolStripMenuItem();
             this.ScreenCaptureSet = new System.Windows.Forms.ToolStripMenuItem();
             this.AudioRecordSet = new System.Windows.Forms.ToolStripMenuItem();
-            this.ScreenRecordSet = new System.Windows.Forms.ToolStripMenuItem();
             this.PlatformOverview = new System.Windows.Forms.ToolStripMenuItem();
             this.ProductionLineList = new System.Windows.Forms.ToolStripMenuItem();
             this.ProductionLineMonitoring = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,6 +50,10 @@ namespace ScreenTools
             this.AudioRecord = new System.Windows.Forms.Button();
             this.ScreenRecord = new System.Windows.Forms.Button();
             this.ScreenShot = new System.Windows.Forms.Button();
+            this.StopScreenRecord = new System.Windows.Forms.Button();
+            this.ScreenRecordTimeTick = new System.Windows.Forms.Label();
+            this.AudioRecordTimeTick = new System.Windows.Forms.Label();
+            this.StopAudioRecord = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -76,8 +79,7 @@ namespace ScreenTools
             this.SettingS.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.LanguageSet,
             this.ScreenCaptureSet,
-            this.AudioRecordSet,
-            this.ScreenRecordSet});
+            this.AudioRecordSet});
             resources.ApplyResources(this.SettingS, "SettingS");
             this.SettingS.MergeIndex = 0;
             this.SettingS.Name = "SettingS";
@@ -115,12 +117,6 @@ namespace ScreenTools
             resources.ApplyResources(this.AudioRecordSet, "AudioRecordSet");
             this.AudioRecordSet.Click += new System.EventHandler(this.AudioRecordSet_Click);
             // 
-            // ScreenRecordSet
-            // 
-            this.ScreenRecordSet.Name = "ScreenRecordSet";
-            resources.ApplyResources(this.ScreenRecordSet, "ScreenRecordSet");
-            this.ScreenRecordSet.Click += new System.EventHandler(this.ScreenRecordSet_Click);
-            // 
             // PlatformOverview
             // 
             resources.ApplyResources(this.PlatformOverview, "PlatformOverview");
@@ -146,7 +142,11 @@ namespace ScreenTools
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.AudioRecordTimeTick);
+            this.panel1.Controls.Add(this.StopAudioRecord);
+            this.panel1.Controls.Add(this.ScreenRecordTimeTick);
             this.panel1.Controls.Add(this.AudioRecord);
+            this.panel1.Controls.Add(this.StopScreenRecord);
             this.panel1.Controls.Add(this.ScreenRecord);
             this.panel1.Controls.Add(this.ScreenShot);
             resources.ApplyResources(this.panel1, "panel1");
@@ -176,6 +176,36 @@ namespace ScreenTools
             this.ScreenShot.Name = "ScreenShot";
             this.ScreenShot.UseVisualStyleBackColor = true;
             this.ScreenShot.Click += new System.EventHandler(this.ScreenShot_Click);
+            // 
+            // StopScreenRecord
+            // 
+            this.StopScreenRecord.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.StopScreenRecord, "StopScreenRecord");
+            this.StopScreenRecord.FlatAppearance.BorderSize = 0;
+            this.StopScreenRecord.Name = "StopScreenRecord";
+            this.StopScreenRecord.UseVisualStyleBackColor = false;
+            this.StopScreenRecord.Click += new System.EventHandler(this.StopScreenRecord_Click);
+            // 
+            // ScreenRecordTimeTick
+            // 
+            this.ScreenRecordTimeTick.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.ScreenRecordTimeTick, "ScreenRecordTimeTick");
+            this.ScreenRecordTimeTick.Name = "ScreenRecordTimeTick";
+            // 
+            // AudioRecordTimeTick
+            // 
+            this.AudioRecordTimeTick.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.AudioRecordTimeTick, "AudioRecordTimeTick");
+            this.AudioRecordTimeTick.Name = "AudioRecordTimeTick";
+            // 
+            // StopAudioRecord
+            // 
+            this.StopAudioRecord.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.StopAudioRecord, "StopAudioRecord");
+            this.StopAudioRecord.FlatAppearance.BorderSize = 0;
+            this.StopAudioRecord.Name = "StopAudioRecord";
+            this.StopAudioRecord.UseVisualStyleBackColor = false;
+            this.StopAudioRecord.Click += new System.EventHandler(this.StopAudioRecord_Click);
             // 
             // MainWindow
             // 
@@ -215,7 +245,10 @@ namespace ScreenTools
         private ToolStripMenuItem ZH_CN;
         private ToolStripMenuItem en_US;
         private ToolStripMenuItem AudioRecordSet;
-        private ToolStripMenuItem ScreenRecordSet;
+        private Button StopScreenRecord;
+        private Label ScreenRecordTimeTick;
+        private Label AudioRecordTimeTick;
+        private Button StopAudioRecord;
     }
 }
 

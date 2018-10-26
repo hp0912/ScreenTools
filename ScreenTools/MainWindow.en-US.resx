@@ -144,8 +144,8 @@
   <data name="ScreenRecord.Text" xml:space="preserve">
     <value>Recording screen</value>
   </data>
-  <data name="ScreenRecordSet.Text" xml:space="preserve">
-    <value>Screen recording settings</value>
+  <data name="StopScreenRecord.Text" xml:space="preserve">
+    <value>Stop</value>
   </data>
   <data name="ScreenShot.Text" xml:space="preserve">
     <value>Screenshot</value>

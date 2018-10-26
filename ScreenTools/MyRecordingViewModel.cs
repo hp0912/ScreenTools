@@ -19,7 +19,6 @@ namespace ScreenTools
         IVideoSourcePicker VideoSourcePicker;
         LanguageManager LanguageManager = LanguageManager.Instance;
         ISystemTray SystemTray = null;
-        string _currentFileName;
         IPreviewWindow _previewWindow;
         WebcamOverlay _webcamOverlay;
         AudioSource _audioSource;
@@ -34,7 +33,7 @@ namespace ScreenTools
         FFmpegWriterProvider FFmpegWriterProvider;
         GifWriterProvider GifWriterProvider;
         StreamingWriterProvider StreamingWriterProvider;
-
+        String FileSavePath;
         SharpAviWriterProvider SharpAviWriterProvider = new SharpAviWriterProvider();
 
         DiscardWriterProvider DiscardWriterProvider = new DiscardWriterProvider();
@@ -44,7 +43,6 @@ namespace ScreenTools
         public MyRecordingViewModel(AudioSource audioSource) : base(new Settings(), LanguageManager.Instance)
         {
             _audioSource = audioSource;
-            _currentFileName = Settings.GetFileName(".avi", "2018-10-24.avi");
             VideoSourcePicker = new VideoSourcePicker();
             //_audioSource = new BassAudioSource(Settings.Audio);
             RegionProvider = new RegionSelector(VideoSourcePicker);
@@ -83,8 +81,9 @@ namespace ScreenTools
         public CustomOverlaysViewModel CustomOverlays { get; }
         public CustomImageOverlaysViewModel CustomImageOverlays { get; }
 
-        public void StartRecoding()
+        public void StartRecoding(String savePath)
         {
+            FileSavePath = savePath + "BAR-" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".avi";
 
             //图像
             IImageProvider imgProvider;
@@ -137,6 +136,26 @@ namespace ScreenTools
 
             _recorder = new Recorder(videoEncoder, imgProvider, Settings.Video.FrameRate, audioProvider);
             _recorder.Start();
+        }
+
+        public async Task StopAudioRecording(IRecorder _recorder)
+        {
+            // Reference Recorder as it will be set to null
+            var rec = _recorder;
+            var task = Task.Run(() => rec.Dispose());
+
+            _recorder = null;
+
+            try
+            {
+                await task;
+            }
+            catch (Exception e)
+            {
+                ServiceProvider.MessageProvider.ShowException(e, "Error occurred when stopping recording.\nThis might sometimes occur if you stop recording just as soon as you start it.");
+
+                return;
+            }
         }
 
         public async Task StopAudioRecording()
@@ -195,10 +214,10 @@ namespace ScreenTools
 
             _previewWindow.Init(ImgProvider.Width, ImgProvider.Height);
 
-            return new WithPreviewWriter(GetVideoFileWriter(ImgProvider, AudioProvider), _previewWindow);
+            return new WithPreviewWriter(GetVideoFileWriter(ImgProvider, AudioProvider, FileSavePath), _previewWindow);
         }
 
-        IVideoFileWriter GetVideoFileWriter(IImageProvider ImgProvider, IAudioProvider AudioProvider, string FileName = null)
+        IVideoFileWriter GetVideoFileWriter(IImageProvider ImgProvider, IAudioProvider AudioProvider, string FileName)
         {
             if (_videoViewModel.SelectedVideoSourceKind is NoVideoSourceProvider)
                 return null;
@@ -206,7 +225,7 @@ namespace ScreenTools
             _videoViewModel.SelectedVideoWriterKind = SharpAviWriterProvider;
             return (SharpAviWriterProvider.Last()).GetVideoFileWriter(new VideoWriterArgs
             {
-                FileName = FileName ?? _currentFileName,
+                FileName = FileName,
                 FrameRate = Settings.Video.FrameRate,
                 VideoQuality = Settings.Video.Quality,
                 ImageProvider = ImgProvider,
