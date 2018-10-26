@@ -345,19 +345,15 @@ namespace ScreenTools
             var SoundRecorderPath = Properties.Settings.Default.SoundRecorderPath;
 
             var dlg = new AudioRecordSettings(_audioSource, SoundRecorderPath);
-
-            if (dlg.ShowDialog() == DialogResult.OK)
+            dlg.FormClosed += (object s, FormClosedEventArgs ev) => {
+                this.AudioDeviceCount = dlg.AudioDeviceCount;
+            };
+            var res = dlg.ShowDialog();
+            if (res == DialogResult.OK)
             {
                 Properties.Settings.Default.SoundRecorderPath = dlg.SoundRecorderPath;
-                this.AudioDeviceCount = dlg.AudioDeviceCount;
                 Properties.Settings.Default.Save();
             }
-            if (dlg.ShowDialog() == DialogResult.Cancel)
-            {
-                this.AudioDeviceCount = dlg.AudioDeviceCount;
-            }
-
-            dlg.FormClosed += (object s, FormClosedEventArgs ev) => { this.AudioDeviceCount = dlg.AudioDeviceCount; };
         }
     }
 }
