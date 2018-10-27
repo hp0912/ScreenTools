@@ -130,7 +130,7 @@
     <value>Language Setting</value>
   </data>
   <data name="PlatformOverview.Text" xml:space="preserve">
-    <value>Platform Overview</value>
+    <value>UCCP</value>
   </data>
   <data name="ProductionLineList.Text" xml:space="preserve">
     <value>Production Line List</value>
@@ -156,13 +156,10 @@
   <data name="SettingS.Text" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="this.Text" xml:space="preserve">
-    <value>智慧云屏</value>
-  </data>
   <data name="VideoConference.Text" xml:space="preserve">
     <value>Video Conferencing</value>
   </data>
-  <data name="AssetRunning.Text" xml:space="preserve">
-    <value>Asset Running &amp; Operations</value>
+  <data name="AssetRun.Text" xml:space="preserve">
+    <value>Asset Running &amp;&amp; Operations</value>
   </data>
 </root>

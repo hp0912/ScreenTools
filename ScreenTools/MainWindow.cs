@@ -32,7 +32,6 @@ namespace ScreenTools
         );
         public ChromiumWebBrowser Browser;
 
-        private readonly DispatcherTimer AudioRecordingTimer;
         private readonly DispatcherTimer ScreenRecordTimer;
         private readonly Stopwatch recordingStopwatch = new Stopwatch();
 
@@ -49,11 +48,8 @@ namespace ScreenTools
         {
             InitializeComponent();
 
-            AudioRecordingTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
-            AudioRecordingTimer.Tick += AudioRecordingTimer_Tick;
-
             ScreenRecordTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
-            ScreenRecordTimer.Tick += ScreenRecordTimer_Tick;
+            ScreenRecordTimer.Tick += RecordTimeTick_Tick;
 
             _AudioSettings = new AudioSettings();
             _audioSource = new BassAudioSource(_AudioSettings);
@@ -93,7 +89,7 @@ namespace ScreenTools
 
         private void MainWindow_Shown(object sender, EventArgs e)
         {
-            InitBrowser("https://www.uccp520.com/bibcor-byitem/uil/cor/byitem/coiall.vm?stm=1110000_1@0");
+            InitBrowser("https://www.uccp520.com/bibwdf-logprv/uil/wdf/logreg/wdsignin.vm");
             //MultiLanguage.FlushWindowState( this);
         }
 
@@ -128,14 +124,16 @@ namespace ScreenTools
                                     50), audioProvider);
                 _recorder.Start();
                 recordingStopwatch.Reset();
-                AudioRecordingTimer.Start();
+                ScreenRecordTimer.Start();
                 recordingStopwatch.Start();
 
+                ScreenRecord.Enabled = false;
+                ScreenRecord.Visible = false;
                 AudioRecord.Enabled = false;
                 AudioRecord.Visible = false;
-                StopAudioRecord.Enabled = true;
-                StopAudioRecord.Visible = true;
-                AudioRecordTimeTick.Visible = true;
+                StopRecording.Enabled = true;
+                StopRecording.Visible = true;
+                RecordTimeTick.Visible = true;
             }
         }
 
@@ -145,15 +143,17 @@ namespace ScreenTools
             {
                 await _MyRecordingViewModel.StopAudioRecording(_recorder);
                 audioRecording = false;
-                AudioRecordingTimer.Stop();
+                ScreenRecordTimer.Stop();
                 recordingStopwatch.Stop();
 
                 AudioRecord.Enabled = true;
                 AudioRecord.Visible = true;
-                StopAudioRecord.Enabled = false;
-                StopAudioRecord.Visible = false;
-                AudioRecordTimeTick.Visible = false;
-                AudioRecordTimeTick.Text = "00:00";
+                ScreenRecord.Enabled = true;
+                ScreenRecord.Visible = true;
+                StopRecording.Enabled = false;
+                StopRecording.Visible = false;
+                RecordTimeTick.Visible = false;
+                RecordTimeTick.Text = "00:00";
             }
         }
 
@@ -193,11 +193,14 @@ namespace ScreenTools
                 recordingStopwatch.Reset();
                 ScreenRecordTimer.Start();
                 recordingStopwatch.Start();
+
+                AudioRecord.Enabled = false;
+                AudioRecord.Visible = false;
                 ScreenRecord.Enabled = false;
                 ScreenRecord.Visible = false;
-                StopScreenRecord.Enabled = true;
-                StopScreenRecord.Visible = true;
-                ScreenRecordTimeTick.Visible = true;
+                StopRecording.Enabled = true;
+                StopRecording.Visible = true;
+                RecordTimeTick.Visible = true;
             }
 
         }
@@ -210,39 +213,28 @@ namespace ScreenTools
                 screenRecording = false;
                 ScreenRecordTimer.Stop();
                 recordingStopwatch.Stop();
+
+                AudioRecord.Enabled = true;
+                AudioRecord.Visible = true;
                 ScreenRecord.Enabled = true;
                 ScreenRecord.Visible = true;
-                StopScreenRecord.Enabled = false;
-                StopScreenRecord.Visible = false;
-                ScreenRecordTimeTick.Visible = false;
-                ScreenRecordTimeTick.Text = "00:00";
+                StopRecording.Enabled = false;
+                StopRecording.Visible = false;
+                RecordTimeTick.Visible = false;
+                RecordTimeTick.Text = "00:00";
             }
 
         }
 
         /// <summary>
-        /// 录屏时长的计时器
+        /// 录制时长的计时器
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ScreenRecordTimer_Tick(object sender, EventArgs e)
+        private void RecordTimeTick_Tick(object sender, EventArgs e)
         {
             TimeSpan elapsed = recordingStopwatch.Elapsed;
-            this.ScreenRecordTimeTick.Text = string.Format(
-                "{0:00}:{1:00}",
-                Math.Floor(elapsed.TotalMinutes),
-                elapsed.Seconds);
-        }
-
-        /// <summary>
-        /// 录音时长的计时器
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void AudioRecordingTimer_Tick(object sender, EventArgs e)
-        {
-            TimeSpan elapsed = recordingStopwatch.Elapsed;
-            this.AudioRecordTimeTick.Text = string.Format(
+            this.RecordTimeTick.Text = string.Format(
                 "{0:00}:{1:00}",
                 Math.Floor(elapsed.TotalMinutes),
                 elapsed.Seconds);
@@ -253,14 +245,14 @@ namespace ScreenTools
             //设置默认语言
             String Language = Properties.Settings.Default.DefaultLanguage;
             if(Language== "zh-CN"){
-                ZH_CN_Click(sender, e);
+                zh_CN_Click(sender, e);
             }
             else {
                 en_US_Click(sender, e);
             }
         }
 
-        private void ZH_CN_Click(object sender, EventArgs e)
+        private void zh_CN_Click(object sender, EventArgs e)
         {
             MultiLanguage.LoadCurrentFromLanguage("zh-CN");
         }
@@ -316,18 +308,21 @@ namespace ScreenTools
 
         private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
+            //停止录制
+            StopRecording_Click(sender, e);
+        }
+
+        private void StopRecording_Click(object sender, EventArgs e)
+        {
+
             if (screenRecording == true)
             {
                 StopScreenRecord_Click(sender, e);
             }
-            if (audioRecording == true) {
+            if (audioRecording == true)
+            {
                 StopAudioRecord_Click(sender, e);
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

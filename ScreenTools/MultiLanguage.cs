@@ -91,7 +91,6 @@ namespace ScreenTools
             {
                 LoadLanguage(form, typeof(AudioRecordSettings));
             }
-            //FlushWindowState(form);
         }
 
         public static void LoadCurrentFromLanguage(String LanguageClass) {
@@ -102,24 +101,5 @@ namespace ScreenTools
                 LoadAll(form);
             }
         }
-
-        /// <summary>
-        /// 将当前窗口最大化变化一次
-        /// </summary>
-        public static void FlushWindowState(Form form)
-        {
-            if (form.WindowState == FormWindowState.Maximized)
-            {
-                form.WindowState = FormWindowState.Normal;
-                form.WindowState = FormWindowState.Maximized;
-            }
-            else
-            {
-                form.WindowState = FormWindowState.Maximized;
-                form.WindowState = FormWindowState.Normal;
-            }
-        }
-
-
     }
 }
