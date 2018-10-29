@@ -48,12 +48,15 @@ namespace ScreenTools
             this.LanguageSet = new System.Windows.Forms.ToolStripMenuItem();
             this.zh_CN = new System.Windows.Forms.ToolStripMenuItem();
             this.en_US = new System.Windows.Forms.ToolStripMenuItem();
+            this.OSK = new System.Windows.Forms.ToolStripButton();
             this.ScreenShot = new System.Windows.Forms.ToolStripButton();
             this.ScreenRecord = new System.Windows.Forms.ToolStripButton();
             this.AudioRecord = new System.Windows.Forms.ToolStripButton();
             this.StopRecording = new System.Windows.Forms.ToolStripButton();
             this.RecordTimeTick = new System.Windows.Forms.ToolStripLabel();
-            this.OSK = new System.Windows.Forms.ToolStripButton();
+            this.Minimize = new System.Windows.Forms.Button();
+            this.Maximize = new System.Windows.Forms.Button();
+            this.Close = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -66,7 +69,7 @@ namespace ScreenTools
             this.webBrowser1.Location = new System.Drawing.Point(0, 63);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1358, 475);
+            this.webBrowser1.Size = new System.Drawing.Size(1378, 475);
             this.webBrowser1.TabIndex = 6;
             // 
             // menuStrip1
@@ -81,7 +84,7 @@ namespace ScreenTools
             this.VideoConference});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1358, 60);
+            this.menuStrip1.Size = new System.Drawing.Size(1378, 60);
             this.menuStrip1.TabIndex = 13;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -142,7 +145,7 @@ namespace ScreenTools
             this.RecordTimeTick});
             this.toolStrip1.Location = new System.Drawing.Point(0, 532);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1358, 42);
+            this.toolStrip1.Size = new System.Drawing.Size(1378, 42);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -160,6 +163,7 @@ namespace ScreenTools
             this.SettingS.Name = "SettingS";
             this.SettingS.Size = new System.Drawing.Size(82, 39);
             this.SettingS.Text = "设置";
+            this.SettingS.ToolTipText = "\r";
             // 
             // AudioRecordSet
             // 
@@ -198,6 +202,18 @@ namespace ScreenTools
             this.en_US.Text = "English";
             this.en_US.Click += new System.EventHandler(this.en_US_Click);
             // 
+            // OSK
+            // 
+            this.OSK.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.OSK.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.OSK.Image = ((System.Drawing.Image)(resources.GetObject("OSK.Image")));
+            this.OSK.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.OSK.Name = "OSK";
+            this.OSK.Size = new System.Drawing.Size(73, 39);
+            this.OSK.Text = "键盘";
+            this.OSK.ToolTipText = "\r\n";
+            this.OSK.Click += new System.EventHandler(this.OSK_Click);
+            // 
             // ScreenShot
             // 
             this.ScreenShot.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -207,6 +223,7 @@ namespace ScreenTools
             this.ScreenShot.Size = new System.Drawing.Size(73, 39);
             this.ScreenShot.Text = "截屏";
             this.ScreenShot.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.ScreenShot.ToolTipText = "\r\n";
             this.ScreenShot.Click += new System.EventHandler(this.ScreenShot_Click);
             // 
             // ScreenRecord
@@ -218,6 +235,7 @@ namespace ScreenTools
             this.ScreenRecord.Name = "ScreenRecord";
             this.ScreenRecord.Size = new System.Drawing.Size(73, 39);
             this.ScreenRecord.Text = "录屏";
+            this.ScreenRecord.ToolTipText = "\r\n";
             this.ScreenRecord.Click += new System.EventHandler(this.ScreenRecord_Click);
             // 
             // AudioRecord
@@ -229,6 +247,7 @@ namespace ScreenTools
             this.AudioRecord.Name = "AudioRecord";
             this.AudioRecord.Size = new System.Drawing.Size(73, 39);
             this.AudioRecord.Text = "录音";
+            this.AudioRecord.ToolTipText = "\r\n";
             this.AudioRecord.Click += new System.EventHandler(this.AudioRecord_Click);
             // 
             // StopRecording
@@ -241,6 +260,7 @@ namespace ScreenTools
             this.StopRecording.Name = "StopRecording";
             this.StopRecording.Size = new System.Drawing.Size(127, 39);
             this.StopRecording.Text = "停止录制";
+            this.StopRecording.ToolTipText = "\r\n";
             this.StopRecording.Visible = false;
             this.StopRecording.Click += new System.EventHandler(this.StopRecording_Click);
             // 
@@ -252,16 +272,41 @@ namespace ScreenTools
             this.RecordTimeTick.Text = "00:00";
             this.RecordTimeTick.Visible = false;
             // 
-            // OSK
+            // Minimize
             // 
-            this.OSK.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.OSK.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.OSK.Image = ((System.Drawing.Image)(resources.GetObject("OSK.Image")));
-            this.OSK.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.OSK.Name = "OSK";
-            this.OSK.Size = new System.Drawing.Size(73, 39);
-            this.OSK.Text = "键盘";
-            this.OSK.Click += new System.EventHandler(this.OSK_Click);
+            this.Minimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Minimize.AutoSize = true;
+            this.Minimize.Location = new System.Drawing.Point(1165, 0);
+            this.Minimize.Name = "Minimize";
+            this.Minimize.Size = new System.Drawing.Size(58, 33);
+            this.Minimize.TabIndex = 14;
+            this.Minimize.Text = "最小化";
+            this.Minimize.UseVisualStyleBackColor = true;
+            this.Minimize.Click += new System.EventHandler(this.Minimize_Click);
+            // 
+            // Maximize
+            // 
+            this.Maximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Maximize.AutoSize = true;
+            this.Maximize.Location = new System.Drawing.Point(1229, 0);
+            this.Maximize.Name = "Maximize";
+            this.Maximize.Size = new System.Drawing.Size(87, 33);
+            this.Maximize.TabIndex = 15;
+            this.Maximize.Text = "最大化与还原";
+            this.Maximize.UseVisualStyleBackColor = true;
+            this.Maximize.Click += new System.EventHandler(this.Maximize_Click);
+            // 
+            // Close
+            // 
+            this.Close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Close.AutoSize = true;
+            this.Close.Location = new System.Drawing.Point(1320, 0);
+            this.Close.Name = "Close";
+            this.Close.Size = new System.Drawing.Size(58, 33);
+            this.Close.TabIndex = 16;
+            this.Close.Text = "关闭";
+            this.Close.UseVisualStyleBackColor = true;
+            this.Close.Click += new System.EventHandler(this.Close_Click);
             // 
             // MainWindow
             // 
@@ -269,7 +314,10 @@ namespace ScreenTools
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.ClientSize = new System.Drawing.Size(1358, 574);
+            this.ClientSize = new System.Drawing.Size(1378, 574);
+            this.Controls.Add(this.Close);
+            this.Controls.Add(this.Maximize);
+            this.Controls.Add(this.Minimize);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.menuStrip1);
@@ -311,6 +359,9 @@ namespace ScreenTools
         private ToolStripMenuItem AssetRun;
         protected internal ToolStripButton StopRecording;
         private ToolStripButton OSK;
+        private Button Minimize;
+        private Button Maximize;
+        private Button Close;
     }
 }
 

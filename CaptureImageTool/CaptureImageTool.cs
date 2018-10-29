@@ -49,7 +49,7 @@ namespace CSharpWin_JD.CaptureImage
 
         private static readonly Font TextFont =
            new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        private static readonly string ToolTipStartCapture = "按住左键不放选择截图区域";
+        private static readonly string ToolTipStartCapture = null;
 
         #endregion
 

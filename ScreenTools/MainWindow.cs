@@ -36,7 +36,6 @@ namespace ScreenTools
         private readonly DispatcherTimer ScreenRecordTimer;
         private readonly Stopwatch recordingStopwatch = new Stopwatch();
 
-        private bool Osking = false;
         private bool audioRecording = false;
         private bool screenRecording = false;
         readonly AudioSource _audioSource;
@@ -84,8 +83,10 @@ namespace ScreenTools
             settings.Locale = "zh-CN";
             settings.AcceptLanguageList = "zh-CN";
             Cef.Initialize(settings);
-            Browser = new ChromiumWebBrowser(path);
-            Browser.Dock = DockStyle.Fill;
+            Browser = new ChromiumWebBrowser(path)
+            {
+                Dock = DockStyle.Fill
+            };
             this.webBrowser1.Controls.Add(Browser);
         }
 
@@ -111,16 +112,17 @@ namespace ScreenTools
         
         private void OSK_Click(object sender, EventArgs e)
         {
-            Process process = new Process();
-            process.StartInfo = new ProcessStartInfo(AppDomain.CurrentDomain.BaseDirectory + "\\osk.exe");
-            if (Osking == false) {
+            Process process = new Process
+            {
+                StartInfo = new ProcessStartInfo(AppDomain.CurrentDomain.BaseDirectory + "\\osk.exe")
+            };
+            Process[] qqs = Process.GetProcessesByName("osk");
+            if (qqs.Length == 0)
+            {
                 process.Start();
-                Osking = true;
             }
             else {
-                Process[] qqs = Process.GetProcessesByName("osk");
                 qqs[0].Kill();
-                Osking = false;
             }
         }
 
@@ -346,6 +348,35 @@ namespace ScreenTools
             }
         }
 
+        private void Minimize_Click(object sender, EventArgs e)
+        {
+            if (!this.ShowInTaskbar)
+            {
+                this.Hide();
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Minimized;
+            }
+        }
+
+        private void Maximize_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Maximized;
+
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+        }
+
+        private void Close_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
 
