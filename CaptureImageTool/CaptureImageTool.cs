@@ -30,19 +30,12 @@ namespace CSharpWin_JD.CaptureImage
         private Image ScreenImage;
 
         #region Fields
-
-        private Image _image;
         private CaptureImageToolColorTable _colorTable;
-        private Cursor _selectCursor = Cursors.Default;
-        private Cursor _drawCursor = Cursors.Cross;
-
         private Point _mouseDownPoint;
         private Point _endPoint;
         private bool _mouseDown;
         private Rectangle _selectImageRect;
         private Rectangle _selectImageBounds;
-        private bool _selectedImage;
-        private SizeGrip _sizeGrip;
         private Dictionary<SizeGrip,Rectangle> _sizeGripRectList;
         private OperateManager _operateManager;
         private List<Point> _linePointList;
@@ -94,28 +87,13 @@ namespace CSharpWin_JD.CaptureImage
             colorSelector.ColorTable = colorTable;
         }
 
-        public Image Image
-        {
-            get { return _image; }
-        }
+        public Image Image { get; private set; }
 
-        public Cursor SelectCursor
-        {
-            get { return _selectCursor; }
-            set { _selectCursor = value; }
-        }
+        public Cursor SelectCursor { get; set; } = Cursors.Default;
 
-        public Cursor DrawCursor
-        {
-            get { return _drawCursor; }
-            set { _drawCursor = value; }
-        }
+        public Cursor DrawCursor { get; set; } = Cursors.Cross;
 
-        internal bool SelectedImage
-        {
-            get { return _selectedImage; }
-            set { _selectedImage = value; }
-        }
+        internal bool SelectedImage { get; set; }
 
         internal Rectangle SelectImageRect
         {
@@ -131,11 +109,7 @@ namespace CSharpWin_JD.CaptureImage
             }
         }
 
-        internal SizeGrip SizeGrip
-        {
-            get { return _sizeGrip; }
-            set { _sizeGrip = value; }
-        }
+        internal SizeGrip SizeGrip { get; set; }
 
         internal Dictionary<SizeGrip, Rectangle> SizeGripRectList
         {
@@ -500,8 +474,8 @@ namespace CSharpWin_JD.CaptureImage
                 _linePointList = null;
             }
 
-            _selectCursor = null;
-            _drawCursor = null;
+            SelectCursor = null;
+            DrawCursor = null;
         }
 
         #endregion
@@ -726,7 +700,7 @@ namespace CSharpWin_JD.CaptureImage
 
                     g.Flush();
                     g.Dispose();
-                    _image = bmp;
+                    Image = bmp;
                 }
             }
             //将图片放到剪贴板（涂剑凯添加）
@@ -931,7 +905,7 @@ namespace CSharpWin_JD.CaptureImage
 
             try
             {
-                _selectCursor = new Cursor(Properties.Resources.Arrow_M.Handle);
+                SelectCursor = new Cursor(Properties.Resources.Arrow_M.Handle);
             }
             catch{}
             Cursor = SelectCursor;
