@@ -162,7 +162,7 @@
   <data name="AssetRun.Text" xml:space="preserve">
     <value>资产运行与运营</value>
   </data>
-  <data name="toolStrip1.Text" xml:space="preserve">
-    <value>容器</value>
+  <data name="OSK.Text" xml:space="preserve">
+    <value>键盘</value>
   </data>
 </root>

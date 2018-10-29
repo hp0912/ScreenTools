@@ -37,8 +37,8 @@ namespace ScreenTools
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.PlatformOverview = new System.Windows.Forms.ToolStripMenuItem();
-            this.ProductionLineList = new System.Windows.Forms.ToolStripMenuItem();
             this.AssetRun = new System.Windows.Forms.ToolStripMenuItem();
+            this.ProductionLineList = new System.Windows.Forms.ToolStripMenuItem();
             this.ProductionLineMonitoring = new System.Windows.Forms.ToolStripMenuItem();
             this.VideoConference = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -53,7 +53,7 @@ namespace ScreenTools
             this.AudioRecord = new System.Windows.Forms.ToolStripButton();
             this.StopRecording = new System.Windows.Forms.ToolStripButton();
             this.RecordTimeTick = new System.Windows.Forms.ToolStripLabel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.OSK = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -94,6 +94,15 @@ namespace ScreenTools
             this.PlatformOverview.Text = "UCCP";
             this.PlatformOverview.Click += new System.EventHandler(this.PlatformOverview_Click);
             // 
+            // AssetRun
+            // 
+            this.AssetRun.Font = new System.Drawing.Font("微软雅黑", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.AssetRun.Margin = new System.Windows.Forms.Padding(0, 0, 25, 0);
+            this.AssetRun.Name = "AssetRun";
+            this.AssetRun.Size = new System.Drawing.Size(315, 56);
+            this.AssetRun.Text = "资产运行与运营";
+            this.AssetRun.Click += new System.EventHandler(this.AssetRun_Click);
+            // 
             // ProductionLineList
             // 
             this.ProductionLineList.Font = new System.Drawing.Font("微软雅黑", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -102,14 +111,6 @@ namespace ScreenTools
             this.ProductionLineList.Size = new System.Drawing.Size(195, 56);
             this.ProductionLineList.Text = "产线一览";
             this.ProductionLineList.Click += new System.EventHandler(this.ProductionLineList_Click);
-            // 
-            // AssetRun
-            // 
-            this.AssetRun.Font = new System.Drawing.Font("微软雅黑", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.AssetRun.Margin = new System.Windows.Forms.Padding(0, 0, 25, 0);
-            this.AssetRun.Name = "AssetRun";
-            this.AssetRun.Size = new System.Drawing.Size(315, 56);
-            this.AssetRun.Text = "资产运行与运营";
             // 
             // ProductionLineMonitoring
             // 
@@ -133,6 +134,7 @@ namespace ScreenTools
             this.toolStrip1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SettingS,
+            this.OSK,
             this.ScreenShot,
             this.ScreenRecord,
             this.AudioRecord,
@@ -250,14 +252,16 @@ namespace ScreenTools
             this.RecordTimeTick.Text = "00:00";
             this.RecordTimeTick.Visible = false;
             // 
-            // label1
+            // OSK
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 48);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "146544";
+            this.OSK.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.OSK.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.OSK.Image = ((System.Drawing.Image)(resources.GetObject("OSK.Image")));
+            this.OSK.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.OSK.Name = "OSK";
+            this.OSK.Size = new System.Drawing.Size(73, 39);
+            this.OSK.Text = "键盘";
+            this.OSK.Click += new System.EventHandler(this.OSK_Click);
             // 
             // MainWindow
             // 
@@ -266,7 +270,6 @@ namespace ScreenTools
             this.AutoScroll = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.ClientSize = new System.Drawing.Size(1358, 574);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.menuStrip1);
@@ -306,8 +309,8 @@ namespace ScreenTools
         private ToolStripMenuItem zh_CN;
         private ToolStripMenuItem en_US;
         private ToolStripMenuItem AssetRun;
-        private Label label1;
         protected internal ToolStripButton StopRecording;
+        private ToolStripButton OSK;
     }
 }
 

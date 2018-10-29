@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text" xml:space="preserve">
-    <value>Screen Capture Settings</value>
+    <value>Screen Settings</value>
   </data>
   <data name="browser.Text" xml:space="preserve">
     <value>Browse</value>
@@ -130,7 +130,7 @@
     <value>Confirm</value>
   </data>
   <data name="HideTheMainForm.Text" xml:space="preserve">
-    <value>Hide The MainForm</value>
+    <value>Hide current window for screenshot</value>
   </data>
   <data name="SavePath.Text" xml:space="preserve">
     <value>SavePath</value>

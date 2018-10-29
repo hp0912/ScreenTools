@@ -16,6 +16,7 @@ using Captura.Models;
 using Captura;
 using Screna;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ScreenTools
 {
@@ -35,6 +36,7 @@ namespace ScreenTools
         private readonly DispatcherTimer ScreenRecordTimer;
         private readonly Stopwatch recordingStopwatch = new Stopwatch();
 
+        private bool Osking = false;
         private bool audioRecording = false;
         private bool screenRecording = false;
         readonly AudioSource _audioSource;
@@ -65,7 +67,7 @@ namespace ScreenTools
                 }
                 else
                 {
-                    MessageBox.Show("未找到音频设备.");
+                    System.Windows.Forms.MessageBox.Show("未找到音频设备.");
                     return;
                 }
             }
@@ -90,18 +92,36 @@ namespace ScreenTools
         private void MainWindow_Shown(object sender, EventArgs e)
         {
             InitBrowser("https://www.uccp520.com/bibwdf-logprv/uil/wdf/logreg/wdsignin.vm");
-            //MultiLanguage.FlushWindowState( this);
         }
 
         private void PlatformOverview_Click(object sender, EventArgs e)
         {
             Browser.Load("https://www.uccp520.com/bibcor-byitem/uil/cor/byitem/coiall.vm?stm=1110000_1@0");
-            label1.Text = toolStrip1.Text;
         }
 
         private void ProductionLineList_Click(object sender, EventArgs e)
         {
             Browser.Load("https://www.uccp520.com/bibbam-res/uil/bam/res/line/balinall.vm?stm=4110000_1@0");
+        }
+
+        private void AssetRun_Click(object sender, EventArgs e)
+        {
+            Browser.Load("https://www.uccp520.com/bibcor-asttrack/uil/cor/asttrack/coastsift.vm?stm=1711000_1@0");
+        }
+        
+        private void OSK_Click(object sender, EventArgs e)
+        {
+            Process process = new Process();
+            process.StartInfo = new ProcessStartInfo(AppDomain.CurrentDomain.BaseDirectory + "\\osk.exe");
+            if (Osking == false) {
+                process.Start();
+                Osking = true;
+            }
+            else {
+                Process[] qqs = Process.GetProcessesByName("osk");
+                qqs[0].Kill();
+                Osking = false;
+            }
         }
 
         private void AudioRecord_Click(object sender, EventArgs e)
@@ -165,10 +185,11 @@ namespace ScreenTools
                 Thread.Sleep(70);
             }
 
-            CaptureImageTool capture = new CaptureImageTool();
-
-            capture.SelectCursor = CursorManager.Arrow;
-            capture.DrawCursor = CursorManager.Cross;
+            CaptureImageTool capture = new CaptureImageTool
+            {
+                SelectCursor = CursorManager.Arrow,
+                DrawCursor = CursorManager.Cross
+            };
 
             if (capture.ShowDialog() == DialogResult.OK)
             {
@@ -324,6 +345,7 @@ namespace ScreenTools
                 StopAudioRecord_Click(sender, e);
             }
         }
+
     }
 }
 
