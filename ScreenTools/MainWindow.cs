@@ -96,7 +96,7 @@ namespace ScreenTools
         private void PlatformOverview_Click(object sender, EventArgs e)
         {
             Browser.Load("https://www.uccp520.com/bibcor-byitem/uil/cor/byitem/coiall.vm?stm=1110000_1@0");
-
+            label1.Text = toolStrip1.Text;
         }
 
         private void ProductionLineList_Click(object sender, EventArgs e)

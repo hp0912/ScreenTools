@@ -144,8 +144,8 @@
   <data name="ScreenRecord.Text" xml:space="preserve">
     <value>录屏</value>
   </data>
-  <data name="StopScreenRecord.Text" xml:space="preserve">
-    <value>停止录屏</value>
+  <data name="StopRecording.Text" xml:space="preserve">
+    <value>停止录制</value>
   </data>
   <data name="ScreenShot.Text" xml:space="preserve">
     <value>截屏</value>
@@ -161,5 +161,8 @@
   </data>
   <data name="AssetRun.Text" xml:space="preserve">
     <value>资产运行与运营</value>
+  </data>
+  <data name="toolStrip1.Text" xml:space="preserve">
+    <value>容器</value>
   </data>
 </root>

@@ -144,8 +144,8 @@
   <data name="ScreenRecord.Text" xml:space="preserve">
     <value>Screen Recording</value>
   </data>
-  <data name="StopScreenRecord.Text" xml:space="preserve">
-    <value>Stop</value>
+  <data name="StopRecording.Text" xml:space="preserve">
+    <value>StopRecording</value>
   </data>
   <data name="ScreenShot.Text" xml:space="preserve">
     <value>Screen Capture</value>
@@ -160,6 +160,9 @@
     <value>Video Conferencing</value>
   </data>
   <data name="AssetRun.Text" xml:space="preserve">
-    <value>Asset Running &amp;&amp; Operations</value>
+    <value>Assets</value>
+  </data>
+  <data name="toolStrip1.Text" xml:space="preserve">
+    <value>NMMP</value>
   </data>
 </root>

@@ -38,6 +38,7 @@ namespace ScreenTools
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.PlatformOverview = new System.Windows.Forms.ToolStripMenuItem();
             this.ProductionLineList = new System.Windows.Forms.ToolStripMenuItem();
+            this.AssetRun = new System.Windows.Forms.ToolStripMenuItem();
             this.ProductionLineMonitoring = new System.Windows.Forms.ToolStripMenuItem();
             this.VideoConference = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -52,7 +53,7 @@ namespace ScreenTools
             this.AudioRecord = new System.Windows.Forms.ToolStripButton();
             this.StopRecording = new System.Windows.Forms.ToolStripButton();
             this.RecordTimeTick = new System.Windows.Forms.ToolStripLabel();
-            this.AssetRun = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -62,55 +63,68 @@ namespace ScreenTools
             this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.webBrowser1.Location = new System.Drawing.Point(0, 51);
+            this.webBrowser1.Location = new System.Drawing.Point(0, 63);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1094, 502);
+            this.webBrowser1.Size = new System.Drawing.Size(1358, 475);
             this.webBrowser1.TabIndex = 6;
             // 
             // menuStrip1
             // 
             this.menuStrip1.AllowItemReorder = true;
+            this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.PlatformOverview,
-            this.ProductionLineList,
             this.AssetRun,
+            this.ProductionLineList,
             this.ProductionLineMonitoring,
             this.VideoConference});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1094, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(1358, 60);
             this.menuStrip1.TabIndex = 13;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // PlatformOverview
             // 
-            this.PlatformOverview.Font = new System.Drawing.Font("宋体", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.PlatformOverview.Font = new System.Drawing.Font("微软雅黑", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.PlatformOverview.Margin = new System.Windows.Forms.Padding(0, 0, 25, 0);
             this.PlatformOverview.Name = "PlatformOverview";
-            this.PlatformOverview.Size = new System.Drawing.Size(189, 44);
-            this.PlatformOverview.Text = "平台总览";
+            this.PlatformOverview.Size = new System.Drawing.Size(143, 56);
+            this.PlatformOverview.Text = "UCCP";
             this.PlatformOverview.Click += new System.EventHandler(this.PlatformOverview_Click);
             // 
             // ProductionLineList
             // 
-            this.ProductionLineList.Font = new System.Drawing.Font("宋体", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ProductionLineList.Font = new System.Drawing.Font("微软雅黑", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ProductionLineList.Margin = new System.Windows.Forms.Padding(0, 0, 25, 0);
             this.ProductionLineList.Name = "ProductionLineList";
-            this.ProductionLineList.Size = new System.Drawing.Size(189, 44);
+            this.ProductionLineList.Size = new System.Drawing.Size(195, 56);
             this.ProductionLineList.Text = "产线一览";
             this.ProductionLineList.Click += new System.EventHandler(this.ProductionLineList_Click);
             // 
+            // AssetRun
+            // 
+            this.AssetRun.Font = new System.Drawing.Font("微软雅黑", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.AssetRun.Margin = new System.Windows.Forms.Padding(0, 0, 25, 0);
+            this.AssetRun.Name = "AssetRun";
+            this.AssetRun.Size = new System.Drawing.Size(315, 56);
+            this.AssetRun.Text = "资产运行与运营";
+            // 
             // ProductionLineMonitoring
             // 
-            this.ProductionLineMonitoring.Font = new System.Drawing.Font("宋体", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ProductionLineMonitoring.Font = new System.Drawing.Font("微软雅黑", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ProductionLineMonitoring.Margin = new System.Windows.Forms.Padding(0, 0, 25, 0);
             this.ProductionLineMonitoring.Name = "ProductionLineMonitoring";
-            this.ProductionLineMonitoring.Size = new System.Drawing.Size(189, 44);
+            this.ProductionLineMonitoring.Size = new System.Drawing.Size(195, 56);
             this.ProductionLineMonitoring.Text = "产线监控";
             // 
             // VideoConference
             // 
-            this.VideoConference.Font = new System.Drawing.Font("宋体", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.VideoConference.Font = new System.Drawing.Font("微软雅黑", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.VideoConference.Margin = new System.Windows.Forms.Padding(0, 0, 25, 0);
             this.VideoConference.Name = "VideoConference";
-            this.VideoConference.Size = new System.Drawing.Size(189, 44);
+            this.VideoConference.Size = new System.Drawing.Size(195, 56);
             this.VideoConference.Text = "视频会议";
             // 
             // toolStrip1
@@ -124,9 +138,9 @@ namespace ScreenTools
             this.AudioRecord,
             this.StopRecording,
             this.RecordTimeTick});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 539);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 532);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1094, 42);
+            this.toolStrip1.Size = new System.Drawing.Size(1358, 42);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -236,12 +250,14 @@ namespace ScreenTools
             this.RecordTimeTick.Text = "00:00";
             this.RecordTimeTick.Visible = false;
             // 
-            // AssetRun
+            // label1
             // 
-            this.AssetRun.Font = new System.Drawing.Font("宋体", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.AssetRun.Name = "AssetRun";
-            this.AssetRun.Size = new System.Drawing.Size(309, 44);
-            this.AssetRun.Text = "资产运行与运营";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 48);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "146544";
             // 
             // MainWindow
             // 
@@ -249,11 +265,12 @@ namespace ScreenTools
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.ClientSize = new System.Drawing.Size(1094, 581);
+            this.ClientSize = new System.Drawing.Size(1358, 574);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.menuStrip1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
@@ -288,8 +305,9 @@ namespace ScreenTools
         private ToolStripMenuItem LanguageSet;
         private ToolStripMenuItem zh_CN;
         private ToolStripMenuItem en_US;
-        private ToolStripButton StopRecording;
         private ToolStripMenuItem AssetRun;
+        private Label label1;
+        protected internal ToolStripButton StopRecording;
     }
 }
 
