@@ -56,7 +56,7 @@ namespace ScreenTools
             this.RecordTimeTick = new System.Windows.Forms.ToolStripLabel();
             this.Minimize = new System.Windows.Forms.Button();
             this.Maximize = new System.Windows.Forms.Button();
-            this.Close = new System.Windows.Forms.Button();
+            this.CloseButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -145,6 +145,7 @@ namespace ScreenTools
             this.RecordTimeTick});
             this.toolStrip1.Location = new System.Drawing.Point(0, 532);
             this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.ShowItemToolTips = false;
             this.toolStrip1.Size = new System.Drawing.Size(1378, 42);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
@@ -296,17 +297,17 @@ namespace ScreenTools
             this.Maximize.UseVisualStyleBackColor = true;
             this.Maximize.Click += new System.EventHandler(this.Maximize_Click);
             // 
-            // Close
+            // CloseButton
             // 
-            this.Close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Close.AutoSize = true;
-            this.Close.Location = new System.Drawing.Point(1320, 0);
-            this.Close.Name = "Close";
-            this.Close.Size = new System.Drawing.Size(58, 33);
-            this.Close.TabIndex = 16;
-            this.Close.Text = "关闭";
-            this.Close.UseVisualStyleBackColor = true;
-            this.Close.Click += new System.EventHandler(this.Close_Click);
+            this.CloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CloseButton.AutoSize = true;
+            this.CloseButton.Location = new System.Drawing.Point(1320, 0);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(58, 33);
+            this.CloseButton.TabIndex = 16;
+            this.CloseButton.Text = "关闭";
+            this.CloseButton.UseVisualStyleBackColor = true;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // MainWindow
             // 
@@ -315,7 +316,7 @@ namespace ScreenTools
             this.AutoScroll = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.ClientSize = new System.Drawing.Size(1378, 574);
-            this.Controls.Add(this.Close);
+            this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.Maximize);
             this.Controls.Add(this.Minimize);
             this.Controls.Add(this.toolStrip1);
@@ -361,7 +362,7 @@ namespace ScreenTools
         private ToolStripButton OSK;
         private Button Minimize;
         private Button Maximize;
-        private Button Close;
+        private Button CloseButton;
     }
 }
 

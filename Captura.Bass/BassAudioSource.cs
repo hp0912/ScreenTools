@@ -18,7 +18,7 @@ namespace Captura.Models
             _settings = Settings;
 
             // Initialises Default Playback Device.
-            bool isB =  Bass.Init();
+            Bass.Init();
 
             // Enable Loopback Recording.
             Bass.Configure(Configuration.LoopbackRecording, true);
