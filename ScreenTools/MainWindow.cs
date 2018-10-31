@@ -43,7 +43,8 @@ namespace ScreenTools
         AudioSettings _AudioSettings;
         MyRecordingViewModel _MyRecordingViewModel;
         int AudioDeviceCount = 0;
-
+        String RecorderPath = Properties.Settings.Default.SoundRecorderPath;
+        String ShotPath = Properties.Settings.Default.ScreenShotPath;
 
         public MainWindow()
         {
@@ -67,7 +68,6 @@ namespace ScreenTools
                 else
                 {
                     System.Windows.Forms.MessageBox.Show("未找到音频设备.");
-                    return;
                 }
             }
             _MyRecordingViewModel = new MyRecordingViewModel(_audioSource);
@@ -79,9 +79,11 @@ namespace ScreenTools
         /// <param name="path"></param>
         public void InitBrowser(String path)
         {
-            CefSettings settings = new CefSettings();
-            settings.Locale = "zh-CN";
-            settings.AcceptLanguageList = "zh-CN";
+            CefSettings settings = new CefSettings
+            {
+                Locale = "zh-CN",
+                AcceptLanguageList = "zh-CN"
+            };
             Cef.Initialize(settings);
             Browser = new ChromiumWebBrowser(path)
             {
@@ -112,27 +114,47 @@ namespace ScreenTools
         
         private void OSK_Click(object sender, EventArgs e)
         {
-            Process process = new Process
+            string fileName = Path.Combine("D:\\", DateTime.Now.ToString("yyyy-MM-dd") + ".log");
+            StreamWriter sw = new StreamWriter(fileName, true);//文件流创建写数据流
+           
+            if (File.Exists(System.Windows.Forms.Application.StartupPath + "\\osk.exe"))
             {
-                StartInfo = new ProcessStartInfo(AppDomain.CurrentDomain.BaseDirectory + "\\osk.exe")
-            };
-            Process[] qqs = Process.GetProcessesByName("osk");
-            if (qqs.Length == 0)
-            {
-                process.Start();
-            }
+                ProcessStartInfo startInfo = new ProcessStartInfo(System.Windows.Forms.Application.StartupPath + "\\osk.exe");
+                Process process = new Process();
+
+                startInfo.UseShellExecute = false; //不使用系统外壳程序启动
+                startInfo.RedirectStandardInput = false; //不重定向输入
+                startInfo.RedirectStandardOutput = true; //重定向输出
+
+
+                process.StartInfo = startInfo;
+                Process[] qqs = Process.GetProcessesByName("osk");
+                if (qqs.Length == 0)
+                {
+                    process.Start();
+                }
+                else
+                {
+                    qqs[0].Kill();
+                }
+            }   
             else {
-                qqs[0].Kill();
+                System.Windows.Forms.MessageBox.Show(System.Windows.Forms.Application.StartupPath + "请将\"osk.exe\"置于安装目录下");
             }
+
+            sw.Close();//关闭写数据流
         }
 
         private void AudioRecord_Click(object sender, EventArgs e)
         {
+            if (false == Directory.Exists(RecorderPath))
+            {
+                Directory.CreateDirectory(RecorderPath);
+            }
             if (audioRecording == false)
             {
                 audioRecording = true;
                 IAudioProvider audioProvider = null;
-
                 try
                 {
                     audioProvider = _audioSource.GetMixedAudioProvider();
@@ -140,10 +162,9 @@ namespace ScreenTools
                 catch (Exception ex)
                 {
                     ServiceProvider.MessageProvider.ShowException(ex, ex.Message);
-                }
-                _recorder = new Recorder(
-                                WaveItem.Instance.GetAudioFileWriter(Path.Combine(Properties.Settings.Default.SoundRecorderPath, "BAR-" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".wav"), audioProvider?.WaveFormat,
-                                    50), audioProvider);
+                }            
+                var fileName = Path.Combine(RecorderPath, "BAR-" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".wav");
+                _recorder = new Recorder(WaveItem.Instance.GetAudioFileWriter(fileName, audioProvider?.WaveFormat,50), audioProvider);
                 _recorder.Start();
                 recordingStopwatch.Reset();
                 ScreenRecordTimer.Start();
@@ -196,8 +217,13 @@ namespace ScreenTools
             if (capture.ShowDialog() == DialogResult.OK)
             {
                 Image image = capture.Image;
-                Directory.CreateDirectory(Properties.Settings.Default.ScreenShotPath);
-                string filePath = Path.Combine(Properties.Settings.Default.ScreenShotPath, "BSS-" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".jpg");
+
+                if (false == Directory.Exists(ShotPath))
+                {
+                    //创建pic文件夹
+                    Directory.CreateDirectory(ShotPath);
+                }
+                string filePath = Path.Combine(ShotPath, "BSS-" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".jpg");
                 image.Save(filePath, ImageFormat.Jpeg);
             }
 
@@ -209,9 +235,13 @@ namespace ScreenTools
 
         private void ScreenRecord_Click(object sender, EventArgs e)
         {
+            if (false == Directory.Exists(RecorderPath))
+            {
+                Directory.CreateDirectory(RecorderPath);
+            }
             if (screenRecording == false)
             {
-                _MyRecordingViewModel.StartRecoding(Properties.Settings.Default.SoundRecorderPath);
+                _MyRecordingViewModel.StartRecoding(RecorderPath);
                 screenRecording = true;
                 recordingStopwatch.Reset();
                 ScreenRecordTimer.Start();

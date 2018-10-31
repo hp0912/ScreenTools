@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
-
+using System.Windows.Forms;
 
 namespace ScreenTools
 {
@@ -16,27 +16,27 @@ namespace ScreenTools
     {
 
         IRecorder _recorder;
-        IVideoSourcePicker VideoSourcePicker;
-        LanguageManager LanguageManager = LanguageManager.Instance;
-        ISystemTray SystemTray = null;
-        IPreviewWindow _previewWindow;
-        WebcamOverlay _webcamOverlay;
-        AudioSource _audioSource;
-        IRegionProvider RegionProvider;
-        FullScreenSourceProvider FullScreenProvider;
-        ScreenSourceProvider ScreenSourceProvider;
-        WindowSourceProvider WindowSourceProvider;
-        RegionSourceProvider RegionSourceProvider;
-        NoVideoSourceProvider NoVideoSourceProvider;
-        DeskDuplSourceProvider DeskDuplSourceProvider;
-        IEnumerable<IImageWriterItem> ImageWriters;
-        FFmpegWriterProvider FFmpegWriterProvider;
-        GifWriterProvider GifWriterProvider;
-        StreamingWriterProvider StreamingWriterProvider;
+        readonly IVideoSourcePicker VideoSourcePicker;
+        readonly LanguageManager LanguageManager = LanguageManager.Instance;
+        readonly ISystemTray SystemTray = null;
+        readonly IPreviewWindow _previewWindow;
+        readonly WebcamOverlay _webcamOverlay;
+        readonly AudioSource _audioSource;
+        readonly IRegionProvider RegionProvider;
+        readonly FullScreenSourceProvider FullScreenProvider;
+        readonly ScreenSourceProvider ScreenSourceProvider;
+        readonly WindowSourceProvider WindowSourceProvider;
+        readonly RegionSourceProvider RegionSourceProvider;
+        readonly NoVideoSourceProvider NoVideoSourceProvider;
+        readonly DeskDuplSourceProvider DeskDuplSourceProvider;
+        readonly IEnumerable<IImageWriterItem> ImageWriters;
+        readonly FFmpegWriterProvider FFmpegWriterProvider;
+        readonly GifWriterProvider GifWriterProvider;
+        readonly StreamingWriterProvider StreamingWriterProvider;
         String FileSavePath;
-        SharpAviWriterProvider SharpAviWriterProvider = new SharpAviWriterProvider();
+        readonly SharpAviWriterProvider SharpAviWriterProvider = new SharpAviWriterProvider();
 
-        DiscardWriterProvider DiscardWriterProvider = new DiscardWriterProvider();
+        readonly DiscardWriterProvider DiscardWriterProvider = new DiscardWriterProvider();
 
         VideoViewModel _videoViewModel;
 
@@ -86,7 +86,7 @@ namespace ScreenTools
             FileSavePath = savePath + "BAR-" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".avi";
 
             //图像
-            IImageProvider imgProvider;
+            IImageProvider imgProvider = null;
 
             try
             {
@@ -118,7 +118,7 @@ namespace ScreenTools
                 return;
             }
             //视频写入
-            IVideoFileWriter videoEncoder;
+            IVideoFileWriter videoEncoder = null;
 
             try
             {
@@ -172,8 +172,7 @@ namespace ScreenTools
             }
             catch (Exception e)
             {
-                ServiceProvider.MessageProvider.ShowException(e, "Error occurred when stopping recording.\nThis might sometimes occur if you stop recording just as soon as you start it.");
-
+                MessageBox.Show("Error occurred when stopping recording.\nThis might sometimes occur if you stop recording just as soon as you start it.");
                 return;
             }
         }
@@ -199,9 +198,6 @@ namespace ScreenTools
             }
 
             overlays.Add(new MousePointerOverlay(Settings.MousePointerOverlay));
-
-            
-
             // Custom Image Overlays
 
             return new OverlayedImageProvider(imageProvider, transform, overlays.ToArray());
