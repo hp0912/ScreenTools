@@ -94,8 +94,8 @@ namespace ScreenTools
             }
             catch (Exception e)
             {
-                ServiceProvider.MessageProvider.ShowException(e, e.Message);
-
+                MessageBox.Show(e.Message);
+                imgProvider?.Dispose();
                 return;
             }
             //声音
@@ -111,14 +111,12 @@ namespace ScreenTools
             }
             catch (Exception e)
             {
-                ServiceProvider.MessageProvider.ShowException(e, e.Message);
-
-                imgProvider?.Dispose();
-
+                MessageBox.Show(e.Message);
+                _audioSource?.Dispose();
                 return;
             }
             //视频写入
-            IVideoFileWriter videoEncoder = null;
+            IVideoFileWriter videoEncoder;
 
             try
             {
@@ -126,7 +124,7 @@ namespace ScreenTools
             }
             catch (Exception e)
             {
-                ServiceProvider.MessageProvider.ShowException(e, e.Message);
+                MessageBox.Show(e.Message);
 
                 imgProvider?.Dispose();
                 audioProvider?.Dispose();
@@ -152,8 +150,7 @@ namespace ScreenTools
             }
             catch (Exception e)
             {
-                ServiceProvider.MessageProvider.ShowException(e, "Error occurred when stopping recording.\nThis might sometimes occur if you stop recording just as soon as you start it.");
-
+                MessageBox.Show(e.Message);
                 return;
             }
         }
@@ -171,8 +168,8 @@ namespace ScreenTools
                 await task;
             }
             catch (Exception e)
-            {
-                MessageBox.Show("Error occurred when stopping recording.\nThis might sometimes occur if you stop recording just as soon as you start it.");
+            { 
+                MessageBox.Show(e.Message);
                 return;
             }
         }
