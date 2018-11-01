@@ -23,14 +23,6 @@ namespace ScreenTools
 
     public partial class MainWindow : Form
     {
-
-        [DllImport("winmm.dll", EntryPoint = "mciSendString", CharSet = CharSet.Auto)]
-        public static extern int MciSendString(
-         string lpstrCommand,
-         string lpstrReturnString,
-         int uReturnLength,
-         int hwndCallback
-        );
         public ChromiumWebBrowser Browser;
 
         private readonly DispatcherTimer ScreenRecordTimer;
