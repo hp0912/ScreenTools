@@ -372,7 +372,7 @@ namespace ScreenTools
         /// 点击截屏设置
         /// 1、隐藏当前窗口
         /// 2、截图保存路径
-        /// var：隐式类型
+        /// var：隐式类型，一旦声明必须赋值，否则会报错
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -392,7 +392,7 @@ namespace ScreenTools
         }
 
         /// <summary>
-        /// 设置录音录屏
+        /// 点击设置录音录屏
         /// 1、选取可用设备
         /// 2、文件保存路径
         /// </summary>
@@ -413,13 +413,20 @@ namespace ScreenTools
                 Properties.Settings.Default.Save();
             }
         }
-
+        /// <summary>
+        /// 主屏幕关闭事件---停止录制(音频/视频)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //停止录制
             StopRecording_Click(sender, e);
         }
-
+        /// <summary>
+        /// 点击停止录制
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StopRecording_Click(object sender, EventArgs e)
         {
 
@@ -432,7 +439,11 @@ namespace ScreenTools
                 StopAudioRecord_Click(sender, e);
             }
         }
-
+        /// <summary>
+        /// 点击"最小化"按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Minimize_Click(object sender, EventArgs e)
         {
             if (!this.ShowInTaskbar)
@@ -444,7 +455,11 @@ namespace ScreenTools
                 this.WindowState = FormWindowState.Minimized;
             }
         }
-
+        /// <summary>
+        /// 点击"最大化与还原"按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Maximize_Click(object sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Normal)
@@ -457,14 +472,18 @@ namespace ScreenTools
                 this.WindowState = FormWindowState.Normal;
             }
         }
-
+        /// <summary>
+        /// 点击"关闭"按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CloseButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
         /// <summary>
-        /// 启动关闭特定的可执行文件
+        /// 启动关闭特定的可执行文件 --- 调用虚拟键盘/系统文件
         /// </summary>
         /// <param name="executePath"></param>exe文件的绝对路径
         /// <param name="excuteName"></param>exe文件的名字，不带扩展名
