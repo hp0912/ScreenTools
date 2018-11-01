@@ -23,18 +23,18 @@ namespace ScreenTools
 
     public partial class MainWindow : Form
     {
-        public ChromiumWebBrowser Browser;
+        public ChromiumWebBrowser Browser; // hp谷歌浏览器内核
 
-        private readonly DispatcherTimer ScreenRecordTimer;
+        private readonly DispatcherTimer ScreenRecordTimer; // 定时器
         private readonly Stopwatch recordingStopwatch = new Stopwatch();
 
-        private bool audioRecording = false;
+        private bool audioRecording = false; // 判断有没有录屏/录音状态值
         private bool screenRecording = false;
-        readonly AudioSource _audioSource;
-        IRecorder _recorder;
-        AudioSettings _AudioSettings;
-        MyRecordingViewModel _MyRecordingViewModel;
-        int AudioDeviceCount = 0;
+        readonly AudioSource _audioSource; // 录音设备来源（包含设备详情数据，声卡麦克风等）
+        IRecorder _recorder; 
+        AudioSettings _AudioSettings; // 录音设置
+        MyRecordingViewModel _MyRecordingViewModel; // 录屏
+        int AudioDeviceCount = 0; // 外接设备数量
         String RecorderPath = Properties.Settings.Default.SoundRecorderPath;
         String ShotPath = Properties.Settings.Default.ScreenShotPath;
 
@@ -79,40 +79,57 @@ namespace ScreenTools
             };
             this.webBrowser1.Controls.Add(Browser);
         }
-
+        /// <summary>
+        /// 一开始进入软件的事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainWindow_Shown(object sender, EventArgs e)
         {
             InitBrowser("https://www.uccp520.com/bibwdf-logprv/uil/wdf/logreg/wdsignin.vm");
         }
-
+        /// <summary>
+        /// 点击"UCCP"按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PlatformOverview_Click(object sender, EventArgs e)
         {
             Browser.Load("https://www.uccp520.com/bibcor-byitem/uil/cor/byitem/coiall.vm?stm=1110000_1@0");
         }
-
+        /// <summary>
+        /// 点击"资产运行与运营"按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ProductionLineList_Click(object sender, EventArgs e)
         {
             Browser.Load("https://www.uccp520.com/bibbam-res/uil/bam/res/line/balinall.vm?stm=4110000_1@0");
         }
-
+        /// <summary>
+        /// 点击"产线一览"按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AssetRun_Click(object sender, EventArgs e)
         {
             Browser.Load("https://www.uccp520.com/bibcor-asttrack/uil/cor/asttrack/coastsift.vm?stm=1711000_1@0");
         }
 
-        private void ProductionLineMonitoring_Click(object sender, EventArgs e)
+        #region "暂时可能用不到"
+        private void ProductionLineMonitoring_Click(object sender, EventArgs e) // 点击"产线监控"按钮
         {
             
             StartProcess(System.Windows.Forms.Application.StartupPath + "\\osk.exe", "osk");
         }
 
-        private void VideoConference_Click(object sender, EventArgs e)
+        private void VideoConference_Click(object sender, EventArgs e) // 点击"视频会议"按钮
         {
             StartProcess(System.Windows.Forms.Application.StartupPath + "\\osk.exe", "osk");
         }
 
 
-        private void OSK_Click(object sender, EventArgs e)
+        private void OSK_Click(object sender, EventArgs e) // 虚拟键盘相关接口函数
         {
             StartProcess(System.Windows.Forms.Application.StartupPath + "\\osk.exe", "osk");
             //if (File.Exists(System.Windows.Forms.Application.StartupPath + "\\osk.exe"))
@@ -139,20 +156,27 @@ namespace ScreenTools
             //    System.Windows.Forms.MessageBox.Show(System.Windows.Forms.Application.StartupPath + "请将\"osk.exe\"置于安装目录下");
             //}
         }
-
+        #endregion
+        /// <summary>
+        /// 点击录音
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AudioRecord_Click(object sender, EventArgs e)
         {
             if (false == Directory.Exists(RecorderPath))
             {
                 Directory.CreateDirectory(RecorderPath);
             }
-            if (AudioDeviceCount == 0)
+            if (AudioDeviceCount == 0) 
             {
-                if (_audioSource.AvailableRecordingSources.Count <= 0&& _audioSource.AvailableLoopbackSources.Count <= 0)
-                {
-                    System.Windows.Forms.MessageBox.Show("未找到音频设备.");
-                    return;
-                }
+                //if (_audiosource.availablerecordingsources.count <= 0&& _audiosource.availableloopbacksources.count <= 0)
+                //{
+                //    system.windows.forms.messagebox.show("未找到音频设备.");
+                //    return;
+                //}
+                System.Windows.Forms.MessageBox.Show("未找到音频设备.");
+                return;
             }
 
             if (audioRecording == false)
@@ -174,7 +198,7 @@ namespace ScreenTools
                 ScreenRecordTimer.Start();
                 recordingStopwatch.Start();
 
-                ScreenRecord.Enabled = false;
+                ScreenRecord.Enabled = false; // 禁用/启用
                 ScreenRecord.Visible = false;
                 AudioRecord.Enabled = false;
                 AudioRecord.Visible = false;
@@ -183,7 +207,11 @@ namespace ScreenTools
                 RecordTimeTick.Visible = true;
             }
         }
-
+        /// <summary>
+        /// 点击停止录音
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void StopAudioRecord_Click(object sender, EventArgs e)
         {
             if (audioRecording == true)
@@ -193,7 +221,7 @@ namespace ScreenTools
                 ScreenRecordTimer.Stop();
                 recordingStopwatch.Stop();
 
-                AudioRecord.Enabled = true;
+                AudioRecord.Enabled = true; // 禁用/启用
                 AudioRecord.Visible = true;
                 ScreenRecord.Enabled = true;
                 ScreenRecord.Visible = true;
@@ -203,7 +231,11 @@ namespace ScreenTools
                 RecordTimeTick.Text = "00:00";
             }
         }
-
+        /// <summary>
+        /// 点击截屏
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ScreenShot_Click(object sender, EventArgs e)
         {
             if (Properties.Settings.Default.HideCurrentWindow)
@@ -236,7 +268,11 @@ namespace ScreenTools
                 Show();
             }
         }
-
+        /// <summary>
+        /// 点击停止截屏
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ScreenRecord_Click(object sender, EventArgs e)
         {
             if (false == Directory.Exists(RecorderPath))
@@ -261,7 +297,12 @@ namespace ScreenTools
             }
 
         }
-
+        /// <summary>
+        /// 点击停止录屏
+        /// async异步无返回值，与await共同使用，在后者返回状态值后执行下面的代码
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void StopScreenRecord_Click(object sender, EventArgs e)
         {
             if (screenRecording == true)
@@ -299,29 +340,39 @@ namespace ScreenTools
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            //设置默认语言
-            String Language = Properties.Settings.Default.DefaultLanguage;
-            if(Language== "zh-CN"){
+            String Language = Properties.Settings.Default.DefaultLanguage; // 设置默认语言
+            if (Language == "zh-CN")
+            {
                 zh_CN_Click(sender, e);
             }
-            else {
+            else
+            {
                 en_US_Click(sender, e);
             }
         }
-
+        /// <summary>
+        /// 点击切换中文
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void zh_CN_Click(object sender, EventArgs e)
         {
             MultiLanguage.LoadCurrentFromLanguage("zh-CN");
         }
-
+        /// <summary>
+        /// 点击切换英文
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void en_US_Click(object sender, EventArgs e)
         {
             MultiLanguage.LoadCurrentFromLanguage("en-US");
         }
         /// <summary>
-        /// 截屏设置
+        /// 点击截屏设置
         /// 1、隐藏当前窗口
         /// 2、截图保存路径
+        /// var：隐式类型
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -444,7 +495,6 @@ namespace ScreenTools
             }
             return flag;
         }
-
     }
 }
 
