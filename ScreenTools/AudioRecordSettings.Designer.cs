@@ -157,7 +157,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "录音设置";
+            this.Text = "录制设置";
             this.Load += new System.EventHandler(this.AudioRecordSettings_Load);
             this.SoundcardGroup.ResumeLayout(false);
             this.MicrophoneGroup.ResumeLayout(false);

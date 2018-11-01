@@ -139,6 +139,6 @@
     <value>声卡</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>录音设置</value>
+    <value>录制设置</value>
   </data>
 </root>

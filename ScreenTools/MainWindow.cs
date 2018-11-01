@@ -65,10 +65,6 @@ namespace ScreenTools
                 {
                     _audioSource.AvailableLoopbackSources[0].Active = true;
                 }
-                else
-                {
-                    System.Windows.Forms.MessageBox.Show("未找到音频设备.");
-                }
             }
             _MyRecordingViewModel = new MyRecordingViewModel(_audioSource);
         }
@@ -111,38 +107,45 @@ namespace ScreenTools
         {
             Browser.Load("https://www.uccp520.com/bibcor-asttrack/uil/cor/asttrack/coastsift.vm?stm=1711000_1@0");
         }
-        
+
+        private void ProductionLineMonitoring_Click(object sender, EventArgs e)
+        {
+            
+            StartProcess(System.Windows.Forms.Application.StartupPath + "\\osk.exe", "osk");
+        }
+
+        private void VideoConference_Click(object sender, EventArgs e)
+        {
+            StartProcess(System.Windows.Forms.Application.StartupPath + "\\osk.exe", "osk");
+        }
+
+
         private void OSK_Click(object sender, EventArgs e)
         {
-            string fileName = Path.Combine("D:\\", DateTime.Now.ToString("yyyy-MM-dd") + ".log");
-            StreamWriter sw = new StreamWriter(fileName, true);//文件流创建写数据流
-           
-            if (File.Exists(System.Windows.Forms.Application.StartupPath + "\\osk.exe"))
-            {
-                ProcessStartInfo startInfo = new ProcessStartInfo(System.Windows.Forms.Application.StartupPath + "\\osk.exe");
-                Process process = new Process();
+            StartProcess(System.Windows.Forms.Application.StartupPath + "\\osk.exe", "osk");
+            //if (File.Exists(System.Windows.Forms.Application.StartupPath + "\\osk.exe"))
+            //{
+            //    ProcessStartInfo startInfo = new ProcessStartInfo(System.Windows.Forms.Application.StartupPath + "\\osk.exe");
+            //    Process process = new Process();
 
-                startInfo.UseShellExecute = false; //不使用系统外壳程序启动
-                startInfo.RedirectStandardInput = false; //不重定向输入
-                startInfo.RedirectStandardOutput = true; //重定向输出
+            //    startInfo.UseShellExecute = false; //不使用系统外壳程序启动
+            //    startInfo.RedirectStandardInput = false; //不重定向输入
+            //    startInfo.RedirectStandardOutput = true; //重定向输出
 
-
-                process.StartInfo = startInfo;
-                Process[] qqs = Process.GetProcessesByName("osk");
-                if (qqs.Length == 0)
-                {
-                    process.Start();
-                }
-                else
-                {
-                    qqs[0].Kill();
-                }
-            }   
-            else {
-                System.Windows.Forms.MessageBox.Show(System.Windows.Forms.Application.StartupPath + "请将\"osk.exe\"置于安装目录下");
-            }
-
-            sw.Close();//关闭写数据流
+            //    process.StartInfo = startInfo;
+            //    Process[] qqs = Process.GetProcessesByName("osk");
+            //    if (qqs.Length == 0)
+            //    {
+            //        process.Start();
+            //    }
+            //    else
+            //    {
+            //        qqs[0].Kill();
+            //    }
+            //}   
+            //else {
+            //    System.Windows.Forms.MessageBox.Show(System.Windows.Forms.Application.StartupPath + "请将\"osk.exe\"置于安装目录下");
+            //}
         }
 
         private void AudioRecord_Click(object sender, EventArgs e)
@@ -151,6 +154,15 @@ namespace ScreenTools
             {
                 Directory.CreateDirectory(RecorderPath);
             }
+            if (AudioDeviceCount == 0)
+            {
+                if (_audioSource.AvailableRecordingSources.Count <= 0&& _audioSource.AvailableLoopbackSources.Count <= 0)
+                {
+                    System.Windows.Forms.MessageBox.Show("未找到音频设备.");
+                    return;
+                }
+            }
+
             if (audioRecording == false)
             {
                 audioRecording = true;
@@ -407,6 +419,40 @@ namespace ScreenTools
         {
             this.Close();
         }
+
+        /// <summary>
+        /// 启动关闭特定的可执行文件
+        /// </summary>
+        /// <param name="executePath"></param>exe文件的绝对路径
+        /// <param name="excuteName"></param>exe文件的名字，不带扩展名
+        /// <returns></returns>
+        private bool StartProcess(String executePath, String excuteName) {
+            Boolean flag = false;
+            if (File.Exists(executePath))
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo(executePath);
+                Process process = new Process();
+                startInfo.UseShellExecute = false; //不使用系统外壳程序启动
+                startInfo.RedirectStandardInput = false; //不重定向输入
+                startInfo.RedirectStandardOutput = true; //重定向输出
+                process.StartInfo = startInfo;
+                Process[] qqs = Process.GetProcessesByName(excuteName);
+                if (qqs.Length == 0)
+                {
+                    flag = process.Start();
+                }
+                else
+                {
+                    qqs[0].Kill();
+                }
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Please check path："+ executePath);
+            }
+            return flag;
+        }
+
     }
 }
 

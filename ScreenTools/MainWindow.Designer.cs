@@ -48,6 +48,7 @@ namespace ScreenTools
             this.LanguageSet = new System.Windows.Forms.ToolStripMenuItem();
             this.zh_CN = new System.Windows.Forms.ToolStripMenuItem();
             this.en_US = new System.Windows.Forms.ToolStripMenuItem();
+            this.参数配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OSK = new System.Windows.Forms.ToolStripButton();
             this.ScreenShot = new System.Windows.Forms.ToolStripButton();
             this.ScreenRecord = new System.Windows.Forms.ToolStripButton();
@@ -66,10 +67,10 @@ namespace ScreenTools
             this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.webBrowser1.Location = new System.Drawing.Point(0, 63);
+            this.webBrowser1.Location = new System.Drawing.Point(0, 46);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1378, 475);
+            this.webBrowser1.Size = new System.Drawing.Size(1378, 492);
             this.webBrowser1.TabIndex = 6;
             // 
             // menuStrip1
@@ -84,52 +85,54 @@ namespace ScreenTools
             this.VideoConference});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1378, 60);
+            this.menuStrip1.Size = new System.Drawing.Size(1378, 43);
             this.menuStrip1.TabIndex = 13;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // PlatformOverview
             // 
-            this.PlatformOverview.Font = new System.Drawing.Font("微软雅黑", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.PlatformOverview.Margin = new System.Windows.Forms.Padding(0, 0, 25, 0);
+            this.PlatformOverview.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.PlatformOverview.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.PlatformOverview.Name = "PlatformOverview";
-            this.PlatformOverview.Size = new System.Drawing.Size(143, 56);
+            this.PlatformOverview.Size = new System.Drawing.Size(100, 39);
             this.PlatformOverview.Text = "UCCP";
             this.PlatformOverview.Click += new System.EventHandler(this.PlatformOverview_Click);
             // 
             // AssetRun
             // 
-            this.AssetRun.Font = new System.Drawing.Font("微软雅黑", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.AssetRun.Margin = new System.Windows.Forms.Padding(0, 0, 25, 0);
+            this.AssetRun.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.AssetRun.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.AssetRun.Name = "AssetRun";
-            this.AssetRun.Size = new System.Drawing.Size(315, 56);
+            this.AssetRun.Size = new System.Drawing.Size(216, 39);
             this.AssetRun.Text = "资产运行与运营";
             this.AssetRun.Click += new System.EventHandler(this.AssetRun_Click);
             // 
             // ProductionLineList
             // 
-            this.ProductionLineList.Font = new System.Drawing.Font("微软雅黑", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ProductionLineList.Margin = new System.Windows.Forms.Padding(0, 0, 25, 0);
+            this.ProductionLineList.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ProductionLineList.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.ProductionLineList.Name = "ProductionLineList";
-            this.ProductionLineList.Size = new System.Drawing.Size(195, 56);
+            this.ProductionLineList.Size = new System.Drawing.Size(135, 39);
             this.ProductionLineList.Text = "产线一览";
             this.ProductionLineList.Click += new System.EventHandler(this.ProductionLineList_Click);
             // 
             // ProductionLineMonitoring
             // 
-            this.ProductionLineMonitoring.Font = new System.Drawing.Font("微软雅黑", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ProductionLineMonitoring.Margin = new System.Windows.Forms.Padding(0, 0, 25, 0);
+            this.ProductionLineMonitoring.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ProductionLineMonitoring.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.ProductionLineMonitoring.Name = "ProductionLineMonitoring";
-            this.ProductionLineMonitoring.Size = new System.Drawing.Size(195, 56);
+            this.ProductionLineMonitoring.Size = new System.Drawing.Size(135, 39);
             this.ProductionLineMonitoring.Text = "产线监控";
+            this.ProductionLineMonitoring.Click += new System.EventHandler(this.ProductionLineMonitoring_Click);
             // 
             // VideoConference
             // 
-            this.VideoConference.Font = new System.Drawing.Font("微软雅黑", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.VideoConference.Margin = new System.Windows.Forms.Padding(0, 0, 25, 0);
+            this.VideoConference.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.VideoConference.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.VideoConference.Name = "VideoConference";
-            this.VideoConference.Size = new System.Drawing.Size(195, 56);
+            this.VideoConference.Size = new System.Drawing.Size(135, 39);
             this.VideoConference.Text = "视频会议";
+            this.VideoConference.Click += new System.EventHandler(this.VideoConference_Click);
             // 
             // toolStrip1
             // 
@@ -156,7 +159,8 @@ namespace ScreenTools
             this.SettingS.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AudioRecordSet,
             this.ScreenCaptureSet,
-            this.LanguageSet});
+            this.LanguageSet,
+            this.参数配置ToolStripMenuItem});
             this.SettingS.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.SettingS.Image = ((System.Drawing.Image)(resources.GetObject("SettingS.Image")));
             this.SettingS.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -203,9 +207,16 @@ namespace ScreenTools
             this.en_US.Text = "English";
             this.en_US.Click += new System.EventHandler(this.en_US_Click);
             // 
+            // 参数配置ToolStripMenuItem
+            // 
+            this.参数配置ToolStripMenuItem.Name = "参数配置ToolStripMenuItem";
+            this.参数配置ToolStripMenuItem.Size = new System.Drawing.Size(198, 40);
+            this.参数配置ToolStripMenuItem.Text = "参数配置";
+            // 
             // OSK
             // 
             this.OSK.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.OSK.Enabled = false;
             this.OSK.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.OSK.Image = ((System.Drawing.Image)(resources.GetObject("OSK.Image")));
             this.OSK.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -213,6 +224,7 @@ namespace ScreenTools
             this.OSK.Size = new System.Drawing.Size(73, 39);
             this.OSK.Text = "键盘";
             this.OSK.ToolTipText = "\r\n";
+            this.OSK.Visible = false;
             this.OSK.Click += new System.EventHandler(this.OSK_Click);
             // 
             // ScreenShot
@@ -363,6 +375,7 @@ namespace ScreenTools
         private Button Minimize;
         private Button Maximize;
         private Button CloseButton;
+        private ToolStripMenuItem 参数配置ToolStripMenuItem;
     }
 }
 
