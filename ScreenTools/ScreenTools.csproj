@@ -53,7 +53,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -91,6 +91,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArgumentsSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ArgumentsSettings.Designer.cs">
+      <DependentUpon>ArgumentsSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="AudioRecordSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +126,9 @@
     <Compile Include="ScreenShotSettings.Designer.cs">
       <DependentUpon>ScreenShotSettings.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ArgumentsSettings.resx">
+      <DependentUpon>ArgumentsSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AudioRecordSettings.en-US.resx">
       <DependentUpon>AudioRecordSettings.cs</DependentUpon>
     </EmbeddedResource>
