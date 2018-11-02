@@ -31,21 +31,21 @@ namespace ScreenTools
 
         private void Browse_Click(object sender, EventArgs e)
         {
-            if(1 == 1) // 若是第一次打开
-            {
+            //if(1 == 1) // 若是第一次打开
+            //{
 
-            }
-            else // 若不是第一次打开
-            {
-                if(1 == 1) // 上一次保存的目录路径下的文件无法执行，则需要重新选择目录
-                {
+            //}
+            //else // 若不是第一次打开
+            //{
+            //    if(1 == 1) // 上一次保存的目录路径下的文件无法执行，则需要重新选择目录
+            //    {
 
-                }
-                else // 若可以执行则直接执行
-                {
+            //    }
+            //    else // 若可以执行则直接执行
+            //    {
 
-                }
-            }
+            //    }
+            //}
 
             OpenFileDialog file = new OpenFileDialog(); //打开文件选择对话框
             file.Filter = "*|*.exe";   // 加入限制条件，只能选择后缀为.exe的文件

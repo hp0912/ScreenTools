@@ -105,7 +105,6 @@
         private System.Windows.Forms.Button Cancel;
         private System.Windows.Forms.Button Confirm;
         private System.Windows.Forms.Label FilePath;
-        private System.Windows.Forms.FolderBrowserDialog FileFolderBrowserDialog;
         private System.Windows.Forms.TextBox SelectedFilePath;
     }
 }
