@@ -116,14 +116,22 @@ namespace ScreenTools
             Browser.Load("https://www.uccp520.com/bibcor-asttrack/uil/cor/asttrack/coastsift.vm?stm=1711000_1@0");
         }
 
-        #region "暂时可能用不到"
-        private void ProductionLineMonitoring_Click(object sender, EventArgs e) // 点击"产线监控"按钮
+        /// <summary>
+        /// 点击"产线监控"按钮，调用客户选择的相应目录下面的.exe文件，进行监控
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ProductionLineMonitoring_Click(object sender, EventArgs e)
         {
-            
-            StartProcess(System.Windows.Forms.Application.StartupPath + "\\osk.exe", "osk");
+            var FileSelectorSettings = new FileSelectorSettings();
+            FileSelectorSettings.ShowDialog();
         }
-
-        private void VideoConference_Click(object sender, EventArgs e) // 点击"视频会议"按钮
+        /// <summary>
+        /// 点击"视频会议"按钮，调用酷虎选择的相应目录下面的.exe文件，进行视频会议
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void VideoConference_Click(object sender, EventArgs e)
         {
             StartProcess(System.Windows.Forms.Application.StartupPath + "\\osk.exe", "osk");
         }
@@ -156,7 +164,7 @@ namespace ScreenTools
             //    System.Windows.Forms.MessageBox.Show(System.Windows.Forms.Application.StartupPath + "请将\"osk.exe\"置于安装目录下");
             //}
         }
-        #endregion
+     
         /// <summary>
         /// 点击录音
         /// </summary>
@@ -514,6 +522,7 @@ namespace ScreenTools
             }
             return flag;
         }
+        
     }
 }
 
