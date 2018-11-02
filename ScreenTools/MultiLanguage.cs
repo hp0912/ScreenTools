@@ -38,44 +38,6 @@ namespace ScreenTools
         /// <param name="control">控件</param>
         /// <param name="resourceManager">语言资源</param>
         public static void Loading(Control control, System.ComponentModel.ComponentResourceManager resourceManager) {
-            //if (control is MenuStrip) {
-            //    //将资源与控件相对应
-            //    resourceManager.ApplyResources(control, control.Name);
-            //    MenuStrip menuStrip = (MenuStrip)control;
-            //    if (menuStrip.Items.Count > 0) {
-            //        foreach (ToolStripMenuItem c in menuStrip.Items) {
-            //            //遍历菜单
-            //            Loading(c, resourceManager);
-            //        }
-            //    }
-            //}
-
-            //if (control is ToolStrip) {
-            //    resourceManager.ApplyResources(control, control.Name);
-            //    foreach (Control toolStripItem in ((ToolStrip)control).Items) {
-            //        //if (toolStripItem is ToolStripMenuItem) {
-            //        //    Loading(toolStripItem , resourceManager);
-            //        //}
-            //        Loading(toolStripItem, resourceManager);
-            //        //ToolStripDropDownButton a;
-            //        //Control b;
-            //    }
-
-
-
-            //    //if (control.Items is ToolStripDropDownButton) {
-
-            //    //}
-
-
-            //    //foreach (Control c in control.Controls)
-            //    //{
-            //    //    resourceManager.ApplyResources(c, c.Name);
-            //    //    Loading(c, resourceManager);
-            //    //}
-            //}
-
-
             foreach (Control c in control.Controls) {
                 if (c is MenuStrip)
                 {
