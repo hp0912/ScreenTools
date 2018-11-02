@@ -155,6 +155,10 @@ namespace ScreenTools
             }
         }
 
+        /// <summary>
+        /// 停止录屏
+        /// </summary>
+        /// <returns></returns>
         public async Task StopAudioRecording()
         {
             // Reference Recorder as it will be set to null
