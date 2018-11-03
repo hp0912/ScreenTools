@@ -61,8 +61,11 @@ namespace ScreenTools
             //    process.Start(); // 启动选择的exe文件
             //}
             process = new Process();
-            process.StartInfo.FileName = Path.GetFullPath(file.FileName);
-            process.Start(); // 启动选择的exe文件
+            if(file.FileName != "")
+            {
+                process.StartInfo.FileName = Path.GetFullPath(file.FileName);
+                process.Start(); // 启动选择的exe文件
+            }
         }
 
         private void SelectedFilePath_TextChanged(object sender, EventArgs e)

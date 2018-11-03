@@ -92,6 +92,7 @@
             this.Controls.Add(this.Confirm);
             this.Controls.Add(this.Cancel);
             this.Controls.Add(this.Browse);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FileSelectorSettings";
             this.Text = "FileSelectorSettings";
             this.ResumeLayout(false);

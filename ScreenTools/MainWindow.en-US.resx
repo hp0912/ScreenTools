@@ -136,22 +136,22 @@
     <value>Video Conferencing</value>
   </data>
   <data name="AssetRun.Text" xml:space="preserve">
-    <value>Assets</value>
+    <value>Asset Use</value>
   </data>
   <data name="AudioRecord.Text" xml:space="preserve">
-    <value>Sound recording</value>
+    <value>Sound Recording</value>
   </data>
   <data name="AudioRecordSet.Text" xml:space="preserve">
     <value>Recording Settings</value>
   </data>
   <data name="JPGPathSet.Text" xml:space="preserve">
-    <value>Save path</value>
+    <value>Save Path</value>
   </data>
   <data name="LanguageSet.Text" xml:space="preserve">
     <value>Language Setting</value>
   </data>
   <data name="OSK.Text" xml:space="preserve">
-    <value>keyBoard</value>
+    <value>KeyBoard</value>
   </data>
   <data name="ScreenCaptureSet.Text" xml:space="preserve">
     <value>Screenshot Settings</value>

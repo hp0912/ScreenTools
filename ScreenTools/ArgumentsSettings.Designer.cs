@@ -28,78 +28,78 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.MonitorPath = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.LinePath = new System.Windows.Forms.TextBox();
+            this.MeetingPath = new System.Windows.Forms.TextBox();
+            this.LineBrowse = new System.Windows.Forms.Button();
+            this.MeetingBrowse = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // MonitorPath
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(66, 48);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.MonitorPath.AutoSize = true;
+            this.MonitorPath.Location = new System.Drawing.Point(43, 48);
+            this.MonitorPath.Name = "MonitorPath";
+            this.MonitorPath.Size = new System.Drawing.Size(77, 12);
+            this.MonitorPath.TabIndex = 0;
+            this.MonitorPath.Text = "产线监控路径";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(66, 98);
+            this.label2.Location = new System.Drawing.Point(42, 98);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.Size = new System.Drawing.Size(77, 12);
             this.label2.TabIndex = 1;
-            this.label2.Text = "label2";
+            this.label2.Text = "视频会议路径";
             // 
-            // textBox1
+            // LinePath
             // 
-            this.textBox1.Location = new System.Drawing.Point(126, 45);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(219, 21);
-            this.textBox1.TabIndex = 2;
+            this.LinePath.Location = new System.Drawing.Point(126, 45);
+            this.LinePath.Name = "LinePath";
+            this.LinePath.Size = new System.Drawing.Size(248, 21);
+            this.LinePath.TabIndex = 2;
             // 
-            // textBox2
+            // MeetingPath
             // 
-            this.textBox2.Location = new System.Drawing.Point(126, 95);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(219, 21);
-            this.textBox2.TabIndex = 3;
+            this.MeetingPath.Location = new System.Drawing.Point(126, 95);
+            this.MeetingPath.Name = "MeetingPath";
+            this.MeetingPath.Size = new System.Drawing.Size(248, 21);
+            this.MeetingPath.TabIndex = 3;
             // 
-            // button1
+            // LineBrowse
             // 
-            this.button1.Location = new System.Drawing.Point(380, 45);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.LineBrowse.Location = new System.Drawing.Point(383, 44);
+            this.LineBrowse.Name = "LineBrowse";
+            this.LineBrowse.Size = new System.Drawing.Size(75, 23);
+            this.LineBrowse.TabIndex = 4;
+            this.LineBrowse.Text = "浏览";
+            this.LineBrowse.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // MeetingBrowse
             // 
-            this.button2.Location = new System.Drawing.Point(380, 93);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.MeetingBrowse.Location = new System.Drawing.Point(383, 94);
+            this.MeetingBrowse.Name = "MeetingBrowse";
+            this.MeetingBrowse.Size = new System.Drawing.Size(75, 23);
+            this.MeetingBrowse.TabIndex = 5;
+            this.MeetingBrowse.Text = "浏览";
+            this.MeetingBrowse.UseVisualStyleBackColor = true;
             // 
             // ArgumentsSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(554, 185);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(511, 170);
+            this.Controls.Add(this.MeetingBrowse);
+            this.Controls.Add(this.LineBrowse);
+            this.Controls.Add(this.MeetingPath);
+            this.Controls.Add(this.LinePath);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.MonitorPath);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ArgumentsSettings";
             this.Text = "ArgumentsSettings";
-            this.Load += new System.EventHandler(this.ArgumentsSettings_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -107,11 +107,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label MonitorPath;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox LinePath;
+        private System.Windows.Forms.TextBox MeetingPath;
+        private System.Windows.Forms.Button LineBrowse;
+        private System.Windows.Forms.Button MeetingBrowse;
     }
 }

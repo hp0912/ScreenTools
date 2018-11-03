@@ -70,7 +70,7 @@ namespace ScreenTools
             this.webBrowser1.Location = new System.Drawing.Point(0, 46);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1378, 492);
+            this.webBrowser1.Size = new System.Drawing.Size(978, 283);
             this.webBrowser1.TabIndex = 6;
             // 
             // menuStrip1
@@ -85,7 +85,7 @@ namespace ScreenTools
             this.VideoConference});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1378, 43);
+            this.menuStrip1.Size = new System.Drawing.Size(978, 43);
             this.menuStrip1.TabIndex = 13;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -146,10 +146,10 @@ namespace ScreenTools
             this.AudioRecord,
             this.StopRecording,
             this.RecordTimeTick});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 532);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 323);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.ShowItemToolTips = false;
-            this.toolStrip1.Size = new System.Drawing.Size(1378, 42);
+            this.toolStrip1.Size = new System.Drawing.Size(978, 42);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -212,6 +212,7 @@ namespace ScreenTools
             this.参数配置ToolStripMenuItem.Name = "参数配置ToolStripMenuItem";
             this.参数配置ToolStripMenuItem.Size = new System.Drawing.Size(198, 40);
             this.参数配置ToolStripMenuItem.Text = "参数配置";
+            this.参数配置ToolStripMenuItem.Click += new System.EventHandler(this.参数配置ToolStripMenuItem_Click);
             // 
             // OSK
             // 
@@ -289,7 +290,7 @@ namespace ScreenTools
             // 
             this.Minimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Minimize.AutoSize = true;
-            this.Minimize.Location = new System.Drawing.Point(1165, 0);
+            this.Minimize.Location = new System.Drawing.Point(765, 0);
             this.Minimize.Name = "Minimize";
             this.Minimize.Size = new System.Drawing.Size(58, 33);
             this.Minimize.TabIndex = 14;
@@ -301,7 +302,7 @@ namespace ScreenTools
             // 
             this.Maximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Maximize.AutoSize = true;
-            this.Maximize.Location = new System.Drawing.Point(1229, 0);
+            this.Maximize.Location = new System.Drawing.Point(829, 0);
             this.Maximize.Name = "Maximize";
             this.Maximize.Size = new System.Drawing.Size(87, 33);
             this.Maximize.TabIndex = 15;
@@ -313,7 +314,7 @@ namespace ScreenTools
             // 
             this.CloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CloseButton.AutoSize = true;
-            this.CloseButton.Location = new System.Drawing.Point(1320, 0);
+            this.CloseButton.Location = new System.Drawing.Point(920, 0);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(58, 33);
             this.CloseButton.TabIndex = 16;
@@ -327,7 +328,7 @@ namespace ScreenTools
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.ClientSize = new System.Drawing.Size(1378, 574);
+            this.ClientSize = new System.Drawing.Size(978, 365);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.Maximize);
             this.Controls.Add(this.Minimize);

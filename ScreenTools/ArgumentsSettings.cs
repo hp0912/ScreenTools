@@ -17,9 +17,6 @@ namespace ScreenTools
             InitializeComponent();
         }
 
-        private void ArgumentsSettings_Load(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
