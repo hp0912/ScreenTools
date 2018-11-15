@@ -99,6 +99,7 @@
             this.Controls.Add(this.MonitorPath);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ArgumentsSettings";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ArgumentsSettings";
             this.ResumeLayout(false);
             this.PerformLayout();
