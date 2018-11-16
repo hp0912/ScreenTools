@@ -133,13 +133,13 @@ namespace ScreenTools
         /// <param name="e"></param>
         private void VideoConference_Click(object sender, EventArgs e)
         {
-            StartProcess(System.Windows.Forms.Application.StartupPath + "\\osk.exe", "osk");
+            //StartProcess(System.Windows.Forms.Application.StartupPath + "\\osk.exe", "osk");
         }
 
 
         private void OSK_Click(object sender, EventArgs e) // 虚拟键盘相关接口函数
         {
-            StartProcess(System.Windows.Forms.Application.StartupPath + "\\osk.exe", "osk");
+            //StartProcess(System.Windows.Forms.Application.StartupPath + "\\osk.exe", "osk");
             //if (File.Exists(System.Windows.Forms.Application.StartupPath + "\\osk.exe"))
             //{
             //    ProcessStartInfo startInfo = new ProcessStartInfo(System.Windows.Forms.Application.StartupPath + "\\osk.exe");
