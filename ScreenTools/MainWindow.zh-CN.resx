@@ -165,4 +165,10 @@
   <data name="OSK.Text" xml:space="preserve">
     <value>键盘</value>
   </data>
+  <data name="CorpLiveVideo.Text" xml:space="preserve">
+    <value>企业直播</value>
+  </data>
+  <data name="MonitorSet.Text" xml:space="preserve">
+    <value>监控设置</value>
+  </data>
 </root>

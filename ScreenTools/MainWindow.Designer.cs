@@ -41,6 +41,7 @@ namespace ScreenTools
             this.ProductionLineList = new System.Windows.Forms.ToolStripMenuItem();
             this.ProductionLineMonitoring = new System.Windows.Forms.ToolStripMenuItem();
             this.VideoConference = new System.Windows.Forms.ToolStripMenuItem();
+            this.CorpLiveVideo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.SettingS = new System.Windows.Forms.ToolStripDropDownButton();
             this.AudioRecordSet = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,7 +49,6 @@ namespace ScreenTools
             this.LanguageSet = new System.Windows.Forms.ToolStripMenuItem();
             this.zh_CN = new System.Windows.Forms.ToolStripMenuItem();
             this.en_US = new System.Windows.Forms.ToolStripMenuItem();
-            this.参数配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OSK = new System.Windows.Forms.ToolStripButton();
             this.ScreenShot = new System.Windows.Forms.ToolStripButton();
             this.ScreenRecord = new System.Windows.Forms.ToolStripButton();
@@ -58,6 +58,7 @@ namespace ScreenTools
             this.Minimize = new System.Windows.Forms.Button();
             this.Maximize = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
+            this.MonitorSet = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -82,7 +83,8 @@ namespace ScreenTools
             this.AssetRun,
             this.ProductionLineList,
             this.ProductionLineMonitoring,
-            this.VideoConference});
+            this.VideoConference,
+            this.CorpLiveVideo});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(978, 43);
@@ -134,6 +136,14 @@ namespace ScreenTools
             this.VideoConference.Text = "视频会议";
             this.VideoConference.Click += new System.EventHandler(this.VideoConference_Click);
             // 
+            // CorpLiveVideo
+            // 
+            this.CorpLiveVideo.Font = new System.Drawing.Font("微软雅黑", 20.25F);
+            this.CorpLiveVideo.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.CorpLiveVideo.Name = "CorpLiveVideo";
+            this.CorpLiveVideo.Size = new System.Drawing.Size(135, 39);
+            this.CorpLiveVideo.Text = "企业直播";
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -160,7 +170,7 @@ namespace ScreenTools
             this.AudioRecordSet,
             this.ScreenCaptureSet,
             this.LanguageSet,
-            this.参数配置ToolStripMenuItem});
+            this.MonitorSet});
             this.SettingS.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.SettingS.Image = ((System.Drawing.Image)(resources.GetObject("SettingS.Image")));
             this.SettingS.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -206,13 +216,6 @@ namespace ScreenTools
             this.en_US.Size = new System.Drawing.Size(183, 40);
             this.en_US.Text = "English";
             this.en_US.Click += new System.EventHandler(this.en_US_Click);
-            // 
-            // 参数配置ToolStripMenuItem
-            // 
-            this.参数配置ToolStripMenuItem.Name = "参数配置ToolStripMenuItem";
-            this.参数配置ToolStripMenuItem.Size = new System.Drawing.Size(198, 40);
-            this.参数配置ToolStripMenuItem.Text = "参数配置";
-            this.参数配置ToolStripMenuItem.Click += new System.EventHandler(this.参数配置ToolStripMenuItem_Click);
             // 
             // OSK
             // 
@@ -322,6 +325,12 @@ namespace ScreenTools
             this.CloseButton.UseVisualStyleBackColor = true;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
+            // MonitorSet
+            // 
+            this.MonitorSet.Name = "MonitorSet";
+            this.MonitorSet.Size = new System.Drawing.Size(198, 40);
+            this.MonitorSet.Text = "监控设置";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -376,7 +385,8 @@ namespace ScreenTools
         private Button Minimize;
         private Button Maximize;
         private Button CloseButton;
-        private ToolStripMenuItem 参数配置ToolStripMenuItem;
+        private ToolStripMenuItem CorpLiveVideo;
+        private ToolStripMenuItem MonitorSet;
     }
 }
 

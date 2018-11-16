@@ -523,10 +523,7 @@ namespace ScreenTools
             return flag;
         }
 
-        private void 参数配置ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
 
