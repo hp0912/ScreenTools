@@ -86,15 +86,22 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(781, 170);
             this.Controls.Add(this.SelectedFilePath);
             this.Controls.Add(this.FilePath);
             this.Controls.Add(this.Confirm);
             this.Controls.Add(this.Cancel);
             this.Controls.Add(this.Browse);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FileSelectorSettings";
-            this.Text = "FileSelectorSettings";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "文件选择设置";
+            this.Load += new System.EventHandler(this.FileSelectorSettings_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

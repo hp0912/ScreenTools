@@ -171,4 +171,10 @@
   <data name="MonitorSet.Text" xml:space="preserve">
     <value>监控设置</value>
   </data>
+  <data name="LiveVideoSet.Text" xml:space="preserve">
+    <value>直播设置</value>
+  </data>
+  <data name="VideoConferenceSet.Text" xml:space="preserve">
+    <value>视频会议设置</value>
+  </data>
 </root>

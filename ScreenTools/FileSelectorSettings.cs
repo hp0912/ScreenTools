@@ -17,6 +17,13 @@ namespace ScreenTools
         public FileSelectorSettings()
         {
             InitializeComponent();
+            //this.SelectedFilePath.Text = path;
+            //this.AudioFolderBrowserDialog.SelectedPath = path;
+
+            //this.AudioSource = source;
+            //this.SoundRecorderPath = path;
+
+            //this.RefreshDevice(false);
         }
 
         private void Confirm_Click(object sender, EventArgs e)
@@ -68,9 +75,29 @@ namespace ScreenTools
             }
         }
 
+        
+
         private void SelectedFilePath_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void FileSelectorSettings_Load(object sender, EventArgs e)
+        {
+            //设置默认语言
+            String Language = Properties.Settings.Default.DefaultLanguage;
+            switch (Language)
+            {
+                case "zh-CN":
+                    MultiLanguage.LoadCurrentFromLanguage("zh-CN");
+                    break;
+                case "en-US":
+                    MultiLanguage.LoadCurrentFromLanguage("en-US");
+                    break;
+                default:
+                    MultiLanguage.LoadCurrentFromLanguage("zh-CN");
+                    break;
+            }
         }
     }
 }

@@ -138,7 +138,13 @@
     <EmbeddedResource Include="AudioRecordSettings.zh-CN.resx">
       <DependentUpon>AudioRecordSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FileSelectorSettings.en-US.resx">
+      <DependentUpon>FileSelectorSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FileSelectorSettings.resx">
+      <DependentUpon>FileSelectorSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileSelectorSettings.zh-CN.resx">
       <DependentUpon>FileSelectorSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.en-US.resx">

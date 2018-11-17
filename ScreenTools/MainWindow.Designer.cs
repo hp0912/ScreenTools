@@ -49,6 +49,7 @@ namespace ScreenTools
             this.LanguageSet = new System.Windows.Forms.ToolStripMenuItem();
             this.zh_CN = new System.Windows.Forms.ToolStripMenuItem();
             this.en_US = new System.Windows.Forms.ToolStripMenuItem();
+            this.MonitorSet = new System.Windows.Forms.ToolStripMenuItem();
             this.OSK = new System.Windows.Forms.ToolStripButton();
             this.ScreenShot = new System.Windows.Forms.ToolStripButton();
             this.ScreenRecord = new System.Windows.Forms.ToolStripButton();
@@ -58,7 +59,8 @@ namespace ScreenTools
             this.Minimize = new System.Windows.Forms.Button();
             this.Maximize = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
-            this.MonitorSet = new System.Windows.Forms.ToolStripMenuItem();
+            this.VideoConferenceSet = new System.Windows.Forms.ToolStripMenuItem();
+            this.LiveVideoSet = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -167,10 +169,12 @@ namespace ScreenTools
             // 
             this.SettingS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.SettingS.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AudioRecordSet,
+            this.LiveVideoSet,
+            this.VideoConferenceSet,
+            this.MonitorSet,
             this.ScreenCaptureSet,
-            this.LanguageSet,
-            this.MonitorSet});
+            this.AudioRecordSet,
+            this.LanguageSet});
             this.SettingS.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.SettingS.Image = ((System.Drawing.Image)(resources.GetObject("SettingS.Image")));
             this.SettingS.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -183,14 +187,14 @@ namespace ScreenTools
             // AudioRecordSet
             // 
             this.AudioRecordSet.Name = "AudioRecordSet";
-            this.AudioRecordSet.Size = new System.Drawing.Size(198, 40);
+            this.AudioRecordSet.Size = new System.Drawing.Size(252, 40);
             this.AudioRecordSet.Text = "录制设置";
             this.AudioRecordSet.Click += new System.EventHandler(this.AudioRecordSet_Click);
             // 
             // ScreenCaptureSet
             // 
             this.ScreenCaptureSet.Name = "ScreenCaptureSet";
-            this.ScreenCaptureSet.Size = new System.Drawing.Size(198, 40);
+            this.ScreenCaptureSet.Size = new System.Drawing.Size(252, 40);
             this.ScreenCaptureSet.Text = "截屏设置";
             this.ScreenCaptureSet.Click += new System.EventHandler(this.ScreenCaptureSet_Click);
             // 
@@ -200,7 +204,7 @@ namespace ScreenTools
             this.zh_CN,
             this.en_US});
             this.LanguageSet.Name = "LanguageSet";
-            this.LanguageSet.Size = new System.Drawing.Size(198, 40);
+            this.LanguageSet.Size = new System.Drawing.Size(252, 40);
             this.LanguageSet.Text = "语言设置";
             // 
             // zh_CN
@@ -216,6 +220,12 @@ namespace ScreenTools
             this.en_US.Size = new System.Drawing.Size(183, 40);
             this.en_US.Text = "English";
             this.en_US.Click += new System.EventHandler(this.en_US_Click);
+            // 
+            // MonitorSet
+            // 
+            this.MonitorSet.Name = "MonitorSet";
+            this.MonitorSet.Size = new System.Drawing.Size(252, 40);
+            this.MonitorSet.Text = "监控设置";
             // 
             // OSK
             // 
@@ -325,11 +335,17 @@ namespace ScreenTools
             this.CloseButton.UseVisualStyleBackColor = true;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
-            // MonitorSet
+            // VideoConferenceSet
             // 
-            this.MonitorSet.Name = "MonitorSet";
-            this.MonitorSet.Size = new System.Drawing.Size(198, 40);
-            this.MonitorSet.Text = "监控设置";
+            this.VideoConferenceSet.Name = "VideoConferenceSet";
+            this.VideoConferenceSet.Size = new System.Drawing.Size(252, 40);
+            this.VideoConferenceSet.Text = "视频会议设置";
+            // 
+            // LiveVideoSet
+            // 
+            this.LiveVideoSet.Name = "LiveVideoSet";
+            this.LiveVideoSet.Size = new System.Drawing.Size(252, 40);
+            this.LiveVideoSet.Text = "直播设置";
             // 
             // MainWindow
             // 
@@ -387,6 +403,8 @@ namespace ScreenTools
         private Button CloseButton;
         private ToolStripMenuItem CorpLiveVideo;
         private ToolStripMenuItem MonitorSet;
+        private ToolStripMenuItem VideoConferenceSet;
+        private ToolStripMenuItem LiveVideoSet;
     }
 }
 

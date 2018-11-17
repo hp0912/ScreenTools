@@ -35,8 +35,8 @@ namespace ScreenTools
         AudioSettings _AudioSettings; // 录音设置
         MyRecordingViewModel _MyRecordingViewModel; // 录屏
         int AudioDeviceCount = 0; // 外接设备数量
-        String RecorderPath = Properties.Settings.Default.SoundRecorderPath;
-        String ShotPath = Properties.Settings.Default.ScreenShotPath;
+        String RecorderPath = Properties.Settings.Default.SoundRecorderPath; // 默认录屏保存路径
+        String ShotPath = Properties.Settings.Default.ScreenShotPath; // 默认截屏保存路径
 
         public MainWindow()
         {
@@ -123,8 +123,7 @@ namespace ScreenTools
         /// <param name="e"></param>
         private void ProductionLineMonitoring_Click(object sender, EventArgs e)
         {
-            var FileSelectorSettings = new FileSelectorSettings();
-            FileSelectorSettings.ShowDialog();
+            
         }
         /// <summary>
         /// 点击"视频会议"按钮，调用酷虎选择的相应目录下面的.exe文件，进行视频会议
@@ -134,6 +133,8 @@ namespace ScreenTools
         private void VideoConference_Click(object sender, EventArgs e)
         {
             //StartProcess(System.Windows.Forms.Application.StartupPath + "\\osk.exe", "osk");
+            var FileSelectorSettings = new FileSelectorSettings();
+            FileSelectorSettings.ShowDialog();
         }
 
 
