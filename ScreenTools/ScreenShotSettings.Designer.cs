@@ -31,7 +31,7 @@
             this.HideTheMainForm = new System.Windows.Forms.CheckBox();
             this.SavePath = new System.Windows.Forms.Label();
             this.ScreenShotFilePath = new System.Windows.Forms.TextBox();
-            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.FileSelectorBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.browser = new System.Windows.Forms.Button();
             this.ensure = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
@@ -125,7 +125,7 @@
         private System.Windows.Forms.CheckBox HideTheMainForm;
         private System.Windows.Forms.Label SavePath;
         private System.Windows.Forms.TextBox ScreenShotFilePath;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
+        private System.Windows.Forms.FolderBrowserDialog FileSelectorBrowserDialog;
         private System.Windows.Forms.Button browser;
         private System.Windows.Forms.Button ensure;
         private System.Windows.Forms.Button cancel;

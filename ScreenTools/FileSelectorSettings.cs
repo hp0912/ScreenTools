@@ -14,52 +14,47 @@ namespace ScreenTools
 {
     public partial class FileSelectorSettings : Form
     {
-        public FileSelectorSettings()
+        public FileSelectorSettings(string path)
         {
             InitializeComponent();
-            //this.SelectedFilePath.Text = path;
-            //this.AudioFolderBrowserDialog.SelectedPath = path;
 
-            //this.AudioSource = source;
-            //this.SoundRecorderPath = path;
+            SelectedFilePath.Text = path;
+            this.FileSelectorBrowserDialog.FileName = path;
+            this.FileSelectorBrowserDialog.Filter = "*|*.exe";   // 加入限制条件，只能选择后缀为.exe的文件
+            this.FileSelectorBrowserDialog.RestoreDirectory = true; // 自动保存选择的路径
 
-            //this.RefreshDevice(false);
+            this.FileSelectorPath = path;
         }
+
+        public string FileSelectorPath { get; set; }
 
         private void Confirm_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
-        }
+            Process process = null;
+            String excutePath = SelectedFilePath.Text;
+            if (File.Exists(excutePath))
+            {
+                process = new Process();
+                ProcessStartInfo startInfo = new ProcessStartInfo(excutePath);
+                startInfo.UseShellExecute = false; //不使用系统外壳程序启动
+                startInfo.RedirectStandardInput = false; //不重定向输入
+                startInfo.RedirectStandardOutput = true; //重定向输出
+                //process.StartInfo = startInfo;
+                process.StartInfo.FileName = Path.GetFullPath(excutePath);
+                process.Start();
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Please check path：" + excutePath);
+            }
 
-        private void Cancel_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-        }
-
-        private void Browse_Click(object sender, EventArgs e)
-        {
-            //if(1 == 1) // 若是第一次打开
-            //{
-
-            //}
-            //else // 若不是第一次打开
-            //{
-            //    if(1 == 1) // 上一次保存的目录路径下的文件无法执行，则需要重新选择目录
-            //    {
-
-            //    }
-            //    else // 若可以执行则直接执行
-            //    {
-
-            //    }
-            //}
+            /*DialogResult = DialogResult.OK;
 
             OpenFileDialog file = new OpenFileDialog(); //打开文件选择对话框
             file.Filter = "*|*.exe";   // 加入限制条件，只能选择后缀为.exe的文件
             file.RestoreDirectory = true;
             file.ShowDialog();
-            //this.SelectedFilePath.Text = file.SafeFileName;
-            Process process = null;
 
             //if (FileFolderBrowserDialog.ShowDialog() == DialogResult.OK)
             //{
@@ -67,21 +62,34 @@ namespace ScreenTools
             //    process.StartInfo.FileName = Path.GetFullPath(file.FileName);
             //    process.Start(); // 启动选择的exe文件
             //}
-            process = new Process();
-            if(file.FileName != "")
+
+            if (this.SelectedFilePath.Text != "")
             {
-                process.StartInfo.FileName = Path.GetFullPath(file.FileName);
+                process = new Process();
+                process.StartInfo.FileName = Path.GetFullPath(this.SelectedFilePath.Text);
                 process.Start(); // 启动选择的exe文件
+            }*/
+        }
+
+        private void Cancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+        }
+
+        /// <summary>
+        /// 点击浏览文件夹目录, 并选择要运行的文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Browse_Click(object sender, EventArgs e)
+        {
+            if (FileSelectorBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                this.FileSelectorPath = Path.GetFullPath(this.FileSelectorBrowserDialog.FileName);
+                this.SelectedFilePath.Text = this.FileSelectorPath;
             }
         }
-
         
-
-        private void SelectedFilePath_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void FileSelectorSettings_Load(object sender, EventArgs e)
         {
             //设置默认语言

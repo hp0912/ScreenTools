@@ -44,12 +44,14 @@ namespace ScreenTools
             this.CorpLiveVideo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.SettingS = new System.Windows.Forms.ToolStripDropDownButton();
-            this.AudioRecordSet = new System.Windows.Forms.ToolStripMenuItem();
+            this.LiveVideoSet = new System.Windows.Forms.ToolStripMenuItem();
+            this.VideoConferenceSet = new System.Windows.Forms.ToolStripMenuItem();
+            this.MonitorSet = new System.Windows.Forms.ToolStripMenuItem();
             this.ScreenCaptureSet = new System.Windows.Forms.ToolStripMenuItem();
+            this.AudioRecordSet = new System.Windows.Forms.ToolStripMenuItem();
             this.LanguageSet = new System.Windows.Forms.ToolStripMenuItem();
             this.zh_CN = new System.Windows.Forms.ToolStripMenuItem();
             this.en_US = new System.Windows.Forms.ToolStripMenuItem();
-            this.MonitorSet = new System.Windows.Forms.ToolStripMenuItem();
             this.OSK = new System.Windows.Forms.ToolStripButton();
             this.ScreenShot = new System.Windows.Forms.ToolStripButton();
             this.ScreenRecord = new System.Windows.Forms.ToolStripButton();
@@ -59,8 +61,6 @@ namespace ScreenTools
             this.Minimize = new System.Windows.Forms.Button();
             this.Maximize = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
-            this.VideoConferenceSet = new System.Windows.Forms.ToolStripMenuItem();
-            this.LiveVideoSet = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -89,62 +89,63 @@ namespace ScreenTools
             this.CorpLiveVideo});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(978, 43);
+            this.menuStrip1.Size = new System.Drawing.Size(978, 36);
             this.menuStrip1.TabIndex = 13;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // PlatformOverview
             // 
-            this.PlatformOverview.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.PlatformOverview.Font = new System.Drawing.Font("微软雅黑", 15.25F);
             this.PlatformOverview.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.PlatformOverview.Name = "PlatformOverview";
-            this.PlatformOverview.Size = new System.Drawing.Size(100, 39);
+            this.PlatformOverview.Size = new System.Drawing.Size(81, 32);
             this.PlatformOverview.Text = "UCCP";
             this.PlatformOverview.Click += new System.EventHandler(this.PlatformOverview_Click);
             // 
             // AssetRun
             // 
-            this.AssetRun.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.AssetRun.Font = new System.Drawing.Font("微软雅黑", 15.25F);
             this.AssetRun.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.AssetRun.Name = "AssetRun";
-            this.AssetRun.Size = new System.Drawing.Size(216, 39);
+            this.AssetRun.Size = new System.Drawing.Size(171, 32);
             this.AssetRun.Text = "资产运行与运营";
             this.AssetRun.Click += new System.EventHandler(this.AssetRun_Click);
             // 
             // ProductionLineList
             // 
-            this.ProductionLineList.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ProductionLineList.Font = new System.Drawing.Font("微软雅黑", 15.25F);
             this.ProductionLineList.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.ProductionLineList.Name = "ProductionLineList";
-            this.ProductionLineList.Size = new System.Drawing.Size(135, 39);
+            this.ProductionLineList.Size = new System.Drawing.Size(108, 32);
             this.ProductionLineList.Text = "产线一览";
             this.ProductionLineList.Click += new System.EventHandler(this.ProductionLineList_Click);
             // 
             // ProductionLineMonitoring
             // 
-            this.ProductionLineMonitoring.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ProductionLineMonitoring.Font = new System.Drawing.Font("微软雅黑", 15.25F);
             this.ProductionLineMonitoring.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.ProductionLineMonitoring.Name = "ProductionLineMonitoring";
-            this.ProductionLineMonitoring.Size = new System.Drawing.Size(135, 39);
+            this.ProductionLineMonitoring.Size = new System.Drawing.Size(108, 32);
             this.ProductionLineMonitoring.Text = "产线监控";
             this.ProductionLineMonitoring.Click += new System.EventHandler(this.ProductionLineMonitoring_Click);
             // 
             // VideoConference
             // 
-            this.VideoConference.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.VideoConference.Font = new System.Drawing.Font("微软雅黑", 15.25F);
             this.VideoConference.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.VideoConference.Name = "VideoConference";
-            this.VideoConference.Size = new System.Drawing.Size(135, 39);
+            this.VideoConference.Size = new System.Drawing.Size(108, 32);
             this.VideoConference.Text = "视频会议";
             this.VideoConference.Click += new System.EventHandler(this.VideoConference_Click);
             // 
             // CorpLiveVideo
             // 
-            this.CorpLiveVideo.Font = new System.Drawing.Font("微软雅黑", 20.25F);
+            this.CorpLiveVideo.Font = new System.Drawing.Font("微软雅黑", 15.25F);
             this.CorpLiveVideo.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.CorpLiveVideo.Name = "CorpLiveVideo";
-            this.CorpLiveVideo.Size = new System.Drawing.Size(135, 39);
+            this.CorpLiveVideo.Size = new System.Drawing.Size(108, 32);
             this.CorpLiveVideo.Text = "企业直播";
+            this.CorpLiveVideo.Click += new System.EventHandler(this.CorpLiveVideo_Click);
             // 
             // toolStrip1
             // 
@@ -158,10 +159,10 @@ namespace ScreenTools
             this.AudioRecord,
             this.StopRecording,
             this.RecordTimeTick});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 323);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 330);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.ShowItemToolTips = false;
-            this.toolStrip1.Size = new System.Drawing.Size(978, 42);
+            this.toolStrip1.Size = new System.Drawing.Size(978, 35);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -175,28 +176,48 @@ namespace ScreenTools
             this.ScreenCaptureSet,
             this.AudioRecordSet,
             this.LanguageSet});
-            this.SettingS.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.SettingS.Font = new System.Drawing.Font("微软雅黑", 15.25F);
             this.SettingS.Image = ((System.Drawing.Image)(resources.GetObject("SettingS.Image")));
             this.SettingS.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SettingS.MergeIndex = 0;
             this.SettingS.Name = "SettingS";
-            this.SettingS.Size = new System.Drawing.Size(82, 39);
+            this.SettingS.Size = new System.Drawing.Size(67, 32);
             this.SettingS.Text = "设置";
             this.SettingS.ToolTipText = "\r";
             // 
-            // AudioRecordSet
+            // LiveVideoSet
             // 
-            this.AudioRecordSet.Name = "AudioRecordSet";
-            this.AudioRecordSet.Size = new System.Drawing.Size(252, 40);
-            this.AudioRecordSet.Text = "录制设置";
-            this.AudioRecordSet.Click += new System.EventHandler(this.AudioRecordSet_Click);
+            this.LiveVideoSet.Name = "LiveVideoSet";
+            this.LiveVideoSet.Size = new System.Drawing.Size(210, 32);
+            this.LiveVideoSet.Text = "直播设置";
+            // 
+            // VideoConferenceSet
+            // 
+            this.VideoConferenceSet.Name = "VideoConferenceSet";
+            this.VideoConferenceSet.Size = new System.Drawing.Size(210, 32);
+            this.VideoConferenceSet.Text = "视频会议设置";
+            this.VideoConferenceSet.Click += new System.EventHandler(this.VideoConferenceSet_Click);
+            // 
+            // MonitorSet
+            // 
+            this.MonitorSet.Name = "MonitorSet";
+            this.MonitorSet.Size = new System.Drawing.Size(210, 32);
+            this.MonitorSet.Text = "监控设置";
+            this.MonitorSet.Click += new System.EventHandler(this.MonitorSet_Click);
             // 
             // ScreenCaptureSet
             // 
             this.ScreenCaptureSet.Name = "ScreenCaptureSet";
-            this.ScreenCaptureSet.Size = new System.Drawing.Size(252, 40);
+            this.ScreenCaptureSet.Size = new System.Drawing.Size(210, 32);
             this.ScreenCaptureSet.Text = "截屏设置";
             this.ScreenCaptureSet.Click += new System.EventHandler(this.ScreenCaptureSet_Click);
+            // 
+            // AudioRecordSet
+            // 
+            this.AudioRecordSet.Name = "AudioRecordSet";
+            this.AudioRecordSet.Size = new System.Drawing.Size(210, 32);
+            this.AudioRecordSet.Text = "录制设置";
+            this.AudioRecordSet.Click += new System.EventHandler(this.AudioRecordSet_Click);
             // 
             // LanguageSet
             // 
@@ -204,38 +225,32 @@ namespace ScreenTools
             this.zh_CN,
             this.en_US});
             this.LanguageSet.Name = "LanguageSet";
-            this.LanguageSet.Size = new System.Drawing.Size(252, 40);
+            this.LanguageSet.Size = new System.Drawing.Size(210, 32);
             this.LanguageSet.Text = "语言设置";
             // 
             // zh_CN
             // 
             this.zh_CN.Name = "zh_CN";
-            this.zh_CN.Size = new System.Drawing.Size(183, 40);
+            this.zh_CN.Size = new System.Drawing.Size(180, 32);
             this.zh_CN.Text = "中文";
             this.zh_CN.Click += new System.EventHandler(this.zh_CN_Click);
             // 
             // en_US
             // 
             this.en_US.Name = "en_US";
-            this.en_US.Size = new System.Drawing.Size(183, 40);
+            this.en_US.Size = new System.Drawing.Size(180, 32);
             this.en_US.Text = "English";
             this.en_US.Click += new System.EventHandler(this.en_US_Click);
-            // 
-            // MonitorSet
-            // 
-            this.MonitorSet.Name = "MonitorSet";
-            this.MonitorSet.Size = new System.Drawing.Size(252, 40);
-            this.MonitorSet.Text = "监控设置";
             // 
             // OSK
             // 
             this.OSK.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.OSK.Enabled = false;
-            this.OSK.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.OSK.Font = new System.Drawing.Font("微软雅黑", 15.25F);
             this.OSK.Image = ((System.Drawing.Image)(resources.GetObject("OSK.Image")));
             this.OSK.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OSK.Name = "OSK";
-            this.OSK.Size = new System.Drawing.Size(73, 39);
+            this.OSK.Size = new System.Drawing.Size(58, 32);
             this.OSK.Text = "键盘";
             this.OSK.ToolTipText = "\r\n";
             this.OSK.Visible = false;
@@ -244,10 +259,10 @@ namespace ScreenTools
             // ScreenShot
             // 
             this.ScreenShot.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ScreenShot.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ScreenShot.Font = new System.Drawing.Font("微软雅黑", 15.25F);
             this.ScreenShot.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ScreenShot.Name = "ScreenShot";
-            this.ScreenShot.Size = new System.Drawing.Size(73, 39);
+            this.ScreenShot.Size = new System.Drawing.Size(58, 32);
             this.ScreenShot.Text = "截屏";
             this.ScreenShot.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.ScreenShot.ToolTipText = "\r\n";
@@ -256,11 +271,11 @@ namespace ScreenTools
             // ScreenRecord
             // 
             this.ScreenRecord.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ScreenRecord.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ScreenRecord.Font = new System.Drawing.Font("微软雅黑", 15.25F);
             this.ScreenRecord.Image = ((System.Drawing.Image)(resources.GetObject("ScreenRecord.Image")));
             this.ScreenRecord.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ScreenRecord.Name = "ScreenRecord";
-            this.ScreenRecord.Size = new System.Drawing.Size(73, 39);
+            this.ScreenRecord.Size = new System.Drawing.Size(58, 32);
             this.ScreenRecord.Text = "录屏";
             this.ScreenRecord.ToolTipText = "\r\n";
             this.ScreenRecord.Click += new System.EventHandler(this.ScreenRecord_Click);
@@ -268,11 +283,11 @@ namespace ScreenTools
             // AudioRecord
             // 
             this.AudioRecord.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.AudioRecord.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.AudioRecord.Font = new System.Drawing.Font("微软雅黑", 15.25F);
             this.AudioRecord.Image = ((System.Drawing.Image)(resources.GetObject("AudioRecord.Image")));
             this.AudioRecord.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.AudioRecord.Name = "AudioRecord";
-            this.AudioRecord.Size = new System.Drawing.Size(73, 39);
+            this.AudioRecord.Size = new System.Drawing.Size(58, 32);
             this.AudioRecord.Text = "录音";
             this.AudioRecord.ToolTipText = "\r\n";
             this.AudioRecord.Click += new System.EventHandler(this.AudioRecord_Click);
@@ -281,11 +296,11 @@ namespace ScreenTools
             // 
             this.StopRecording.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.StopRecording.Enabled = false;
-            this.StopRecording.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.StopRecording.Font = new System.Drawing.Font("微软雅黑", 15.25F);
             this.StopRecording.Image = ((System.Drawing.Image)(resources.GetObject("StopRecording.Image")));
             this.StopRecording.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.StopRecording.Name = "StopRecording";
-            this.StopRecording.Size = new System.Drawing.Size(127, 39);
+            this.StopRecording.Size = new System.Drawing.Size(100, 32);
             this.StopRecording.Text = "停止录制";
             this.StopRecording.ToolTipText = "\r\n";
             this.StopRecording.Visible = false;
@@ -293,9 +308,9 @@ namespace ScreenTools
             // 
             // RecordTimeTick
             // 
-            this.RecordTimeTick.Font = new System.Drawing.Font("微软雅黑", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.RecordTimeTick.Font = new System.Drawing.Font("微软雅黑", 15.25F);
             this.RecordTimeTick.Name = "RecordTimeTick";
-            this.RecordTimeTick.Size = new System.Drawing.Size(86, 39);
+            this.RecordTimeTick.Size = new System.Drawing.Size(65, 32);
             this.RecordTimeTick.Text = "00:00";
             this.RecordTimeTick.Visible = false;
             // 
@@ -334,18 +349,6 @@ namespace ScreenTools
             this.CloseButton.Text = "关闭";
             this.CloseButton.UseVisualStyleBackColor = true;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
-            // 
-            // VideoConferenceSet
-            // 
-            this.VideoConferenceSet.Name = "VideoConferenceSet";
-            this.VideoConferenceSet.Size = new System.Drawing.Size(252, 40);
-            this.VideoConferenceSet.Text = "视频会议设置";
-            // 
-            // LiveVideoSet
-            // 
-            this.LiveVideoSet.Name = "LiveVideoSet";
-            this.LiveVideoSet.Size = new System.Drawing.Size(252, 40);
-            this.LiveVideoSet.Text = "直播设置";
             // 
             // MainWindow
             // 

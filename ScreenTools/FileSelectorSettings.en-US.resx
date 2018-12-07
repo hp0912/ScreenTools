@@ -120,6 +120,15 @@
   <data name="$this.Text" xml:space="preserve">
     <value>File Selector Settings</value>
   </data>
+  <data name="Browse.Text" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="Cancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Confirm.Text" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
   <data name="FilePath.Text" xml:space="preserve">
     <value>File Path</value>
   </data>

@@ -35,8 +35,10 @@ namespace ScreenTools
         AudioSettings _AudioSettings; // 录音设置
         MyRecordingViewModel _MyRecordingViewModel; // 录屏
         int AudioDeviceCount = 0; // 外接设备数量
-        String RecorderPath = Properties.Settings.Default.SoundRecorderPath; // 默认录屏保存路径
-        String ShotPath = Properties.Settings.Default.ScreenShotPath; // 默认截屏保存路径
+        string RecorderPath = Properties.Settings.Default.SoundRecorderPath; // 默认录屏保存路径
+        string ShotPath = Properties.Settings.Default.ScreenShotPath; // 默认截屏保存路径
+        string SelectorPath = Properties.Settings.Default.FileSelectorPath; // 默认文件选择路径
+        string VideoConferencePath = Properties.Settings.Default.VideoConferencePath; // 默认文件选择路径
 
         public MainWindow()
         {
@@ -123,8 +125,25 @@ namespace ScreenTools
         /// <param name="e"></param>
         private void ProductionLineMonitoring_Click(object sender, EventArgs e)
         {
-            
+            var MonitorPath = Properties.Settings.Default.MonitorPath;
+
+            if (MonitorPath != "")
+            {
+                StartProcess(MonitorPath);
+            }
+            else
+            {
+                var dlg = new FileSelectorSettings(MonitorPath);
+
+                var res = dlg.ShowDialog();
+                if (res == DialogResult.OK)
+                {
+                    Properties.Settings.Default.MonitorPath = dlg.FileSelectorPath;
+                    Properties.Settings.Default.Save();
+                }
+            }
         }
+
         /// <summary>
         /// 点击"视频会议"按钮，调用酷虎选择的相应目录下面的.exe文件，进行视频会议
         /// </summary>
@@ -133,10 +152,34 @@ namespace ScreenTools
         private void VideoConference_Click(object sender, EventArgs e)
         {
             //StartProcess(System.Windows.Forms.Application.StartupPath + "\\osk.exe", "osk");
-            var FileSelectorSettings = new FileSelectorSettings();
-            FileSelectorSettings.ShowDialog();
+            var VideoConferencePath = Properties.Settings.Default.VideoConferencePath;
+
+            if (VideoConferencePath != "")
+            {
+                StartProcess(VideoConferencePath);
+            }
+            else
+            {
+                var dlg = new FileSelectorSettings(VideoConferencePath);
+
+                var res = dlg.ShowDialog();
+                if (res == DialogResult.OK)
+                {
+                    Properties.Settings.Default.VideoConferencePath = dlg.FileSelectorPath;
+                    Properties.Settings.Default.Save();
+                }
+            }
         }
 
+        /// <summary>
+        /// 点击视频直播
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CorpLiveVideo_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void OSK_Click(object sender, EventArgs e) // 虚拟键盘相关接口函数
         {
@@ -495,10 +538,9 @@ namespace ScreenTools
         /// 启动关闭特定的可执行文件 --- 调用虚拟键盘/系统文件
         /// </summary>
         /// <param name="executePath"></param>exe文件的绝对路径
-        /// <param name="excuteName"></param>exe文件的名字，不带扩展名
+        /// <param name="excuteName"></param>exe文件的名字，不带扩展名 GetFileNameWithoutExtension
         /// <returns></returns>
-        private bool StartProcess(String executePath, String excuteName) {
-            Boolean flag = false;
+        private void StartProcess(string executePath) {
             if (File.Exists(executePath))
             {
                 ProcessStartInfo startInfo = new ProcessStartInfo(executePath);
@@ -507,10 +549,10 @@ namespace ScreenTools
                 startInfo.RedirectStandardInput = false; //不重定向输入
                 startInfo.RedirectStandardOutput = true; //重定向输出
                 process.StartInfo = startInfo;
-                Process[] qqs = Process.GetProcessesByName(excuteName);
+                Process[] qqs = Process.GetProcessesByName(Path.GetFileNameWithoutExtension(executePath));
                 if (qqs.Length == 0)
                 {
-                    flag = process.Start();
+                    process.Start();
                 }
                 else
                 {
@@ -521,7 +563,44 @@ namespace ScreenTools
             {
                 System.Windows.Forms.MessageBox.Show("Please check path："+ executePath);
             }
-            return flag;
+        }
+
+        /// <summary>
+        /// 点击视频会议设置, 设置视频会议软件的启动路径
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void VideoConferenceSet_Click(object sender, EventArgs e)
+        {
+            var VideoConferencePath = Properties.Settings.Default.VideoConferencePath;
+
+            var dlg = new FileSelectorSettings(VideoConferencePath);
+            
+            var res = dlg.ShowDialog();
+            if (res == DialogResult.OK)
+            {
+                Properties.Settings.Default.VideoConferencePath = dlg.FileSelectorPath;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        /// <summary>
+        /// 点击监控产线设置, 设置监控软件的启动路径
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MonitorSet_Click(object sender, EventArgs e)
+        {
+            var MonitorPath = Properties.Settings.Default.MonitorPath;
+
+            var dlg = new FileSelectorSettings(MonitorPath);
+
+            var res = dlg.ShowDialog();
+            if (res == DialogResult.OK)
+            {
+                Properties.Settings.Default.MonitorPath = dlg.FileSelectorPath;
+                Properties.Settings.Default.Save();
+            }
         }
 
         

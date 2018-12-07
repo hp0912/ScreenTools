@@ -133,7 +133,11 @@ namespace ScreenTools
             }
             else if (form.Name == "ScreenShotSettings")
             {
-                LoadLanguage(form, typeof(AudioRecordSettings));
+                LoadLanguage(form, typeof(ScreenShotSettings));
+            }
+            else if (form.Name == "FileSelectorSettings")
+            {
+                LoadLanguage(form, typeof(FileSelectorSettings));
             }
         }
 

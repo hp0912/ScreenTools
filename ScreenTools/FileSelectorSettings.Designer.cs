@@ -33,11 +33,12 @@
             this.Confirm = new System.Windows.Forms.Button();
             this.FilePath = new System.Windows.Forms.Label();
             this.SelectedFilePath = new System.Windows.Forms.TextBox();
+            this.FileSelectorBrowserDialog = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // Browse
             // 
-            this.Browse.Location = new System.Drawing.Point(684, 66);
+            this.Browse.Location = new System.Drawing.Point(440, 50);
             this.Browse.Name = "Browse";
             this.Browse.Size = new System.Drawing.Size(75, 23);
             this.Browse.TabIndex = 0;
@@ -47,7 +48,7 @@
             // 
             // Cancel
             // 
-            this.Cancel.Location = new System.Drawing.Point(309, 129);
+            this.Cancel.Location = new System.Drawing.Point(178, 101);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(75, 23);
             this.Cancel.TabIndex = 1;
@@ -57,7 +58,7 @@
             // 
             // Confirm
             // 
-            this.Confirm.Location = new System.Drawing.Point(390, 129);
+            this.Confirm.Location = new System.Drawing.Point(259, 101);
             this.Confirm.Name = "Confirm";
             this.Confirm.Size = new System.Drawing.Size(75, 23);
             this.Confirm.TabIndex = 2;
@@ -68,7 +69,7 @@
             // FilePath
             // 
             this.FilePath.AutoSize = true;
-            this.FilePath.Location = new System.Drawing.Point(23, 70);
+            this.FilePath.Location = new System.Drawing.Point(23, 55);
             this.FilePath.Name = "FilePath";
             this.FilePath.Size = new System.Drawing.Size(53, 12);
             this.FilePath.TabIndex = 4;
@@ -76,18 +77,21 @@
             // 
             // SelectedFilePath
             // 
-            this.SelectedFilePath.Location = new System.Drawing.Point(98, 67);
+            this.SelectedFilePath.Location = new System.Drawing.Point(98, 52);
             this.SelectedFilePath.Name = "SelectedFilePath";
-            this.SelectedFilePath.Size = new System.Drawing.Size(575, 21);
+            this.SelectedFilePath.Size = new System.Drawing.Size(310, 21);
             this.SelectedFilePath.TabIndex = 5;
-            this.SelectedFilePath.TextChanged += new System.EventHandler(this.SelectedFilePath_TextChanged);
+            // 
+            // FileSelectorBrowserDialog
+            // 
+            this.FileSelectorBrowserDialog.FileName = "openFileDialog1";
             // 
             // FileSelectorSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(781, 170);
+            this.ClientSize = new System.Drawing.Size(525, 138);
             this.Controls.Add(this.SelectedFilePath);
             this.Controls.Add(this.FilePath);
             this.Controls.Add(this.Confirm);
@@ -114,5 +118,6 @@
         private System.Windows.Forms.Button Confirm;
         private System.Windows.Forms.Label FilePath;
         private System.Windows.Forms.TextBox SelectedFilePath;
+        private System.Windows.Forms.OpenFileDialog FileSelectorBrowserDialog;
     }
 }

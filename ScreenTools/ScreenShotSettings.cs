@@ -26,7 +26,7 @@ namespace ScreenTools
             }
 
             ScreenShotFilePath.Text = screenShotPath;
-            this.folderBrowserDialog.SelectedPath = screenShotPath;
+            this.FileSelectorBrowserDialog.SelectedPath = screenShotPath;
 
             this.HideCurrentWindow = hideCurrentWindow;
             this.ScreenShotPath = screenShotPath;
@@ -49,9 +49,9 @@ namespace ScreenTools
 
         private void browser_Click(object sender, EventArgs e)
         {
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            if (FileSelectorBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                this.ScreenShotPath = this.folderBrowserDialog.SelectedPath;
+                this.ScreenShotPath = this.FileSelectorBrowserDialog.SelectedPath;
                 this.ScreenShotFilePath.Text = this.ScreenShotPath;
             }
         }

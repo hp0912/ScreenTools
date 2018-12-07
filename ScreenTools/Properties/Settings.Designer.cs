@@ -33,8 +33,8 @@ namespace ScreenTools.Properties {
             set {
                 this["ScreenShotPath"] = value;
             }
-        }
-        
+        }        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
@@ -58,7 +58,52 @@ namespace ScreenTools.Properties {
                 this["SoundRecorderPath"] = value;
             }
         }
-        
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:/")]
+        public string FileSelectorPath
+        {
+            get
+            {
+                return ((string)(this["FileSelectorPath"]));
+            }
+            set
+            {
+                this["FileSelectorPath"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string VideoConferencePath
+        {
+            get
+            {
+                return ((string)(this["VideoConferencePath"]));
+            }
+            set
+            {
+                this["VideoConferencePath"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MonitorPath
+        {
+            get
+            {
+                return ((string)(this["MonitorPath"]));
+            }
+            set
+            {
+                this["MonitorPath"] = value;
+            }
+        }
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("zh-CN")]
