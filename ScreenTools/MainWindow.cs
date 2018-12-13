@@ -548,7 +548,8 @@ namespace ScreenTools
                 startInfo.UseShellExecute = false; //不使用系统外壳程序启动
                 startInfo.RedirectStandardInput = false; //不重定向输入
                 startInfo.RedirectStandardOutput = true; //重定向输出
-                process.StartInfo = startInfo;
+                //process.StartInfo = startInfo;
+                process.StartInfo.FileName = Path.GetFullPath(executePath);
                 Process[] qqs = Process.GetProcessesByName(Path.GetFileNameWithoutExtension(executePath));
                 if (qqs.Length == 0)
                 {
