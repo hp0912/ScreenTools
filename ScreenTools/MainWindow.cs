@@ -17,6 +17,7 @@ using Captura;
 using Screna;
 using System.Threading.Tasks;
 using System.Windows;
+using Point = System.Drawing.Point;
 
 namespace ScreenTools
 {

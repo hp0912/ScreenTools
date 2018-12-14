@@ -231,14 +231,14 @@ namespace ScreenTools
             // zh_CN
             // 
             this.zh_CN.Name = "zh_CN";
-            this.zh_CN.Size = new System.Drawing.Size(180, 32);
+            this.zh_CN.Size = new System.Drawing.Size(157, 32);
             this.zh_CN.Text = "中文";
             this.zh_CN.Click += new System.EventHandler(this.zh_CN_Click);
             // 
             // en_US
             // 
             this.en_US.Name = "en_US";
-            this.en_US.Size = new System.Drawing.Size(180, 32);
+            this.en_US.Size = new System.Drawing.Size(157, 32);
             this.en_US.Text = "English";
             this.en_US.Click += new System.EventHandler(this.en_US_Click);
             // 
@@ -355,7 +355,10 @@ namespace ScreenTools
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.AutoSize = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(978, 365);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.Maximize);
@@ -363,11 +366,13 @@ namespace ScreenTools
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.menuStrip1);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainWindow_FormClosed);
             this.Load += new System.EventHandler(this.MainWindow_Load);
