@@ -179,7 +179,25 @@ namespace ScreenTools
         /// <param name="e"></param>
         private void CorpLiveVideo_Click(object sender, EventArgs e)
         {
-
+            if (File.Exists(@"C:\\Users\\minho\\Desktop\\aaa\\osk.exe"));
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo(@"C:\\Users\\minho\\Desktop\\aaa\\osk.exe");
+                Process process = new Process();
+                startInfo.UseShellExecute = true; //不使用系统外壳程序启动
+                startInfo.RedirectStandardInput = false; //不重定向输入
+                startInfo.RedirectStandardOutput = true; //重定向输出
+                                                            //process.StartInfo = startInfo;
+                process.StartInfo.FileName = Path.GetFullPath(@"C:\\Users\\minho\\Desktop\\aaa\\osk.exe");
+                Process[] qqs = Process.GetProcessesByName(Path.GetFileNameWithoutExtension(@"C:\\Users\\minho\\Desktop\\aaa\\osk.exe"));
+                if (qqs.Length == 0)
+                {
+                    process.Start();
+                }
+                else
+                {
+                    qqs[0].Kill();
+                }
+            }
         }
 
         private void OSK_Click(object sender, EventArgs e) // 虚拟键盘相关接口函数
@@ -204,8 +222,9 @@ namespace ScreenTools
             //    {
             //        qqs[0].Kill();
             //    }
-            //}   
-            //else {
+            //}
+            //else
+            //{
             //    System.Windows.Forms.MessageBox.Show(System.Windows.Forms.Application.StartupPath + "请将\"osk.exe\"置于安装目录下");
             //}
         }
