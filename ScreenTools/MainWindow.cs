@@ -101,7 +101,7 @@ namespace ScreenTools
             Browser.Load("https://www.uccp520.com/bibcor-byitem/uil/cor/byitem/coiall.vm?stm=1110000_1@0");
         }
         /// <summary>
-        /// 点击"资产运行与运营"按钮
+        /// 点击"资产运行与运营"按钮 --> 资产使用
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -179,29 +179,34 @@ namespace ScreenTools
         /// <param name="e"></param>
         private void CorpLiveVideo_Click(object sender, EventArgs e)
         {
-            if (File.Exists(@"C:\\Users\\minho\\Desktop\\aaa\\osk.exe"));
-            {
-                ProcessStartInfo startInfo = new ProcessStartInfo(@"C:\\Users\\minho\\Desktop\\aaa\\osk.exe");
-                Process process = new Process();
-                startInfo.UseShellExecute = true; //不使用系统外壳程序启动
-                startInfo.RedirectStandardInput = false; //不重定向输入
-                startInfo.RedirectStandardOutput = true; //重定向输出
-                                                            //process.StartInfo = startInfo;
-                process.StartInfo.FileName = Path.GetFullPath(@"C:\\Users\\minho\\Desktop\\aaa\\osk.exe");
-                Process[] qqs = Process.GetProcessesByName(Path.GetFileNameWithoutExtension(@"C:\\Users\\minho\\Desktop\\aaa\\osk.exe"));
-                if (qqs.Length == 0)
-                {
-                    process.Start();
-                }
-                else
-                {
-                    qqs[0].Kill();
-                }
-            }
+
         }
 
         private void OSK_Click(object sender, EventArgs e) // 虚拟键盘相关接口函数
         {
+            var processes = Process.GetProcessesByName(Path.GetFileNameWithoutExtension("TabTip"));
+            foreach (var p in processes)
+            {
+                p.Kill();
+            }
+            var commonFilesPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonProgramFiles);
+            //程序集目标平台为X86时，获取到的是x86的Program Files，但TabTip.exe始终在Program Files目录下
+            if (commonFilesPath.Contains("Program Files (x86)"))
+            {
+                commonFilesPath = commonFilesPath.Replace("Program Files (x86)", "Program Files");
+            }
+
+            var tabTipPath = Path.Combine(commonFilesPath, @"microsoft shared\ink\TabTip.exe");
+            if (File.Exists(tabTipPath))
+            {
+                ProcessStartInfo psi = new ProcessStartInfo
+                {
+                    FileName = tabTipPath,
+                    UseShellExecute = true,
+                    CreateNoWindow = true
+                };
+                Process.Start(psi);
+            }
             //StartProcess(System.Windows.Forms.Application.StartupPath + "\\osk.exe", "osk");
             //if (File.Exists(System.Windows.Forms.Application.StartupPath + "\\osk.exe"))
             //{
@@ -624,7 +629,11 @@ namespace ScreenTools
             }
         }
 
+
         
+
+
+
     }
 }
 

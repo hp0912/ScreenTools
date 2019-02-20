@@ -231,21 +231,20 @@ namespace ScreenTools
             // zh_CN
             // 
             this.zh_CN.Name = "zh_CN";
-            this.zh_CN.Size = new System.Drawing.Size(180, 32);
+            this.zh_CN.Size = new System.Drawing.Size(157, 32);
             this.zh_CN.Text = "中文";
             this.zh_CN.Click += new System.EventHandler(this.zh_CN_Click);
             // 
             // en_US
             // 
             this.en_US.Name = "en_US";
-            this.en_US.Size = new System.Drawing.Size(180, 32);
+            this.en_US.Size = new System.Drawing.Size(157, 32);
             this.en_US.Text = "English";
             this.en_US.Click += new System.EventHandler(this.en_US_Click);
             // 
             // OSK
             // 
             this.OSK.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.OSK.Enabled = false;
             this.OSK.Font = new System.Drawing.Font("微软雅黑", 15.25F);
             this.OSK.Image = ((System.Drawing.Image)(resources.GetObject("OSK.Image")));
             this.OSK.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -253,7 +252,6 @@ namespace ScreenTools
             this.OSK.Size = new System.Drawing.Size(58, 32);
             this.OSK.Text = "键盘";
             this.OSK.ToolTipText = "\r\n";
-            this.OSK.Visible = false;
             this.OSK.Click += new System.EventHandler(this.OSK_Click);
             // 
             // ScreenShot
