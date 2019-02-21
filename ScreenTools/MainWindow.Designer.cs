@@ -194,6 +194,7 @@ namespace ScreenTools
             // 
             // LiveVideoSet
             // 
+            this.LiveVideoSet.ForeColor = System.Drawing.SystemColors.ControlText;
             this.LiveVideoSet.Name = "LiveVideoSet";
             this.LiveVideoSet.Size = new System.Drawing.Size(210, 32);
             this.LiveVideoSet.Text = "直播设置";
@@ -238,14 +239,14 @@ namespace ScreenTools
             // zh_CN
             // 
             this.zh_CN.Name = "zh_CN";
-            this.zh_CN.Size = new System.Drawing.Size(157, 32);
+            this.zh_CN.Size = new System.Drawing.Size(180, 32);
             this.zh_CN.Text = "中文";
             this.zh_CN.Click += new System.EventHandler(this.zh_CN_Click);
             // 
             // en_US
             // 
             this.en_US.Name = "en_US";
-            this.en_US.Size = new System.Drawing.Size(157, 32);
+            this.en_US.Size = new System.Drawing.Size(180, 32);
             this.en_US.Text = "English";
             this.en_US.Click += new System.EventHandler(this.en_US_Click);
             // 
