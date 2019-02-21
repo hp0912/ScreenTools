@@ -193,6 +193,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="resource\audiorecord.png" />
+    <Content Include="resource\close.png" />
+    <Content Include="resource\maximize.png" />
+    <Content Include="resource\minimize.png" />
+    <Content Include="resource\screenrecord.png" />
+    <Content Include="resource\screenshot.png" />
+    <Content Include="resource\settings.png" />
     <None Include="bin\x86\Debug\Cursors\Arrow.cur" />
     <None Include="bin\x86\Debug\Cursors\ArrowNew.cur" />
     <None Include="bin\x86\Debug\Cursors\Cross.cur" />
