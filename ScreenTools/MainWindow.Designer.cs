@@ -239,14 +239,14 @@ namespace ScreenTools
             // zh_CN
             // 
             this.zh_CN.Name = "zh_CN";
-            this.zh_CN.Size = new System.Drawing.Size(157, 32);
+            this.zh_CN.Size = new System.Drawing.Size(180, 32);
             this.zh_CN.Text = "中文";
             this.zh_CN.Click += new System.EventHandler(this.zh_CN_Click);
             // 
             // en_US
             // 
             this.en_US.Name = "en_US";
-            this.en_US.Size = new System.Drawing.Size(157, 32);
+            this.en_US.Size = new System.Drawing.Size(180, 32);
             this.en_US.Text = "English";
             this.en_US.Click += new System.EventHandler(this.en_US_Click);
             // 
@@ -337,9 +337,9 @@ namespace ScreenTools
             this.Minimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Minimize.AutoSize = true;
             this.Minimize.Image = ((System.Drawing.Image)(resources.GetObject("Minimize.Image")));
-            this.Minimize.Location = new System.Drawing.Point(813, 0);
+            this.Minimize.Location = new System.Drawing.Point(802, 0);
             this.Minimize.Name = "Minimize";
-            this.Minimize.Size = new System.Drawing.Size(51, 33);
+            this.Minimize.Size = new System.Drawing.Size(58, 33);
             this.Minimize.TabIndex = 14;
             this.Minimize.UseVisualStyleBackColor = true;
             this.Minimize.Click += new System.EventHandler(this.Minimize_Click);
@@ -349,9 +349,9 @@ namespace ScreenTools
             this.Maximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Maximize.AutoSize = true;
             this.Maximize.Image = ((System.Drawing.Image)(resources.GetObject("Maximize.Image")));
-            this.Maximize.Location = new System.Drawing.Point(865, 0);
+            this.Maximize.Location = new System.Drawing.Point(861, 0);
             this.Maximize.Name = "Maximize";
-            this.Maximize.Size = new System.Drawing.Size(51, 33);
+            this.Maximize.Size = new System.Drawing.Size(58, 33);
             this.Maximize.TabIndex = 15;
             this.Maximize.UseVisualStyleBackColor = true;
             this.Maximize.Click += new System.EventHandler(this.Maximize_Click);
