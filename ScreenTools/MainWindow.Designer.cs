@@ -194,6 +194,7 @@ namespace ScreenTools
             // 
             // LiveVideoSet
             // 
+            this.LiveVideoSet.ForeColor = System.Drawing.SystemColors.ControlText;
             this.LiveVideoSet.Name = "LiveVideoSet";
             this.LiveVideoSet.Size = new System.Drawing.Size(210, 32);
             this.LiveVideoSet.Text = "直播设置";
@@ -316,7 +317,7 @@ namespace ScreenTools
             this.StopRecording.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.StopRecording.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.StopRecording.Name = "StopRecording";
-            this.StopRecording.Size = new System.Drawing.Size(100, 36);
+            this.StopRecording.Size = new System.Drawing.Size(100, 32);
             this.StopRecording.Text = "停止录制";
             this.StopRecording.ToolTipText = "\r\n";
             this.StopRecording.Visible = false;
@@ -327,7 +328,7 @@ namespace ScreenTools
             this.RecordTimeTick.Font = new System.Drawing.Font("微软雅黑", 15.25F);
             this.RecordTimeTick.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.RecordTimeTick.Name = "RecordTimeTick";
-            this.RecordTimeTick.Size = new System.Drawing.Size(65, 36);
+            this.RecordTimeTick.Size = new System.Drawing.Size(65, 32);
             this.RecordTimeTick.Text = "00:00";
             this.RecordTimeTick.Visible = false;
             // 
@@ -336,9 +337,9 @@ namespace ScreenTools
             this.Minimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Minimize.AutoSize = true;
             this.Minimize.Image = ((System.Drawing.Image)(resources.GetObject("Minimize.Image")));
-            this.Minimize.Location = new System.Drawing.Point(802, 0);
+            this.Minimize.Location = new System.Drawing.Point(813, 0);
             this.Minimize.Name = "Minimize";
-            this.Minimize.Size = new System.Drawing.Size(58, 33);
+            this.Minimize.Size = new System.Drawing.Size(51, 33);
             this.Minimize.TabIndex = 14;
             this.Minimize.UseVisualStyleBackColor = true;
             this.Minimize.Click += new System.EventHandler(this.Minimize_Click);
@@ -348,9 +349,9 @@ namespace ScreenTools
             this.Maximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Maximize.AutoSize = true;
             this.Maximize.Image = ((System.Drawing.Image)(resources.GetObject("Maximize.Image")));
-            this.Maximize.Location = new System.Drawing.Point(861, 0);
+            this.Maximize.Location = new System.Drawing.Point(865, 0);
             this.Maximize.Name = "Maximize";
-            this.Maximize.Size = new System.Drawing.Size(58, 33);
+            this.Maximize.Size = new System.Drawing.Size(51, 33);
             this.Maximize.TabIndex = 15;
             this.Maximize.UseVisualStyleBackColor = true;
             this.Maximize.Click += new System.EventHandler(this.Maximize_Click);
@@ -362,7 +363,7 @@ namespace ScreenTools
             this.CloseButton.Image = ((System.Drawing.Image)(resources.GetObject("CloseButton.Image")));
             this.CloseButton.Location = new System.Drawing.Point(920, 0);
             this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(58, 33);
+            this.CloseButton.Size = new System.Drawing.Size(48, 33);
             this.CloseButton.TabIndex = 16;
             this.CloseButton.UseVisualStyleBackColor = true;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
@@ -389,7 +390,7 @@ namespace ScreenTools
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainWindow_FormClosed);
             this.Load += new System.EventHandler(this.MainWindow_Load);
