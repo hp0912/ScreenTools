@@ -336,9 +336,9 @@ namespace ScreenTools
             this.Minimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Minimize.AutoSize = true;
             this.Minimize.Image = ((System.Drawing.Image)(resources.GetObject("Minimize.Image")));
-            this.Minimize.Location = new System.Drawing.Point(802, 0);
+            this.Minimize.Location = new System.Drawing.Point(816, 0);
             this.Minimize.Name = "Minimize";
-            this.Minimize.Size = new System.Drawing.Size(58, 33);
+            this.Minimize.Size = new System.Drawing.Size(48, 33);
             this.Minimize.TabIndex = 14;
             this.Minimize.UseVisualStyleBackColor = true;
             this.Minimize.Click += new System.EventHandler(this.Minimize_Click);
@@ -348,9 +348,9 @@ namespace ScreenTools
             this.Maximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Maximize.AutoSize = true;
             this.Maximize.Image = ((System.Drawing.Image)(resources.GetObject("Maximize.Image")));
-            this.Maximize.Location = new System.Drawing.Point(861, 0);
+            this.Maximize.Location = new System.Drawing.Point(868, 0);
             this.Maximize.Name = "Maximize";
-            this.Maximize.Size = new System.Drawing.Size(58, 33);
+            this.Maximize.Size = new System.Drawing.Size(48, 33);
             this.Maximize.TabIndex = 15;
             this.Maximize.UseVisualStyleBackColor = true;
             this.Maximize.Click += new System.EventHandler(this.Maximize_Click);
@@ -362,7 +362,7 @@ namespace ScreenTools
             this.CloseButton.Image = ((System.Drawing.Image)(resources.GetObject("CloseButton.Image")));
             this.CloseButton.Location = new System.Drawing.Point(920, 0);
             this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(58, 33);
+            this.CloseButton.Size = new System.Drawing.Size(48, 33);
             this.CloseButton.TabIndex = 16;
             this.CloseButton.UseVisualStyleBackColor = true;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
